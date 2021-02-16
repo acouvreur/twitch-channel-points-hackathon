@@ -1,1 +1,1 @@
-# twitch-channel-points-hackathon
+# Twitch Channel Points Hackathon

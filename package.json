@@ -1,0 +1,19 @@
+{
+  "name": "twitch-channel-points-hackathon",
+  "version": "1.0.0",
+  "description": "Twitch Channel Points Hackathon",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acouvreur/twitch-channel-points-hackathon.git"
+  },
+  "author": "Alexis COUVREUR",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/acouvreur/twitch-channel-points-hackathon/issues"
+  },
+  "homepage": "https://github.com/acouvreur/twitch-channel-points-hackathon#readme"
+}
