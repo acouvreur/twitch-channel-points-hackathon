@@ -3,23 +3,8 @@
 ## Install
 
 - Ensure NodeJS v12+ is installed
-- create a file `.env` with following template described in `.env-sample` (complete with your account private information)
-
-## Contribute
-
-### Configure VSCode to automatically check and format files with ESLint
-
-- Install ESLint plugin
-- Ensure ESLint is enabled and allowed: see ESLint button in the bottom right of the editor
-- Go to Settings and search for `code actions` and edit `settings.json`
-- Configure as below and save
-
-```json
-    "editor.codeActionsOnSave": {
-        "source.fixAll.eslint": true 
-    },
-    "eslint.validate": ["javascript"]
-```
+- create a file `.env` following template described in `.env-sample` (complete with your account private information)
+- navigate to [auth](http://localhost:8080/auth) to generate application credentials. *WARNING* - credentials are store in the file `token.json`: DO NOT SHARE IT WITH ANYONE
 
 ## License
 
