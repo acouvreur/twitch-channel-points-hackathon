@@ -1,0 +1,28 @@
+[
+  {
+    "title": "Test 1",
+    "cost": 100,
+    "autoFulfill": false,
+    "backgroundColor": "#e71cf5",
+    "globalCooldown": 5,
+    "isEnabled": true,
+    "maxRedemptionsPerStream": 0,
+    "maxRedemptionsPerUserPerStream": 0,
+    "prompt": "Bravo guy!",
+    "userInputRequired": false,
+    "games": ["Just Chatting", "Minecraft"]
+  },
+  {
+    "title": "Test 1",
+    "cost": 100,
+    "autoFulfill": false,
+    "backgroundColor": "#e71cf5",
+    "globalCooldown": 5,
+    "isEnabled": true,
+    "maxRedemptionsPerStream": 0,
+    "maxRedemptionsPerUserPerStream": 0,
+    "prompt": "Bravo guy!",
+    "userInputRequired": false,
+    "games": ["Fortnite", "League of Legends"]
+  }
+]

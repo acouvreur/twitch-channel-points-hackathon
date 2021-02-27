@@ -15,6 +15,10 @@ const REDIRECT_URI = `${SERVER_URL}/auth/callback`;
 // eslint-disable-next-line max-len
 const TWITCH_AUTHORIZE_URL = `https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPES}`;
 
+const cache = {
+  refreshableAuthProvider: undefined,
+};
+
 /**
  * @typedef {Object} TokenFileData
  *
@@ -53,30 +57,33 @@ const generateTokenFile = async (code) => {
 };
 
 /**
+ * Returns a RefreshableAuthProvider from cache or instanciates a new one
  *
- * @param   {TokenFileData} tokenFileData
  * @returns {RefreshableAuthProvider}
  */
 const getRefreshableAuthProvider = () => {
-  const tokenFileData = JSON.parse(fs.readFileSync('./token.json', 'UTF-8'));
+  if (!cache.refreshableAuthProvider) {
+    const tokenFileData = JSON.parse(fs.readFileSync('./token.json', 'UTF-8'));
 
-  return new RefreshableAuthProvider(
-    new StaticAuthProvider(CLIENT_ID, tokenFileData.accessToken),
-    {
-      clientSecret: CLIENT_SECRET,
-      refreshToken: tokenFileData.refreshToken,
-      expiry: tokenFileData.expiryTimestamp === null
-        ? null : new Date(tokenFileData.expiryTimestamp),
-      onRefresh: async ({ accessToken, refreshToken, expiryDate }) => {
-        const newTokenData = {
-          accessToken,
-          refreshToken,
-          expiryTimestamp: expiryDate === null ? null : expiryDate.getTime(),
-        };
-        fs.writeFileSync('./tokens.json', JSON.stringify(newTokenData, null, 4), 'UTF-8');
+    cache.refreshableAuthProvider = new RefreshableAuthProvider(
+      new StaticAuthProvider(CLIENT_ID, tokenFileData.accessToken),
+      {
+        clientSecret: CLIENT_SECRET,
+        refreshToken: tokenFileData.refreshToken,
+        expiry: tokenFileData.expiryTimestamp === null
+          ? null : new Date(tokenFileData.expiryTimestamp),
+        onRefresh: async ({ accessToken, refreshToken, expiryDate }) => {
+          const newTokenData = {
+            accessToken,
+            refreshToken,
+            expiryTimestamp: expiryDate === null ? null : expiryDate.getTime(),
+          };
+          fs.writeFileSync('./token.json', JSON.stringify(newTokenData, null, 4), 'UTF-8');
+        },
       },
-    },
-  );
+    );
+  }
+  return cache.refreshableAuthProvider;
 };
 
 module.exports = {
