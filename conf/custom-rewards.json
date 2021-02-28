@@ -11,7 +11,7 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "96eb71ed-0146-49d2-b4bf-d7478b36742c"
+      "id": "83fca857-12a0-46e1-8c25-8f46b0e4cdec"
     },
     "games": [
       "Just Chatting",
@@ -21,7 +21,7 @@
   {
     "reward": {
       "title": "Test 2",
-      "cost": 100,
+      "cost": 200,
       "autoFulfill": false,
       "backgroundColor": "#0097b9",
       "globalCooldown": 5,
@@ -30,11 +30,12 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "455c9a89-490a-4a63-9350-1fdfeed5884b"
+      "id": "0b1de481-7f05-4584-8d15-1a9b8ce6c231"
     },
     "games": [
       "Unrailed!",
-      "Minecraft"
+      "Minecraft",
+      "GeoGuessr"
     ]
   }
 ]

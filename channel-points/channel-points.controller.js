@@ -11,9 +11,14 @@ router.get('/custom-rewards', async (_, res) => {
   res.status(200).json(customRewards.map((r) => r._data));
 });
 
-router.get('/configuration', async (_, res) => {
-  customRewardsConfiguration.loadCustomRewards();
-  res.status(200).send('All Custom Rewards were deleted and created again following custom-rewards.json configuration.');
+router.get('/custom-rewards-configuration/load', async (_, res) => {
+  await customRewardsConfiguration.loadCustomRewards();
+  res.status(200).send('All Custom Rewards were deleted and created again following custom-rewards.json configuration!');
+});
+
+router.get('/custom-rewards-configuration/apply', async (_, res) => {
+  await customRewardsConfiguration.applyCustomRewardsConfiguration();
+  res.status(200).send('Custom Rewards updated!');
 });
 
 module.exports = router;
