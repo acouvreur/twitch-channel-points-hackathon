@@ -12,11 +12,13 @@ router.get('/custom-rewards', async (_, res) => {
 });
 
 router.get('/custom-rewards-configuration/load', async (_, res) => {
+  console.log('[HTTP] GET /channel-points/custom-rewards-configuration/load');
   await customRewardsConfiguration.loadCustomRewards();
   res.status(200).send('All Custom Rewards were deleted and created again following custom-rewards.json configuration!');
 });
 
 router.get('/custom-rewards-configuration/apply', async (_, res) => {
+  console.log('[HTTP] GET /channel-points/custom-rewards-configuration/apply');
   await customRewardsConfiguration.applyCustomRewardsConfiguration();
   res.status(200).send('Custom Rewards updated!');
 });
