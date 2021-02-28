@@ -13,9 +13,11 @@ module.exports = {
   rules: {
     'no-console': 'off',
     'max-len': ['error', {
+      code: 100,
       ignoreComments: true,
       ignoreTrailingComments: true,
       ignoreStrings: true,
+      ignoreTemplateLiterals: true,
     }],
   },
 };

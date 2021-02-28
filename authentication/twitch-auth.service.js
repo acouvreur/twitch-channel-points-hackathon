@@ -1,17 +1,17 @@
 const fs = require('fs');
 const FormData = require('form-data');
-const { default: got } = require('got/dist/source');
+const { default: got } = require('got');
 
 const { RefreshableAuthProvider, StaticAuthProvider } = require('twitch-auth');
 
 const {
-  SERVER_URL,
+  PORT,
   CLIENT_ID,
   CLIENT_SECRET,
   SCOPES,
 } = process.env;
 
-const REDIRECT_URI = `${SERVER_URL}/auth/callback`;
+const REDIRECT_URI = `http://localhost:${PORT}/auth/callback`;
 // eslint-disable-next-line max-len
 const TWITCH_AUTHORIZE_URL = `https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPES}`;
 
@@ -88,6 +88,6 @@ const getRefreshableAuthProvider = () => {
 
 module.exports = {
   TWITCH_AUTHORIZE_URL,
-  getRefreshableAuthProvider,
   generateTokenFile,
+  getRefreshableAuthProvider,
 };
