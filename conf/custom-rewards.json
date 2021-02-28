@@ -2,7 +2,7 @@
   {
     "reward": {
       "title": "Test 1",
-      "cost": 100,
+      "cost": 1,
       "autoFulfill": false,
       "backgroundColor": "#e71cf5",
       "globalCooldown": 5,
@@ -11,17 +11,18 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "83fca857-12a0-46e1-8c25-8f46b0e4cdec"
+      "id": "64738682-7a29-43a7-8fcf-c5ba140a91b2"
     },
     "games": [
       "Just Chatting",
-      "Unrailed!"
+      "Unrailed!",
+      "GeoGuessr"
     ]
   },
   {
     "reward": {
       "title": "Test 2",
-      "cost": 200,
+      "cost": 1,
       "autoFulfill": false,
       "backgroundColor": "#0097b9",
       "globalCooldown": 5,
@@ -30,12 +31,11 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "0b1de481-7f05-4584-8d15-1a9b8ce6c231"
+      "id": "57121e85-3f59-4588-a46d-9590f7d95847"
     },
     "games": [
       "Unrailed!",
-      "Minecraft",
-      "GeoGuessr"
+      "Minecraft"
     ]
   }
 ]

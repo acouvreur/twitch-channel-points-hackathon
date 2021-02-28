@@ -7,7 +7,6 @@ router.get('/', (req, res) => {
 });
 
 router.use('/auth', twitchAuthController);
-
 router.use('/channel-points', channelPointsController);
 
 module.exports = router;

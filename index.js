@@ -1,8 +1,30 @@
 require('dotenv').config();
-const server = require('./server');
+
+const terminate = require('./server/terminate');
+const app = require('./server');
+
+const polling = require('./polling');
+const pubSub = require('./pub-sub');
 
 const PORT = parseInt(process.env.SERVER_PORT, 10);
 
-server.listen(PORT, () => {
+// start HTTP server
+const server = app.listen(PORT, () => {
   console.log(`App listening at http://localhost:${PORT}`);
 });
+
+// start polling loop
+polling.start();
+
+// initialize pubSub
+pubSub.subscribe();
+
+const exitHandler = terminate(server, polling, pubSub, {
+  coredump: false,
+  timeout: 500,
+});
+
+process.on('uncaughtException', exitHandler(1, 'Unexpected Error'));
+process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'));
+process.on('SIGTERM', exitHandler(0, 'SIGTERM'));
+process.on('SIGINT', exitHandler(0, 'SIGINT'));
