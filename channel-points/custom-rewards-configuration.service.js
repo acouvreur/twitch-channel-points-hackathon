@@ -54,7 +54,7 @@ const applyCustomRewardsConfiguration = async (channelInfo) => {
 
   if (!channelInformation) {
     const apiClient = getApiClient();
-    /** @type {import('twitch-auth').TokenInfo'} */
+    /** @type {import('twitch-auth').TokenInfo} */
     const tokenInfo = await apiClient.getTokenInfo();
     /** @type {import('twitch').HelixChannel} */
     channelInformation = await apiClient.helix.channels.getChannelInfo(tokenInfo.userId);

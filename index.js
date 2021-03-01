@@ -10,7 +10,7 @@ const PORT = parseInt(process.env.SERVER_PORT, 10);
 
 // start HTTP server
 const server = app.listen(PORT, () => {
-  console.log(`App listening at http://localhost:${PORT}`);
+  console.log(`The app is running on port ${PORT}! If not already, navigate to http://localhost:${PORT}/auth to generate app credentials`);
 });
 
 // start polling loop

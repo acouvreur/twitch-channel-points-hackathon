@@ -25,7 +25,7 @@ const getApiClient = () => {
 const getCustomRewards = async () => {
   const apiClient = getApiClient();
 
-  /** @type {import('twitch-auth').TokenInfo'} */
+  /** @type {import('twitch-auth').TokenInfo} */
   const tokenInfo = await apiClient.getTokenInfo();
 
   return apiClient.helix.channelPoints.getCustomRewards(tokenInfo.userId);
@@ -40,7 +40,7 @@ const getCustomRewards = async () => {
 const createCustomReward = async (customRewardData) => {
   const apiClient = getApiClient();
 
-  /** @type {import('twitch-auth').TokenInfo'} */
+  /** @type {import('twitch-auth').TokenInfo} */
   const tokenInfo = await apiClient.getTokenInfo();
 
   return apiClient.helix.channelPoints.createCustomReward(
@@ -77,7 +77,7 @@ const updateCustomReward = async (customRewardId, customRewardData) => {
 const deleteCustomReward = async (customRewardId) => {
   const apiClient = getApiClient();
 
-  /** @type {import('twitch-auth').TokenInfo'} */
+  /** @type {import('twitch-auth').TokenInfo} */
   const tokenInfo = await apiClient.getTokenInfo();
 
   apiClient.helix.channelPoints.deleteCustomReward(

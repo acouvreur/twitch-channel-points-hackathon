@@ -39,7 +39,7 @@ const getPubSubClient = async () => {
 const getUserId = async () => {
   const apiClient = getApiClient();
 
-  /** @type {import('twitch-auth').TokenInfo'} */
+  /** @type {import('twitch-auth').TokenInfo} */
   const tokenInfo = await apiClient.getTokenInfo();
 
   return tokenInfo.userId;

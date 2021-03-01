@@ -1,4 +1,3 @@
-const { last } = require('lodash');
 const { ApiClient } = require('twitch');
 
 const twitchAuthService = require('../authentication/twitch-auth.service');
@@ -8,8 +7,8 @@ const cache = {
   apiClient: undefined,
 };
 
-/** @type {import('twitch').HelixChannel'} */
 const previous = {
+  /** @type {import('twitch').HelixChannel} */
   channelInfo: undefined,
 };
 
@@ -25,18 +24,20 @@ const getApiClient = () => {
   return cache.apiClient;
 };
 
-const onChannelGameNameChanged = async () => {
-  // TODO pass channelInfo as parameter to this function
-  customRewardsConfigurationService.applyCustomRewardsConfiguration();
+/**
+ * @param {import('twitch').HelixChannel} channelInfo
+ */
+const onChannelGameNameChanged = async (channelInfo) => {
+  customRewardsConfigurationService.applyCustomRewardsConfiguration(channelInfo);
 };
 
 const poll = async () => {
   const apiClient = getApiClient();
 
-  /** @type {import('twitch-auth').TokenInfo'} */
+  /** @type {import('twitch-auth').TokenInfo} */
   const tokenInfo = await apiClient.getTokenInfo();
 
-  /** @type {import('twitch').HelixChannel'} */
+  /** @type {import('twitch').HelixChannel} */
   const channelInfo = await apiClient.helix.channels.getChannelInfo(tokenInfo.userId);
 
   if (!previous.channelInfo || previous.channelInfo.gameName !== channelInfo.gameName) {
