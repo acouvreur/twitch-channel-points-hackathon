@@ -17,6 +17,15 @@
 ### Minecraft
 
 TODO
+
+### Ableton
+
+- Ensure Ableton Live 11 Suite (or Ableton Lite or Live version 10+) is installed
+- Windows
+  - Ensure [Midi loop](http://www.tobias-erichsen.de/software/loopmidi.html) is installed
+  - configure midi output with name `twitch` or adapt .env configuration value of `PLUGIN_MIDI_OUTPUT`
+- Unix
+  - Virtual midi will be created with no need to install another tool
 ## License
 
 See [License](LICENSE)

@@ -11,7 +11,7 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "2a476896-c926-43a1-bff8-c7b4fb36029e"
+      "id": "562dce3f-b516-4671-929e-ad218026db85"
     },
     "isEnabled": {
       "games": [
@@ -40,7 +40,7 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "9a483e84-afa0-4f4a-ad84-bb176a8a4ef9"
+      "id": "8bc9e085-2094-43cf-bb54-d33f42a8c6af"
     },
     "isEnabled": {
       "games": [
@@ -51,7 +51,13 @@
       "groups": [
         "Setup 1"
       ]
-    }
+    },
+    "onRedemption": [
+      {
+        "plugin": "midi",
+        "params": {}
+      }
+    ]
   },
   {
     "reward": {
@@ -65,7 +71,7 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "bc8bb5fa-f1db-418c-adae-a69ebac13576"
+      "id": "3b2c08ee-85aa-4f0c-8b77-404867d74d3f"
     },
     "isEnabled": {
       "games": [
