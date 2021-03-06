@@ -4,16 +4,35 @@
   "description": "Twitch Channel Points Hackathon",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js",
+    "build:client": "cd client && npm run build",
+    "build": "npm run build:client"
   },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/acouvreur/twitch-channel-points-hackathon.git"
   },
-  "author": "Alexis COUVREUR",
-  "license": "ISC",
+  "author": "Alexis COUVREUR, Alexandre HILTCHER, Florian MAUNIER, Thomas MOREAU",
+  "license": "SEE LICENSE IN LICENCE",
   "bugs": {
     "url": "https://github.com/acouvreur/twitch-channel-points-hackathon/issues"
   },
-  "homepage": "https://github.com/acouvreur/twitch-channel-points-hackathon#readme"
+  "homepage": "https://github.com/acouvreur/twitch-channel-points-hackathon#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "easymidi": "^2.0.1",
+    "express": "^4.17.1",
+    "form-data": "^4.0.0",
+    "got": "^11.8.2",
+    "lodash": "^4.17.21",
+    "twitch": "^4.4.12",
+    "twitch-auth": "^4.4.12",
+    "twitch-pubsub-client": "^4.4.12"
+  },
+  "devDependencies": {
+    "eslint": "^7.20.0",
+    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-plugin-import": "^2.22.1"
+  }
 }
