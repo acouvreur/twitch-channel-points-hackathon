@@ -2,7 +2,7 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const routes = require('./routes');
-const { handleHttpErrorResponse } = require('../middlewares/handleHttpErrorResponse.middleware');
+const { handleHttpErrorResponse } = require('../middleware/handleHttpErrorResponse.middleware');
 
 const app = express();
 

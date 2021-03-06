@@ -1,6 +1,33 @@
 [
   {
     "reward": {
+      "title": "Help Me",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#e71cf5",
+      "globalCooldown": 5,
+      "isEnabled": false,
+      "maxRedemptionsPerStream": 0,
+      "maxRedemptionsPerUserPerStream": 0,
+      "prompt": "Bravo guy!",
+      "userInputRequired": false,
+      "id": "64738682-7a29-43a7-8fcf-c5ba140a91b2"
+    },
+    "isEnabled": {
+      "games": [
+        "Minecraft"
+      ]
+    },
+    "onRedemption": [{
+      "plugin": "minecraft",
+      "params": {
+        "effect" : "REGENERATION",
+        "duration" : 2400
+      }
+    }]
+  },
+  {
+    "reward": {
       "title": "Test 1",
       "cost": 1,
       "autoFulfill": false,
@@ -13,11 +40,16 @@
       "userInputRequired": false,
       "id": "64738682-7a29-43a7-8fcf-c5ba140a91b2"
     },
-    "games": [
-      "Just Chatting",
-      "Unrailed!",
-      "GeoGuessr"
-    ]
+    "isEnabled": {
+      "games": [
+        "Just Chatting",
+        "Unrailed!",
+        "GeoGuessr"
+      ],
+      "groups": [
+        "Setup 1"
+      ]
+    }
   },
   {
     "reward": {
@@ -33,9 +65,14 @@
       "userInputRequired": false,
       "id": "57121e85-3f59-4588-a46d-9590f7d95847"
     },
-    "games": [
-      "Unrailed!",
-      "Minecraft"
-    ]
+    "isEnabled": {
+      "games": [
+        "Unrailed!",
+        "Minecraft"
+      ],
+      "groups": [
+        "Setup 2"
+      ]
+    }
   }
 ]

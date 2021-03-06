@@ -1,5 +1,6 @@
 const pubSubService = require('./pub-sub.service');
-
+const { getCustomRewardsConf } = require('../channel-points/custom-rewards-configuration.service');
+const { handleMinecraftReward } = require('../handlers/minecraft-plugin.handler');
 /**
  * @type {{onRedemptionListener: import('twitch-pubsub-client').PubSubListener<never>}}
  */
@@ -8,10 +9,26 @@ const cache = {
 };
 
 /**
+ * @param {import('../channel-points/custom-rewards-configuration.service').CustomRewardConf} reward
+ * @param {import('../channel-points/custom-rewards-configuration.service').OnRedemptionConf} onRedemption
+ */
+const handleRedemption = (reward, onRedemption) => {
+  if (onRedemption.plugin === 'minecraft') {
+    handleMinecraftReward(reward);
+  } else {
+    console.log(`${reward.userDisplayName} redeemed ${reward.rewardName}`);
+  }
+};
+
+/**
  * @param {import('twitch-pubsub-client').PubSubRedemptionMessage} message
  */
 const onRedemptionEventReceived = async (message) => {
-  console.log(`${message.userDisplayName} redeemed ${message.rewardName}`);
+  const reward = getCustomRewardsConf().find((r) => r.reward.title === message.rewardName);
+
+  reward.onRedemption.forEach((onRedemption) => {
+    handleRedemption(reward, onRedemption);
+  });
 };
 
 const unsubscribe = async () => {
