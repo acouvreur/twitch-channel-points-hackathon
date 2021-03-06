@@ -12,6 +12,11 @@
   - then run `npm start`
 - Navigate to [auth](http://localhost:8080/auth) to generate application credentials. *WARNING* - credentials are store in the file `token.json`: DO NOT SHARE IT WITH ANYONE
 
+## Plugins
+
+### Minecraft
+
+TODO
 ## License
 
 See [License](LICENSE)
