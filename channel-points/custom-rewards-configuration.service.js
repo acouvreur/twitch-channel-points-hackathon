@@ -11,6 +11,7 @@ const GROUPS_CONF_PATH = 'conf/groups.json';
 /**
  * @typedef IsEnabledConf
  * @property {string[]} games
+ * @property {string[]} groups
  */
 
 /**
@@ -60,7 +61,6 @@ const getGroupsConf = () => JSON.parse(fs.readFileSync(GROUPS_CONF_PATH));
 const loadCustomRewards = async () => {
   await customRewardsService.deleteAllCustomRewards();
 
-  // eslint-disable-next-line max-len
   const customRewardsConf = getCustomRewardsConf();
 
   const promises = customRewardsConf.map(async (customRewardConf) => {

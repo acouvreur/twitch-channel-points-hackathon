@@ -53,7 +53,7 @@ const updateCustomReward = async (customRewardId, customRewardData) => {
 const deleteCustomReward = async (customRewardId) => {
   const tokenInfo = await getTokenInfo();
 
-  apiClient.helix.channelPoints.deleteCustomReward(
+  return apiClient.helix.channelPoints.deleteCustomReward(
     tokenInfo.userId,
     customRewardId,
   );
@@ -66,7 +66,7 @@ const deleteCustomReward = async (customRewardId) => {
  */
 const deleteAllCustomRewards = async () => {
   const customRewards = await getCustomRewards();
-  await Promise.all(customRewards.map(async (customReward) => {
+  return Promise.all(customRewards.map(async (customReward) => {
     console.log(`[LOG] deleting custom reward [${customReward.id}]`);
     await deleteCustomReward(customReward.id);
   }));
@@ -77,7 +77,7 @@ const deleteAllCustomRewards = async () => {
  */
 const disableAllRewards = async () => {
   const customRewards = await getCustomRewards();
-  await Promise.all(customRewards.map(async (customReward) => {
+  return Promise.all(customRewards.map(async (customReward) => {
     console.log(`[LOG] deleting custom reward [${customReward.id}]`);
     await updateCustomReward(customReward.id, {
       isEnabled: false,

@@ -11,20 +11,22 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "64738682-7a29-43a7-8fcf-c5ba140a91b2"
+      "id": "2a476896-c926-43a1-bff8-c7b4fb36029e"
     },
     "isEnabled": {
       "games": [
         "Minecraft"
       ]
     },
-    "onRedemption": [{
-      "plugin": "minecraft",
-      "params": {
-        "effect" : "REGENERATION",
-        "duration" : 2400
+    "onRedemption": [
+      {
+        "plugin": "minecraft",
+        "params": {
+          "effect": "REGENERATION",
+          "duration": 2400
+        }
       }
-    }]
+    ]
   },
   {
     "reward": {
@@ -38,7 +40,7 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "64738682-7a29-43a7-8fcf-c5ba140a91b2"
+      "id": "9a483e84-afa0-4f4a-ad84-bb176a8a4ef9"
     },
     "isEnabled": {
       "games": [
@@ -63,7 +65,7 @@
       "maxRedemptionsPerUserPerStream": 0,
       "prompt": "Bravo guy!",
       "userInputRequired": false,
-      "id": "57121e85-3f59-4588-a46d-9590f7d95847"
+      "id": "bc8bb5fa-f1db-418c-adae-a69ebac13576"
     },
     "isEnabled": {
       "games": [
