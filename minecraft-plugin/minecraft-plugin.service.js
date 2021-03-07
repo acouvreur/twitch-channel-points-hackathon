@@ -3,16 +3,16 @@ const got = require('got');
 const minecraftPluginServerUrl = process.env.PLUGIN_MINECRAFT_SERVER_URL;
 
 /**
- * @param {import('../channel-points/custom-rewards-configuration.service').CustomRewardConf} rewardConf
+ * @param {object} params
  */
-const handleMinecraftReward = async (rewardConf) => {
+const applyPotionEffect = async (params) => {
   console.log('[INFO] apply minecraft potion effect');
   await got.post(`${minecraftPluginServerUrl}/potions`, {
-    json: rewardConf.onRedemption.params,
+    json: params,
     responseType: 'json',
   });
 };
 
 module.exports = {
-  handleMinecraftReward,
+  applyPotionEffect,
 };

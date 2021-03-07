@@ -1,7 +1,7 @@
 const pubSubService = require('./pub-sub.service');
 const { getCustomRewardsConf } = require('../channel-points/custom-rewards-configuration.service');
-const { handleMidiReward } = require('../handlers/midi-plugin.handler');
-const { handleMinecraftReward } = require('../handlers/minecraft-plugin.handler');
+const { generateMidi } = require('../midi-plugin/midi.plugin.service');
+const { applyPotionEffect } = require('../minecraft-plugin/minecraft-plugin.service');
 /**
  * @type {{onRedemptionListener: import('twitch-pubsub-client').PubSubListener<never>}}
  */
@@ -12,13 +12,13 @@ const cache = {
 /**
  * @param {import('twitch-pubsub-client').PubSubRedemptionMessage} redemptionMessage
  * @param {import('../channel-points/custom-rewards-configuration.service').CustomRewardConf} rewardConf
- * @param {import('../channel-points/custom-rewards-configuration.service').OnRedemptionConf} onRedemption
+ * @param {import('../channel-points/custom-rewards-configuration.service').OnRedemptionConf} onRedemptionConf
  */
-const handleRedemption = (redemptionMessage, rewardConf, onRedemption) => {
-  if (onRedemption.plugin === 'midi') {
-    handleMidiReward(rewardConf);
-  } else if (onRedemption.plugin === 'minecraft') {
-    handleMinecraftReward(rewardConf);
+const handleRedemption = async (redemptionMessage, rewardConf, onRedemptionConf) => {
+  if (onRedemptionConf.plugin === 'midi') {
+    await generateMidi(onRedemptionConf.params);
+  } else if (onRedemptionConf.plugin === 'minecraft') {
+    await applyPotionEffect(onRedemptionConf.params);
   } else {
     console.log(`${redemptionMessage.userDisplayName} redeemed ${redemptionMessage.rewardName}`);
   }
@@ -30,9 +30,11 @@ const handleRedemption = (redemptionMessage, rewardConf, onRedemption) => {
 const onRedemptionEventReceived = async (message) => {
   const reward = getCustomRewardsConf().find((r) => r.reward.title === message.rewardName);
 
-  reward.onRedemption.forEach((onRedemption) => {
-    handleRedemption(message, reward, onRedemption);
+  const promises = reward.onRedemption.map(async (onRedemptionConf) => {
+    await handleRedemption(message, reward, onRedemptionConf);
   });
+
+  return Promise.all(promises);
 };
 
 const unsubscribe = async () => {

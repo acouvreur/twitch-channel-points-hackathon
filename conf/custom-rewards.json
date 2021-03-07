@@ -55,7 +55,16 @@
     "onRedemption": [
       {
         "plugin": "midi",
-        "params": {}
+        "params": {
+          "outputs":[{
+            "type": "noteon",
+            "value": {
+              "note": 64,
+              "velocity": 127,
+              "channel": 0
+            }
+          }]
+        }
       }
     ]
   },
