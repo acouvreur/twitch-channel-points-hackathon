@@ -31,14 +31,20 @@ const cache = {
  * @property {number} channel 0 to 15
  */
 
-// TODO handle windows and UNIX
 /**
  * @returns {import('easymidi').Output}
  */
 const getMidiOutput = () => {
+  const isWindows = process.platform === 'win32';
+
   if (!cache.midiOutput) {
-    const name = easymidi.getOutputs().find((o) => o.startsWith(midiOutputName));
-    cache.midiOutput = new easymidi.Output(name);
+    if (isWindows) {
+      // Search for LoopMidi output
+      const name = easymidi.getOutputs().find((o) => o.startsWith(midiOutputName));
+      cache.midiOutput = new easymidi.Output(name);
+    } else {
+      cache.midiOutput = new easymidi.Output(midiOutputName, true);
+    }
   }
   return cache.midiOutput;
 };
