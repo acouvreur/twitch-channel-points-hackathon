@@ -1,5 +1,8 @@
 const pubSubService = require('./pub-sub.service');
 const { getCustomRewardsConf } = require('../channel-points/custom-rewards-configuration.service');
+
+const redemptionService = require('../channel-points/redemptions.service');
+
 const { generateMidi } = require('../midi-plugin/midi.plugin.service');
 const { applyEffect } = require('../minecraft-plugin/minecraft-plugin.service');
 /**
@@ -33,8 +36,12 @@ const onRedemptionEventReceived = async (message) => {
   const promises = reward.onRedemption.map(async (onRedemptionConf) => {
     await handleRedemption(message, reward, onRedemptionConf);
   });
-
-  return Promise.all(promises);
+  try {
+    await Promise.all(promises);
+    await redemptionService.fulfillRedemptions(message.rewardId, [message.id]);
+  } catch (error) {
+    await redemptionService.cancelRedemptions(message.rewardId, [message.id]);
+  }
 };
 
 const unsubscribe = async () => {
