@@ -31,7 +31,7 @@ const handleRedemption = async (redemptionMessage, rewardConf, onRedemptionConf)
  * @param {import('twitch-pubsub-client').PubSubRedemptionMessage} message
  */
 const onRedemptionEventReceived = async (message) => {
-  const reward = getCustomRewardsConf().find((r) => r.reward.title === message.rewardName);
+  const reward = getCustomRewardsConf().find((r) => r.reward.id === message.rewardId);
 
   const promises = reward.onRedemption.map(async (onRedemptionConf) => {
     await handleRedemption(message, reward, onRedemptionConf);
@@ -65,6 +65,7 @@ const subscribe = async () => {
 };
 
 module.exports = {
+  handleRedemption,
   subscribe,
   unsubscribe,
 };
