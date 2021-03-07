@@ -39,10 +39,14 @@ const MainPage = () => {
     }
   };
 
+  const onCreateReward = (rewardConf) => {
+    console.log(`create ${JSON.stringify(rewardConf, null, 2)}`);
+  };
+
   return (
     <>
       <Drawer anchor="right" open={showRewardFormPanel} onClose={onClosePanel}>
-        <RewardFormPanel />
+        <RewardFormPanel onClose={onClosePanel} onSave={onCreateReward} />
       </Drawer>
 
       <Grid container spacing={0} className={classes.container}>

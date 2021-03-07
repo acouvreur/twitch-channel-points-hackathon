@@ -63,6 +63,7 @@ const RewardsContainer = ({
       >
         {rewards.map(({ reward }) => (
           <ListItem
+            key={reward.id}
             button
             selected={selectedReward && reward.id === selectedReward.id}
             onClick={() => onSelectReward(reward)}
