@@ -17,14 +17,14 @@ const useStyles = makeStyles({
   },
 });
 
-const REDEMPTION_TYPES = ['Minecraft'];
+const REDEMPTION_TYPES = ['Midi', 'Minecraft'];
 
 const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
   const classes = useStyles();
   const [redemptionType, setRedemptionType] = useState(REDEMPTION_TYPES[0]);
 
-  const onSelectRedemptionType = (event, value) => {
-    setRedemptionType(value);
+  const onSelectRedemptionType = (event) => {
+    setRedemptionType(event.target.value);
   };
 
   const onActionChange = (action) => {
@@ -45,7 +45,9 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
             value={redemptionType}
             onChange={onSelectRedemptionType}
           >
-            {REDEMPTION_TYPES.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
+            {REDEMPTION_TYPES.map((type) => (
+              <MenuItem key={type} value={type}>{type}</MenuItem>
+            ))}
           </Select>
           <Button className={classes.addButton} color="secondary" variant="contained" onClick={onAddAction}>Add</Button>
         </div>
