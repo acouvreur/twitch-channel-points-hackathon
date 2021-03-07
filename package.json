@@ -20,6 +20,7 @@
   "homepage": "https://github.com/acouvreur/twitch-channel-points-hackathon#readme",
   "dependencies": {
     "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
     "dotenv": "^8.2.0",
     "easymidi": "^2.0.1",
     "express": "^4.17.1",

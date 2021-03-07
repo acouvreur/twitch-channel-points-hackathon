@@ -1,13 +1,20 @@
-import React, { Fragment, useState } from 'react';
-import Grid from '@material-ui/core/Grid';
-import Drawer from '@material-ui/core/Drawer';
+import React, { useState } from 'react';
+import {
+  Paper, Drawer, Grid, makeStyles,
+} from '@material-ui/core';
 
-import ActionButtonsContainer from '../components/containers/ActionButtonsContainer';
 import RewardFormPanel from '../components/containers/RewardFormPanel';
 import RewardsContainer from '../components/containers/RewardsContainer';
 import PresetsContainer from '../components/containers/PresetsContainer';
 
+const useStyles = makeStyles({
+  container: {
+    height: '100vh',
+  },
+});
+
 const MainPage = () => {
+  const classes = useStyles();
   const [showRewardFormPanel, setShowRewardFormPanel] = useState(false);
   const [selectedReward, setSelectedReward] = useState(null);
 
@@ -20,16 +27,16 @@ const MainPage = () => {
     setShowRewardFormPanel(false);
   };
 
-  const onDeleteClick = () => {
+  const onDeleteClick = () => {};
 
-  };
-
-  const onEditClick = () => {
-
-  };
+  const onEditClick = () => {};
 
   const onSelectReward = (reward) => {
-    setSelectedReward(reward);
+    if (selectedReward && reward.id === selectedReward.id) {
+      setSelectedReward(null);
+    } else {
+      setSelectedReward(reward);
+    }
   };
 
   return (
@@ -38,19 +45,18 @@ const MainPage = () => {
         <RewardFormPanel />
       </Drawer>
 
-      <Grid container spacing={3}>
-        <Grid item xs={12}>
-          <ActionButtonsContainer
+      <Grid container spacing={0} className={classes.container}>
+        <Grid item xs={6} component={Paper}>
+          <PresetsContainer />
+        </Grid>
+        <Grid item xs={6}>
+          <RewardsContainer
+            selectedReward={selectedReward}
+            onSelectReward={onSelectReward}
             onCreateRewardClick={onCreateRewardClick}
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}
           />
-        </Grid>
-        <Grid item xs={6}>
-          <PresetsContainer />
-        </Grid>
-        <Grid item xs={6}>
-          <RewardsContainer selectedReward={selectedReward} onSelectReward={onSelectReward} />
         </Grid>
       </Grid>
     </>

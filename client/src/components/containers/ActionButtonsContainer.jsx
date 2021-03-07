@@ -18,9 +18,9 @@ const useStyles = makeStyles((theme) => ({
 
 /**
  * @param {Object} params
- * @param {Function<Event>} params.onCreateRewardClick
- * @param {Function<Event>} params.onEditClick
- * @param {Function<Event>} params.onDeleteClick
+ * @param {Function} params.onCreateRewardClick
+ * @param {Function} params.onEditClick
+ * @param {Function} params.onDeleteClick
  */
 const ActionButtonsContainer = ({ onCreateRewardClick, onEditClick, onDeleteClick }) => {
   const classes = useStyles();
