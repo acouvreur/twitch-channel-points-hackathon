@@ -1,5 +1,4 @@
-const apiClient = require('../helpers/utils').getApiClient();
-const { getTokenInfo } = require('../helpers/utils');
+const { getApiClient, getTokenInfo } = require('../helpers/utils');
 
 /**
  * @param {string} rewardId
@@ -7,7 +6,7 @@ const { getTokenInfo } = require('../helpers/utils');
  */
 const getRedemptions = async (rewardId, status) => {
   const tokenInfo = await getTokenInfo();
-  return apiClient.helix.channelPoints.getRedemptionsForBroadcaster(
+  return getApiClient().helix.channelPoints.getRedemptionsForBroadcaster(
     tokenInfo.userId,
     rewardId,
     status,
@@ -37,7 +36,7 @@ const getCanceledRedemptions = async (rewardId) => getRedemptions(rewardId, 'CAN
  */
 const fulfillRedemptions = async (rewardId, redemptionIds) => {
   const tokenInfo = await getTokenInfo();
-  return apiClient.helix.channelPoints.updateRedemptionStatusByIds(tokenInfo.userId, rewardId, redemptionIds, 'FULFILLED');
+  return getApiClient().helix.channelPoints.updateRedemptionStatusByIds(tokenInfo.userId, rewardId, redemptionIds, 'FULFILLED');
 };
 
 /**
@@ -47,7 +46,7 @@ const fulfillRedemptions = async (rewardId, redemptionIds) => {
  */
 const cancelRedemptions = async (rewardId, redemptionIds) => {
   const tokenInfo = await getTokenInfo();
-  return apiClient.helix.channelPoints.updateRedemptionStatusByIds(tokenInfo.userId, rewardId, redemptionIds, 'CANCELED');
+  return getApiClient().helix.channelPoints.updateRedemptionStatusByIds(tokenInfo.userId, rewardId, redemptionIds, 'CANCELED');
 };
 
 module.exports = {

@@ -26,6 +26,7 @@ TODO
   - configure midi output with name `twitch` or adapt .env configuration value of `PLUGIN_MIDI_OUTPUT`
 - Unix
   - Virtual midi will be created with no need to install another tool
+  - ensure you have `libasound2-dev` installed (or sudo apt install libasound2-dev)
 ## License
 
 See [License](LICENSE)

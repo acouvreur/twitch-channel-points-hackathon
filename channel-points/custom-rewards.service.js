@@ -1,5 +1,4 @@
-const apiClient = require('../helpers/utils').getApiClient();
-const { getTokenInfo } = require('../helpers/utils');
+const { getApiClient, getTokenInfo } = require('../helpers/utils');
 
 /**
  * Returns a list of Custom Reward objects for the Custom Rewards on a channel.
@@ -9,7 +8,7 @@ const { getTokenInfo } = require('../helpers/utils');
 const getCustomRewards = async () => {
   const tokenInfo = await getTokenInfo();
 
-  return apiClient.helix.channelPoints.getCustomRewards(tokenInfo.userId);
+  return getApiClient().helix.channelPoints.getCustomRewards(tokenInfo.userId);
 };
 
 /**
@@ -21,7 +20,7 @@ const getCustomRewards = async () => {
 const createCustomReward = async (customRewardData) => {
   const tokenInfo = await getTokenInfo();
 
-  return apiClient.helix.channelPoints.createCustomReward(
+  return getApiClient().helix.channelPoints.createCustomReward(
     tokenInfo.userId,
     customRewardData,
   );
@@ -38,7 +37,7 @@ const updateCustomReward = async (customRewardId, customRewardData) => {
   /** @type {import('twitch-auth').TokenInfo'} */
   const tokenInfo = await getTokenInfo();
 
-  return apiClient.helix.channelPoints.updateCustomReward(
+  return getApiClient().helix.channelPoints.updateCustomReward(
     tokenInfo.userId,
     customRewardId,
     customRewardData,
@@ -53,7 +52,7 @@ const updateCustomReward = async (customRewardId, customRewardData) => {
 const deleteCustomReward = async (customRewardId) => {
   const tokenInfo = await getTokenInfo();
 
-  return apiClient.helix.channelPoints.deleteCustomReward(
+  return getApiClient().helix.channelPoints.deleteCustomReward(
     tokenInfo.userId,
     customRewardId,
   );
