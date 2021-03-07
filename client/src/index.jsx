@@ -1,8 +1,12 @@
+import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import ReactDOM from 'react-dom';
 
+import { toast } from 'react-toastify';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
+
+toast.configure();
 
 ReactDOM.render(
   <App />,
