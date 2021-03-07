@@ -35,10 +35,8 @@ const cache = {
  * @returns {import('easymidi').Output}
  */
 const getMidiOutput = () => {
-  const isWindows = process.platform === 'win32';
-
   if (!cache.midiOutput) {
-    if (isWindows) {
+    if (process.platform === 'win32') {
       // Search for LoopMidi output
       const name = easymidi.getOutputs().find((o) => o.startsWith(midiOutputName));
       cache.midiOutput = new easymidi.Output(name);
