@@ -19,8 +19,8 @@ const useStyles = makeStyles({
 const MainPage = () => {
   const classes = useStyles();
   const [showRewardFormPanel, setShowRewardFormPanel] = useState(false);
-  const [selectedReward, setSelectedReward] = useState(null);
-  const [editingReward, setEditingReward] = useState(null);
+  const [selectedRewardIndex, setSelectedRewardIndex] = useState(-1);
+  const [editingRewardIndex, setEditingRewardIndex] = useState(-1);
 
   const [rewardsConf, setRewardsConf] = useState([]);
 
@@ -49,29 +49,32 @@ const MainPage = () => {
 
   const onClosePanel = () => {
     setShowRewardFormPanel(false);
-    setEditingReward(null);
-    setSelectedReward(null);
+    setEditingRewardIndex(null);
+    setSelectedRewardIndex(null);
   };
 
+  const getRewardConfByIndex = (index) => rewardsConf[index];
+
   const onDeleteClick = () => {
-    if (selectedReward) {
+    if (selectedRewardIndex >= 0) {
       // eslint-disable-next-line max-len
-      const conf = rewardsConf.filter((reward) => reward.reward.title !== selectedReward.reward.title);
+      const conf = [...rewardsConf];
+      conf.splice(selectedRewardIndex, 1);
       setRewardsConf(conf);
       rewardsService.updateRewards(conf);
     }
   };
 
   const onEditClick = () => {
-    setEditingReward(selectedReward);
+    setEditingRewardIndex(selectedRewardIndex);
     setShowRewardFormPanel(true);
   };
 
-  const onSelectReward = (reward) => {
-    if (selectedReward && reward.id === selectedReward.id) {
-      setSelectedReward(null);
+  const onSelectReward = (index) => {
+    if (selectedRewardIndex >= 0 && index === selectedRewardIndex) {
+      setSelectedRewardIndex(null);
     } else {
-      setSelectedReward(reward);
+      setSelectedRewardIndex(index);
     }
   };
 
@@ -82,7 +85,7 @@ const MainPage = () => {
 
   const onSaveReward = (rewardConf) => {
     const newConf = [...rewardsConf];
-    if (editingReward) {
+    if (editingRewardIndex >= 0) {
       const index = newConf.findIndex((conf) => conf.reward.title === rewardConf.reward.title);
       if (index === -1) {
         newConf.push(rewardConf);
@@ -101,7 +104,7 @@ const MainPage = () => {
         <RewardFormPanel
           onClose={onClosePanel}
           onSave={onSaveReward}
-          defaultValue={editingReward}
+          defaultValue={getRewardConfByIndex(editingRewardIndex)}
         />
       </Drawer>
 
@@ -111,7 +114,7 @@ const MainPage = () => {
         </Grid>
         <Grid item xs={6}>
           <RewardsContainer
-            selectedReward={selectedReward}
+            selectedReward={getRewardConfByIndex(selectedRewardIndex)}
             onSelectReward={onSelectReward}
             onCreateRewardClick={onCreateRewardClick}
             onEditClick={onEditClick}

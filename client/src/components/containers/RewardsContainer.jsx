@@ -42,12 +42,12 @@ const RewardsContainer = ({
         subheader={<ListSubheader>Rewards</ListSubheader>}
         className={classes.list}
       >
-        {rewards.map((rewardConf) => (
+        {rewards.map((rewardConf, index) => (
           <ListItem
             key={rewardConf.reward.id}
             button
             selected={selectedReward && rewardConf.reward.id === selectedReward.reward.id}
-            onClick={() => onSelectReward(rewardConf)}
+            onClick={() => onSelectReward(index)}
           >
             <ListItemText id="switch-list-enabled" primary={rewardConf.reward.title} />
             <ListItemSecondaryAction>
