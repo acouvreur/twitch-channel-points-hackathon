@@ -21,20 +21,40 @@ const useStyles = makeStyles((theme) => ({
  * @param {Function} params.onCreateRewardClick
  * @param {Function} params.onEditClick
  * @param {Function} params.onDeleteClick
+ * @param {boolean} params.confSelected
  */
-const ActionButtonsContainer = ({ onCreateRewardClick, onEditClick, onDeleteClick }) => {
+const ActionButtonsContainer = ({
+  onCreateRewardClick, onEditClick, onDeleteClick, confSelected = false,
+}) => {
   const classes = useStyles();
   console.log(onCreateRewardClick);
   return (
     <div className={classes.container}>
       <div>
-        <Button variant="contained" color="primary" onClick={onCreateRewardClick} className={classes.button}>
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={onCreateRewardClick}
+          className={classes.button}
+        >
           Create reward
         </Button>
-        <Button variant="contained" color="secondary" onClick={onEditClick} className={classes.button}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={onEditClick}
+          className={classes.button}
+          disabled={!confSelected}
+        >
           Edit
         </Button>
-        <Button variant="contained" color="secondary" onClick={onDeleteClick} className={classes.button}>
+        <Button
+          variant="contained"
+          color="secondary"
+          onClick={onDeleteClick}
+          className={classes.button}
+          disabled={!confSelected}
+        >
           Delete
         </Button>
       </div>

@@ -1,4 +1,4 @@
-import React, { Children, useState } from 'react';
+import React, { useState } from 'react';
 import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Button,
@@ -35,18 +35,20 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RewardFormPanel = ({ onClose, onSave }) => {
+const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
   const theme = useTheme();
   // const [color, setColor] = useState(theme.palette.text.primary;
   const [availableGames, setAvailableGames] = useState(['Just Chatting', 'Minecraft', 'Music']);
 
-  const [rewardConf, setRewardConf] = useState({
+  const [rewardConf, setRewardConf] = useState(defaultValue || {
     onRedemption: [],
-    globalCoolDown: 5,
-    maxRedemptionsPerStream: 0,
-    maxRedemptionsPerUserPerStream: 0,
-    globalCooldown: 5,
-    prompt: 'Merci Monsieur',
+    reward: {
+      globalCoolDown: 5,
+      maxRedemptionsPerStream: 0,
+      maxRedemptionsPerUserPerStream: 0,
+      globalCooldown: 5,
+      prompt: 'Merci Monsieur',
+    },
     isEnabled: {
       games: [],
     },
@@ -63,65 +65,98 @@ const RewardFormPanel = ({ onClose, onSave }) => {
 
   const onUserInputRequiredChange = (event, checked) => {
     setRewardConf({
-      ...rewardConf, userInputRequired: checked,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        userInputRequired: checked,
+      },
     });
   };
 
   const onRedemptionActionsChange = (actions) => {
     setRewardConf({
-      ...rewardConf, onRedemption: actions,
+      ...rewardConf,
+      onRedemption: actions,
     });
   };
 
   const onTitleChange = (event) => {
-    console.log(`title ${event.target.value}`);
     setRewardConf({
-      ...rewardConf, title: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        title: event.target.value,
+      },
     });
   };
 
   const onBackgroundColorChange = (event) => {
     setRewardConf({
-      ...rewardConf, backgroundColor: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        backgroundColor: event.target.value,
+      },
     });
   };
 
   const onCostChange = (event) => {
     setRewardConf({
-      ...rewardConf, cost: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        cost: event.target.value,
+      },
     });
   };
 
   const onGlobalCooldownChange = (event) => {
     setRewardConf({
-      ...rewardConf, globalCooldown: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        globalCooldown: event.target.value,
+      },
     });
   };
 
   const onMaxRedemptionsPerStreamChange = (event) => {
     setRewardConf({
-      ...rewardConf, maxRedemptionsPerStream: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+
+        maxRedemptionsPerStream: event.target.value,
+      },
     });
   };
 
   const onMaxRedemptionsPerUserPerStreamChange = (event) => {
     setRewardConf({
-      ...rewardConf, maxRedemptionsPerUserPerStream: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        maxRedemptionsPerUserPerStream: event.target.value,
+      },
     });
   };
 
   const onPromptChange = (event) => {
     setRewardConf({
-      ...rewardConf, prompt: event.target.value,
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        prompt: event.target.value,
+      },
     });
   };
 
-  const onGamesChange = (event) => {
+  const onGamesChange = (event, value) => {
     setRewardConf({
       ...rewardConf,
       isEnabled: {
         ...rewardConf.isEnabled,
-        games: event.target.value,
+        games: value,
       },
     });
   };
@@ -134,14 +169,14 @@ const RewardFormPanel = ({ onClose, onSave }) => {
         label="Title"
         variant="outlined"
         onChange={onTitleChange}
-        value={rewardConf.title}
+        value={rewardConf.reward.title}
       />
       <TextField
         id="cost"
         label="Cost"
         variant="outlined"
         onChange={onCostChange}
-        value={rewardConf.cost}
+        value={rewardConf.reward.cost}
       />
       {/* todo color picker */}
       <TextField
@@ -149,45 +184,45 @@ const RewardFormPanel = ({ onClose, onSave }) => {
         label="Background color"
         variant="outlined"
         onChange={onBackgroundColorChange}
-        value={rewardConf.backgroundColor}
+        value={rewardConf.reward.backgroundColor}
       />
 
       <TextField
         id="globalCooldown"
         label="Global cooldown"
         variant="outlined"
-        defaultValue={rewardConf.globalCooldown}
+        defaultValue={rewardConf.reward.globalCooldown}
         onChange={onGlobalCooldownChange}
-        value={rewardConf.globalCooldown}
+        value={rewardConf.reward.globalCooldown}
       />
       <TextField
         id="maxRedemptionsPerStream"
         label="Maximum redemption per stream"
         variant="outlined"
-        defaultValue={rewardConf.maxRedemptionsPerStream}
+        defaultValue={rewardConf.reward.maxRedemptionsPerStream}
         onChange={onMaxRedemptionsPerStreamChange}
-        value={rewardConf.maxRedemptionsPerStream}
+        value={rewardConf.reward.maxRedemptionsPerStream}
       />
       <TextField
         id="maxRedemptionsPerUserPerStream"
         label="Maximum redemption per stream"
         variant="outlined"
-        defaultValue={rewardConf.maxRedemptionsPerUserPerStream}
+        defaultValue={rewardConf.reward.maxRedemptionsPerUserPerStream}
         onChange={onMaxRedemptionsPerUserPerStreamChange}
-        value={rewardConf.maxRedemptionsPerUserPerStream}
+        value={rewardConf.reward.maxRedemptionsPerUserPerStream}
       />
       <TextField
         id="prompt"
         label="Prompt"
         variant="outlined"
-        defaultValue={rewardConf.prompt}
+        defaultValue={rewardConf.reward.prompt}
         onChange={onPromptChange}
-        value={rewardConf.prompt}
+        value={rewardConf.reward.prompt}
       />
       <FormControlLabel
         control={(
           <Switch
-            checked={rewardConf.userInputRequired}
+            checked={rewardConf.reward.userInputRequired}
             onChange={onUserInputRequiredChange}
             name="userInputRequired"
             inputProps={{ 'aria-label': 'secondary checkbox' }}
@@ -215,7 +250,7 @@ const RewardFormPanel = ({ onClose, onSave }) => {
       />
       <RedemptionActionInputGroup
         onChange={onRedemptionActionsChange}
-        redemptionActions={rewardConf.onRedemption}
+        redemptionActions={rewardConf.onRedemption || []}
       />
       <div className={classes.actionButtonContainer}>
 

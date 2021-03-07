@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 
 import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
@@ -7,10 +7,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
-import { toast } from 'react-toastify';
 import ActionButtonsContainer from './ActionButtonsContainer';
-
-import rewardsService from '../../services/rewards.service';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -19,36 +16,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const RewardsContainer = ({
-  selectedReward, onSelectReward, onCreateRewardClick, onEditClick, onDeleteClick,
+  selectedReward, onSelectReward, onCreateRewardClick, onEditClick, onDeleteClick, rewards,
+  onUpdateRewards,
+
 }) => {
   const classes = useStyles();
 
-  const [rewards, setRewards] = useState([]);
-
-  useEffect(() => {
-    rewardsService
-      .getAll()
-      .then((rewardsArray) => {
-        setRewards(rewardsArray);
-      })
-      .catch((reason) => {
-        toast.error(reason.message, {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
-      });
-  }, []);
-
-  const onToggleReward = (reward) => {
-    // TODO:: toogle reward
+  const onToggleReward = (rewardConf) => (event, checked) => {
+    const newConf = rewards.find((conf) => conf.reward.title === rewardConf.reward.title);
+    newConf.reward.isEnabled = checked;
+    onUpdateRewards([...rewards]);
   };
 
-  console.log(selectedReward);
+  console.log(rewards);
 
   return (
     <>
@@ -56,24 +36,25 @@ const RewardsContainer = ({
         onCreateRewardClick={onCreateRewardClick}
         onEditClick={onEditClick}
         onDeleteClick={onDeleteClick}
+        confSelected={!!selectedReward}
       />
       <List
         subheader={<ListSubheader>Rewards</ListSubheader>}
         className={classes.list}
       >
-        {rewards.map(({ reward }) => (
+        {rewards.map((rewardConf) => (
           <ListItem
-            key={reward.id}
+            key={rewardConf.reward.id}
             button
-            selected={selectedReward && reward.id === selectedReward.id}
-            onClick={() => onSelectReward(reward)}
+            selected={selectedReward && rewardConf.reward.id === selectedReward.reward.id}
+            onClick={() => onSelectReward(rewardConf)}
           >
-            <ListItemText id="switch-list-label-wifi" primary={reward.title} />
+            <ListItemText id="switch-list-enabled" primary={rewardConf.reward.title} />
             <ListItemSecondaryAction>
               <Switch
                 edge="end"
-                onChange={() => onToggleReward(reward)}
-                checked={reward.isEnabled}
+                onChange={onToggleReward(rewardConf)}
+                checked={rewardConf.reward.isEnabled}
               />
             </ListItemSecondaryAction>
           </ListItem>
