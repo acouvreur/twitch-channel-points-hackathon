@@ -1,5 +1,5 @@
 import React from 'react';
-import MinecraftRedemptionAction from './MinecraftRedemptionConf';
+import MinecraftRedemptionAction from './MinecraftRedemptionAction';
 
 const RedemptionActionConf = ({ action, onChange }) => {
   if (action.type === 'Minecraft') {
