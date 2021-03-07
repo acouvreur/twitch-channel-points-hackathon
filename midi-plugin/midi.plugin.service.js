@@ -60,9 +60,11 @@ const sendMidiCC = async (value) => {
 };
 
 /**
+ * @param {import('twitch-pubsub-client').PubSubRedemptionMessage} redemptionMessage
  * @param {MidiPluginParams} params
  */
-const generateMidi = async (params) => {
+const generateMidi = async (redemptionMessage, params) => {
+  console.log(`[MIDI Plugin] Generating MIDI signals for redemption [${redemptionMessage.rewardName}] (${redemptionMessage.rewardCost} channel points) redeemed by [${redemptionMessage.userDisplayName}]`);
   const promises = params.outputs.map(async (output) => {
     if (output.type === 'noteon') {
       sendMidiNoteon(output.value);
