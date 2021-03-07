@@ -1,8 +1,7 @@
 const fs = require('fs');
 const _ = require('lodash');
 
-const apiClient = require('../helpers/utils').getApiClient();
-const { getTokenInfo } = require('../helpers/utils');
+const { getApiClient, getTokenInfo } = require('../helpers/utils');
 const customRewardsService = require('./custom-rewards.service');
 
 const CUSTOM_REWARDS_CONF_PATH = 'conf/custom-rewards.json';
@@ -116,7 +115,7 @@ const applyGamesConfiguration = async (currentGameName) => {
   if (!gameName) {
     const tokenInfo = await getTokenInfo();
     /** @type {import('twitch').HelixChannel} */
-    const channelInfo = await apiClient.helix.channels.getChannelInfo(tokenInfo.userId);
+    const channelInfo = await getApiClient().helix.channels.getChannelInfo(tokenInfo.userId);
     gameName = channelInfo.gameName;
   }
 

@@ -1,7 +1,6 @@
 const { PubSubClient } = require('twitch-pubsub-client');
 
-const apiClient = require('../helpers/utils').getApiClient();
-const { getTokenInfo } = require('../helpers/utils');
+const { getApiClient, getTokenInfo } = require('../helpers/utils');
 
 /**
  * @type {{apiClient: ApiClient, pubSubClient: PubSubClient}}
@@ -16,7 +15,7 @@ const cache = {
 const getPubSubClient = async () => {
   if (!cache.pubSubClient) {
     cache.pubSubClient = new PubSubClient();
-    await cache.pubSubClient.registerUserListener(apiClient);
+    await cache.pubSubClient.registerUserListener(getApiClient());
   }
   return cache.pubSubClient;
 };

@@ -1,6 +1,7 @@
 const fs = require('fs');
 const FormData = require('form-data');
 const { default: got } = require('got');
+const sleep = require('util').promisify(setTimeout);
 
 const { RefreshableAuthProvider, StaticAuthProvider } = require('twitch-auth');
 
@@ -86,8 +87,28 @@ const getRefreshableAuthProvider = () => {
   return cache.refreshableAuthProvider;
 };
 
+/**
+ * @param {function} callback
+ */
+const waitForAuthentication = async (callback) => {
+  try {
+    getRefreshableAuthProvider();
+  } catch (error) {
+    console.log(`[ERROR] ${error.message}`);
+  }
+
+  if (!cache.refreshableAuthProvider) {
+    console.log(`[ERROR] Unable to authenticate! Please navigate to http://localhost:${SERVER_PORT}/auth to generate app credentials.`);
+    await sleep(5000);
+    waitForAuthentication();
+  } else {
+    callback();
+  }
+};
+
 module.exports = {
   TWITCH_AUTHORIZE_URL,
+  waitForAuthentication,
   generateTokenFile,
   getRefreshableAuthProvider,
 };
