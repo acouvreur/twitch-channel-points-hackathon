@@ -1,7 +1,7 @@
 const pubSubService = require('./pub-sub.service');
 const { getCustomRewardsConf } = require('../channel-points/custom-rewards-configuration.service');
 const { generateMidi } = require('../midi-plugin/midi.plugin.service');
-const { applyPotionEffect } = require('../minecraft-plugin/minecraft-plugin.service');
+const { applyEffect } = require('../minecraft-plugin/minecraft-plugin.service');
 /**
  * @type {{onRedemptionListener: import('twitch-pubsub-client').PubSubListener<never>}}
  */
@@ -16,9 +16,9 @@ const cache = {
  */
 const handleRedemption = async (redemptionMessage, rewardConf, onRedemptionConf) => {
   if (onRedemptionConf.plugin === 'midi') {
-    await generateMidi(onRedemptionConf.params);
+    await generateMidi(redemptionMessage, onRedemptionConf.params);
   } else if (onRedemptionConf.plugin === 'minecraft') {
-    await applyPotionEffect(onRedemptionConf.params);
+    await applyEffect(redemptionMessage, onRedemptionConf.params);
   } else {
     console.log(`${redemptionMessage.userDisplayName} redeemed ${redemptionMessage.rewardName}`);
   }
