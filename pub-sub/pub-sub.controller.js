@@ -26,7 +26,7 @@ router.post('/test/redemption', async (req, res) => {
     status: 'UNFULFILLED',
   };
 
-  const promises = reward.onRedemption.map(async (onRedemptionConf) => {
+  const promises = rewardConf.onRedemption.map(async (onRedemptionConf) => {
     console.log(`[LOG] Simulating onRedemption for rewardId=${reward.id} plugin=${onRedemptionConf.plugin}`);
     return redemptionEventHandler.handleRedemption(redemptionMessage, rewardConf, onRedemptionConf);
   });
