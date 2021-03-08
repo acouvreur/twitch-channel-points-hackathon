@@ -1,5 +1,5 @@
 /**
- * @type {Object.<string, {displayName: string, params: string[]}}
+ * @type {Object.<string, {displayName: string, params: ?string[]}}
  */
 const MIDI_MESSAGE_TYPES = {
   noteon: {
@@ -76,27 +76,21 @@ const MIDI_MESSAGE_TYPES = {
   },
   clock: {
     displayName: 'Timing Clock',
-    params: [],
   },
   start: {
     displayName: 'Start',
-    params: [],
   },
   continue: {
     displayName: 'Continue',
-    params: [],
   },
   stop: {
     displayName: 'Stop',
-    params: [],
   },
   activesense: {
     displayName: 'Active Sensing',
-    params: [],
   },
   reset: {
     displayName: 'Reset',
-    params: [],
   },
   sysex: {
     displayName: 'System Exclusive',

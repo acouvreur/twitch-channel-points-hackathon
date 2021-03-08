@@ -56,14 +56,35 @@
       {
         "plugin": "midi",
         "params": {
-          "outputs":[{
-            "type": "noteon",
-            "value": {
-              "note": 64,
-              "velocity": 127,
-              "channel": 0
+          "outputs": [
+            {
+              "type": "noteon",
+              "value": {
+                "note": 64,
+                "velocity": 127,
+                "channel": 0
+              },
+              "order": 0
+            },
+            {
+              "type": "cc",
+              "value": {
+                "controller": 0,
+                "value": 127,
+                "channel": 0
+              },
+              "order": 1
+            },
+            {
+              "type": "noteoff",
+              "value": {
+                "note": 64,
+                "velocity": 127,
+                "channel": 0
+              },
+              "order": 2
             }
-          }]
+          ]
         }
       }
     ]

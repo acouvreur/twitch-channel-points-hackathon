@@ -49,7 +49,7 @@ const ActionConfContainer = ({ onDelete, title, children }) => {
 };
 
 const RedemptionActionConf = ({ action, onChange, onDelete }) => {
-  if (action.type === 'Midi') {
+  if (action.plugin === 'midi') {
     return (
       <ActionConfContainer onDelete={onDelete} title="Midi">
         <MidiRedemptionAction action={action} onChange={onChange} />
@@ -57,7 +57,7 @@ const RedemptionActionConf = ({ action, onChange, onDelete }) => {
     );
   }
 
-  if (action.type === 'Minecraft') {
+  if (action.plugin === 'minecraft') {
     return (
       <ActionConfContainer onDelete={onDelete} title="Minecraft">
         <MinecraftRedemptionAction action={action} onChange={onChange} />
