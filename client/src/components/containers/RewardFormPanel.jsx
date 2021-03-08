@@ -3,9 +3,14 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
   Button,
   Chip,
-  FormControlLabel, Switch, TextField, Typography,
+  FormControlLabel,
+  InputAdornment,
+  Switch,
+  TextField,
+  Typography,
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+import { ColorPicker } from 'material-ui-color';
 import RedemptionActionInputGroup from '../RedemptionActionInputGroup';
 import pubSubService from '../../services/pub-sub.service';
 
@@ -104,6 +109,16 @@ const RewardFormPanel = ({
     });
   };
 
+  const onBackgroundColorPickerChange = (color) => {
+    setRewardConf({
+      ...rewardConf,
+      reward: {
+        ...rewardConf.reward,
+        backgroundColor: color.css.backgroundColor,
+      },
+    });
+  };
+
   const onCostChange = (event) => {
     setRewardConf({
       ...rewardConf,
@@ -196,13 +211,23 @@ const RewardFormPanel = ({
         onChange={onCostChange}
         value={rewardConf.reward.cost}
       />
-      {/* todo color picker */}
       <TextField
         id="backgroundColor"
         label="Background color"
         variant="outlined"
         onChange={onBackgroundColorChange}
         value={rewardConf.reward.backgroundColor}
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <ColorPicker
+                value={rewardConf.reward.backgroundColor}
+                onChange={onBackgroundColorPickerChange}
+                hideTextfield
+              />
+            </InputAdornment>
+          ),
+        }}
       />
 
       <TextField

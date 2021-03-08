@@ -10,6 +10,7 @@
     "@testing-library/react": "^11.2.5",
     "@testing-library/user-event": "^12.8.1",
     "ky": "^0.27.0",
+    "material-ui-color": "^0.4.10",
     "mobx": "^6.1.8",
     "mobx-react-lite": "^3.2.0",
     "react": "^17.0.1",
@@ -17,6 +18,7 @@
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.3",
     "react-toastify": "^7.0.3",
+    "styled-components": "^5.2.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
