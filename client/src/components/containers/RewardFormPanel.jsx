@@ -74,6 +74,7 @@ const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
   };
 
   const onRedemptionActionsChange = (actions) => {
+    console.log(actions);
     setRewardConf({
       ...rewardConf,
       onRedemption: actions,

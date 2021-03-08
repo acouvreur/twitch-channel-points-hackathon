@@ -27,11 +27,19 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
     setRedemptionType(event.target.value);
   };
 
-  const onActionChange = (action) => {
+  const onActionChange = (index) => (action) => {
+    console.log(action);
+    redemptionActions.splice(index, 1, action);
+    onChange([...redemptionActions]);
   };
 
   const onAddAction = () => {
     onChange([...redemptionActions, { type: redemptionType }]);
+  };
+
+  const onDelete = (index) => () => {
+    redemptionActions.splice(index, 1);
+    onChange([...redemptionActions]);
   };
 
   return (
@@ -57,7 +65,11 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
         redemptionActions.map(((action, index) => (
           // eslint-disable-next-line react/no-array-index-key
           <ListItem key={index}>
-            <RedemptionActionConf action={action} onChange={() => onActionChange(action)} />
+            <RedemptionActionConf
+              action={action}
+              onChange={onActionChange(index)}
+              onDelete={onDelete(index)}
+            />
           </ListItem>
         )))
         }

@@ -1,55 +1,20 @@
 import React from 'react';
-import {
-  Button,
-  IconButton,
-  makeStyles, MenuItem, Paper, Select, TextField, Typography, useTheme,
-} from '@material-ui/core';
-import DeleteIcon from '@material-ui/icons/Delete';
+import { MenuItem, Select, TextField } from '@material-ui/core';
 import { MINECRAFT_POTION_EFFECTS } from '../data/constants';
 
-const useStyles = makeStyles({
-  container: {
-    display: 'flex',
-    flexDirection: 'column',
-    width: '100%',
-    padding: '0.5rem',
-    '& > *': {
-      margin: '0.5rem 0',
-    },
-  },
-  header: {
-    display: 'flex',
-    justifyContent: 'space-between',
-    alignItems: 'center',
-  },
-});
-
 const MinecraftRedemptionAction = ({ action, onChange }) => {
-  const theme = useTheme();
-  const classes = useStyles();
-
-  const onSelectPotionType = (event, value) => {
-    onChange({ ...action, params: { ...action.params, effect: value } });
+  const onSelectPotionType = (event) => {
+    console.log({ ...action, params: { ...action.params, effect: event.target.value } });
+    onChange({ ...action, params: { ...action.params, effect: event.target.value } });
   };
 
-  const onDurationChange = (event, value) => {
-    onChange({ ...action, params: { ...action.params, duration: value } });
+  const onDurationChange = (event) => {
+    console.log({ ...action, params: { ...action.params, duration: event.target.value } });
+    onChange({ ...action, params: { ...action.params, duration: event.target.value } });
   };
 
   return (
-    <Paper className={classes.container} variant="outlined">
-      <div className={classes.header}>
-        <Typography>Minecraft</Typography>
-        <IconButton
-          aria-label="delete"
-          style={{
-            backgroundColor: theme.palette.error.main,
-          }}
-          size="small"
-        >
-          <DeleteIcon />
-        </IconButton>
-      </div>
+    <>
       <Select
         labelId="redemption-type-label"
         id="redemption-type-select"
@@ -59,7 +24,7 @@ const MinecraftRedemptionAction = ({ action, onChange }) => {
         {MINECRAFT_POTION_EFFECTS.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
       </Select>
       <TextField id="maxRedemptionsPerUserPerStream" label="Maximum redemption per stream" variant="outlined" defaultValue="0" onChange={onDurationChange} />
-    </Paper>
+    </>
   );
 };
 
