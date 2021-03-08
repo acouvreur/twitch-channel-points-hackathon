@@ -7,7 +7,9 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
+import { Button } from '@material-ui/core';
 import ActionButtonsContainer from './ActionButtonsContainer';
+import pubSubService from '../../services/pub-sub.service';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -28,7 +30,9 @@ const RewardsContainer = ({
     onUpdateRewards([...rewards]);
   };
 
-  console.log(rewards);
+  const onTruOut = (rewardConf) => () => {
+    pubSubService.triggerReward(rewardConf);
+  };
 
   return (
     <>
@@ -51,11 +55,14 @@ const RewardsContainer = ({
           >
             <ListItemText id="switch-list-enabled" primary={rewardConf.reward.title} />
             <ListItemSecondaryAction>
-              <Switch
-                edge="end"
-                onChange={onToggleReward(rewardConf)}
-                checked={rewardConf.reward.isEnabled}
-              />
+              <>
+                <Button onClick={onTruOut(rewardConf)} variant="contained">Try out !</Button>
+                <Switch
+                  edge="end"
+                  onChange={onToggleReward(rewardConf)}
+                  checked={rewardConf.reward.isEnabled}
+                />
+              </>
             </ListItemSecondaryAction>
           </ListItem>
         ))}

@@ -7,6 +7,7 @@ import {
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import RedemptionActionInputGroup from '../RedemptionActionInputGroup';
+import pubSubService from '../../services/pub-sub.service';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -162,6 +163,10 @@ const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
     });
   };
 
+  const onTryOut = () => {
+    pubSubService.triggerReward(rewardConf);
+  };
+
   return (
     <form className={classes.container} noValidate autoComplete="off" onSubmit={onSubmit}>
       <Typography variant="h5">Create a reward</Typography>
@@ -256,6 +261,7 @@ const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
       <div className={classes.actionButtonContainer}>
 
         <Button color="secondary" variant="contained" onClick={onClose}>Cancel</Button>
+        <Button color="default" variant="contained" onClick={onTryOut}>Try out!</Button>
         <Button type="submit" color="primary" variant="contained">Save</Button>
       </div>
     </form>
