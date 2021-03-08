@@ -24,6 +24,18 @@ const MainPage = () => {
 
   const [rewardsConf, setRewardsConf] = useState([]);
 
+  const existingGroups = rewardsConf.map((conf) => conf.isEnabled)
+    .reduce((acc, cur) => {
+      if (cur.groups) {
+        cur.groups.forEach((group) => {
+          if (acc.indexOf(group) < 0) {
+            acc.push(group);
+          }
+        });
+      }
+      return acc;
+    }, []);
+
   useEffect(() => {
     rewardsService
       .getAll()
@@ -105,12 +117,16 @@ const MainPage = () => {
           onClose={onClosePanel}
           onSave={onSaveReward}
           defaultValue={getRewardConfByIndex(editingRewardIndex)}
+          existingGroups={existingGroups}
         />
       </Drawer>
 
       <Grid container spacing={0} className={classes.container}>
         <Grid item xs={6} component={Paper}>
-          <PresetsContainer />
+          <PresetsContainer
+            rewardsConf={rewardsConf}
+            existingGroups={existingGroups}
+          />
         </Grid>
         <Grid item xs={6}>
           <RewardsContainer

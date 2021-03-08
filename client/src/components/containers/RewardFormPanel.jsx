@@ -36,7 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
+const RewardFormPanel = ({
+  onClose, onSave, defaultValue, existingGroups,
+}) => {
   const theme = useTheme();
   // const [color, setColor] = useState(theme.palette.text.primary;
   const [availableGames, setAvailableGames] = useState(['Just Chatting', 'Minecraft', 'Music']);
@@ -163,6 +165,16 @@ const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
     });
   };
 
+  const onGroupsChange = (event, value) => {
+    setRewardConf({
+      ...rewardConf,
+      isEnabled: {
+        ...rewardConf.isEnabled,
+        groups: value,
+      },
+    });
+  };
+
   const onTryOut = () => {
     pubSubService.triggerReward(rewardConf);
   };
@@ -240,8 +252,8 @@ const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
       />
       <Autocomplete
         multiple
-        id="tags-filled"
-        options={availableGames.map((game) => game)}
+        id="games-autocomplete"
+        options={availableGames}
         onChange={onGamesChange}
         value={rewardConf.isEnabled.games}
         freeSolo
@@ -252,6 +264,22 @@ const RewardFormPanel = ({ onClose, onSave, defaultValue }) => {
         renderInput={(params) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
           <TextField {...params} id="games" variant="outlined" label="Enable/disable automatically this reward based on channel.gameName" />
+        )}
+      />
+      <Autocomplete
+        multiple
+        id="groups-autocomplete"
+        options={existingGroups}
+        onChange={onGroupsChange}
+        value={rewardConf.isEnabled.groups}
+        freeSolo
+        renderTags={(value, getTagProps) => value.map((option, index) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <Chip variant="outlined" label={option} className={classes.chip} {...getTagProps({ index })} />
+        ))}
+        renderInput={(params) => (
+          // eslint-disable-next-line react/jsx-props-no-spreading
+          <TextField {...params} id="groups" variant="outlined" label="Group preset" />
         )}
       />
       <RedemptionActionInputGroup
