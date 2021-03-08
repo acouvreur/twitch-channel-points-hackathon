@@ -5,13 +5,37 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "type": "node",
-            "request": "launch",
-            "name": "Launch Program",
-            "program": "${workspaceFolder}/index.js",
-            "skipFiles": [
-                "<node_internals>/**"
-            ]
+          "type": "node",
+          "request": "launch",
+          "name": "Lancer serveur",
+          "program": "${workspaceFolder}/index.js",
+          "skipFiles": [
+            "<node_internals>/**"
+          ]
+        },
+        {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Lancer Chromium sur localhost",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}/client",
+          "runtimeExecutable": "/usr/bin/chromium",
+          "userDataDir": true
+        },
+        {
+          "type": "chrome",
+          "request": "launch",
+          "name": "Lancer Chrome sur localhost",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}/client"
+        },
+        {
+          "type": "firefox",
+          "request": "launch",
+          "name": "Lancer Firefox sur localhost",
+          "url": "http://localhost:3000",
+          "webRoot": "${workspaceFolder}/client",
+          "reAttach": true
         }
     ]
 }
