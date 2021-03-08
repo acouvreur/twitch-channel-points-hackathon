@@ -2,7 +2,7 @@ import React from 'react';
 
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  List, ListItem, ListItemText, ListSubheader,
+  List, ListItem, ListItemSecondaryAction, ListItemText, ListSubheader, Switch,
 } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
@@ -12,8 +12,20 @@ const useStyles = makeStyles(() => ({
   },
 }));
 
-const PresetsContainer = ({ rewardsConf, existingGroups }) => {
+const PresetsContainer = ({ rewardsConf, existingGroups, onUpdateRewards }) => {
   const classes = useStyles();
+
+  const onToggleGroup = (group) => (event, value) => {
+    rewardsConf
+      .filter((conf) => conf?.isEnabled?.groups?.indexOf(group) >= 0)
+      .forEach((conf) => {
+        console.log(conf);
+        const { reward } = conf;
+        reward.isEnabled = value;
+      });
+    console.log(rewardsConf);
+    onUpdateRewards([...rewardsConf]);
+  };
 
   return (
     <div className={classes.container}>
@@ -27,6 +39,17 @@ const PresetsContainer = ({ rewardsConf, existingGroups }) => {
             button
           >
             <ListItemText id="switch-list-enabled" primary={group} />
+            <ListItemSecondaryAction>
+              <Switch
+                edge="end"
+                onChange={onToggleGroup(group)}
+                checked={
+                  rewardsConf
+                    .filter((conf) => conf?.isEnabled?.groups?.indexOf(group) >= 0)
+                    .every((conf) => conf.reward.isEnabled)
+                }
+              />
+            </ListItemSecondaryAction>
           </ListItem>
         ))}
       </List>

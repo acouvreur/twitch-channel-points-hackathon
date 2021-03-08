@@ -27,7 +27,6 @@ const ActionButtonsContainer = ({
   onCreateRewardClick, onEditClick, onDeleteClick, confSelected = false,
 }) => {
   const classes = useStyles();
-  console.log(onCreateRewardClick);
   return (
     <div className={classes.container}>
       <div>

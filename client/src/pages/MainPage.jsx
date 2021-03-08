@@ -24,17 +24,24 @@ const MainPage = () => {
 
   const [rewardsConf, setRewardsConf] = useState([]);
 
-  const existingGroups = rewardsConf.map((conf) => conf.isEnabled)
-    .reduce((acc, cur) => {
-      if (cur.groups) {
-        cur.groups.forEach((group) => {
-          if (acc.indexOf(group) < 0) {
-            acc.push(group);
-          }
-        });
-      }
-      return acc;
-    }, []);
+  const [existingGroups, setExistingGroups] = useState([]);
+
+  useEffect(() => {
+    console.log('update groups');
+    setExistingGroups(rewardsConf
+      .map((conf) => conf.isEnabled)
+      .reduce((acc, cur) => {
+        if (cur.groups) {
+          cur.groups.forEach((group) => {
+            if (acc.indexOf(group) < 0) {
+              acc.push(group);
+            }
+          });
+        }
+        return acc;
+      }, [])
+      .sort());
+  }, [rewardsConf]);
 
   useEffect(() => {
     rewardsService
@@ -126,6 +133,7 @@ const MainPage = () => {
           <PresetsContainer
             rewardsConf={rewardsConf}
             existingGroups={existingGroups}
+            onUpdateRewards={onUpdateRewards}
           />
         </Grid>
         <Grid item xs={6}>
