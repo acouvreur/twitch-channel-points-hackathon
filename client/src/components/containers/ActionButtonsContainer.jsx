@@ -10,7 +10,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: '1rem',
   },
   container: {
-    padding: '0.5rem',
+    padding: '1rem',
     display: 'flex',
     justifyContent: 'space-between',
   },
@@ -21,10 +21,17 @@ const useStyles = makeStyles((theme) => ({
  * @param {Function} params.onCreateRewardClick
  * @param {Function} params.onEditClick
  * @param {Function} params.onDeleteClick
+ * @param {Function} params.onDisableAll
+ * @param {Function} params.onRefreshConfig
  * @param {boolean} params.confSelected
  */
 const ActionButtonsContainer = ({
-  onCreateRewardClick, onEditClick, onDeleteClick, onRefreshConfig, confSelected = false,
+  onCreateRewardClick,
+  onEditClick,
+  onDeleteClick,
+  onDisableAll,
+  onRefreshConfig,
+  confSelected = false,
 }) => {
   const classes = useStyles();
   return (
@@ -58,6 +65,13 @@ const ActionButtonsContainer = ({
         </Button>
         <Button
           variant="contained"
+          onClick={onDisableAll}
+          className={classes.button}
+        >
+          Disable All
+        </Button>
+        <Button
+          variant="contained"
           onClick={onRefreshConfig}
           className={classes.button}
         >
@@ -74,6 +88,8 @@ const ActionButtonsContainer = ({
           />
         )}
         label="Theme"
+        labelPlacement="start"
+        style={{ marginRight: '0.6rem' }}
       />
 
     </div>

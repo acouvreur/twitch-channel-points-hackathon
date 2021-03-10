@@ -134,15 +134,13 @@ const RewardsContainer = ({
         onEditClick={onEditClick}
         onDeleteClick={onDeleteClick}
         confSelected={!!selectedReward}
+        onDisableAll={onDisableAll}
         onRefreshConfig={onRefreshConfig}
       />
       <List
         subheader={(
           <ListSubheader className={classes.header}>
-            <span>Rewards</span>
-            <Button variant="contained" onClick={onDisableAll}>
-              Disable All
-            </Button>
+            Rewards
           </ListSubheader>
         )}
         className={classes.list}
@@ -189,7 +187,7 @@ const RewardsContainer = ({
                       />
                     ))}
                   </p>
-                  <p>
+                  <p className={classes.infoRow} style={{ marginBottom: '0.25rem' }}>
                     <Typography
                       component="span"
                       variant="body2"
@@ -212,7 +210,7 @@ const RewardsContainer = ({
             />
             <ListItemSecondaryAction>
               <>
-                <Button onClick={onTryOut(rewardConf)} variant="contained">Try out !</Button>
+                <Button onClick={onTryOut(rewardConf)} style={{ marginRight: '1rem' }} variant="contained">Try out !</Button>
                 <Switch
                   edge="end"
                   onChange={onToggleReward(rewardConf)}
