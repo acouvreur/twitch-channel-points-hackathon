@@ -1,17 +1,63 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Card,
+  CardActions,
   CardContent,
+  IconButton,
   MenuItem,
   Select,
   TextField,
+  useTheme,
 } from '@material-ui/core';
+import { Add, DeleteForever } from '@material-ui/icons';
 import { MIDI_MESSAGE_TYPES } from '../data/constants';
 
 const MidiRedemptionAction = ({ action, onChange }) => {
-  const onSelectMessageType = (order) => (event, value) => {
-    onChange({ ...action, params: { ...action.params, effect: value } });
+  const theme = useTheme();
+
+  const onSelectMessageType = (order) => (event) => {
+    const newOutputs = [...action.params.outputs];
+    newOutputs[newOutputs.findIndex((output) => output.order === order)].type = event.target.value;
+
+    onChange({ ...action, params: { ...action.params, outputs: newOutputs } });
   };
+
+  const addMessageAt = (order) => () => {
+    const index = action.params.outputs.findIndex((output) => output.order === order) + 1;
+
+    const newOutputs = [...action.params.outputs].map((output) => (
+      output.order > order
+        ? { ...output, order: output.order + 1 }
+        : output
+    ));
+
+    newOutputs.splice(index, 0, { type: 'noteon', value: {}, order });
+
+    onChange({ ...action, params: { ...action.params, outputs: newOutputs } });
+  };
+
+  const deleteMessageAt = (order) => () => {
+    const newOutputs = [...action.params.outputs];
+    newOutputs.splice(newOutputs.findIndex((output) => output.order === order), 1);
+
+    onChange({
+      ...action,
+      params: {
+        ...action.params,
+        outputs: newOutputs.map((output) => (
+          output.order > order
+            ? { ...output, order: output.order - 1 }
+            : output
+        )),
+      },
+    });
+  };
+
+  useEffect(() => {
+    if (!action?.params?.outputs) {
+      onChange({ ...action, params: { ...action.params, outputs: [{ type: 'noteon', value: {}, order: 0 }] } });
+    }
+  });
 
   return (
     <>
@@ -43,6 +89,27 @@ const MidiRedemptionAction = ({ action, onChange }) => {
                 ))
               }
             </CardContent>
+            <CardActions disableSpacing>
+              <IconButton
+                style={{
+                  backgroundColor: theme.palette.success.main,
+                }}
+                size="small"
+                onClick={addMessageAt(output.order)}
+              >
+                <Add />
+              </IconButton>
+              <IconButton
+                style={{
+                  backgroundColor: theme.palette.error.main,
+                  marginLeft: 'auto',
+                }}
+                size="small"
+                onClick={deleteMessageAt(output.order)}
+              >
+                <DeleteForever />
+              </IconButton>
+            </CardActions>
           </Card>
         ))
       }
