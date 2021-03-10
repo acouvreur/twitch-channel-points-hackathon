@@ -4,6 +4,9 @@ import { makeStyles } from '@material-ui/core/styles';
 import {
   List, ListItem, ListItemSecondaryAction, ListItemText, ListSubheader, Switch,
 } from '@material-ui/core';
+import { toast } from 'react-toastify';
+import rewardsService from '../../services/rewards.service';
+import TOAST_CONFIG from '../../toast.conf';
 
 const useStyles = makeStyles(() => ({
   container: {
@@ -15,16 +18,21 @@ const useStyles = makeStyles(() => ({
 const PresetsContainer = ({ rewardsConf, existingGroups, onUpdateRewards }) => {
   const classes = useStyles();
 
-  const onToggleGroup = (group) => (event, value) => {
-    rewardsConf
-      .filter((conf) => conf?.isEnabled?.groups?.indexOf(group) >= 0)
-      .forEach((conf) => {
-        console.log(conf);
+  const onToggleGroup = (group) => async (event, value) => {
+    try {
+      const rewards = rewardsConf
+        .filter((conf) => conf?.isEnabled?.groups?.indexOf(group) >= 0);
+      await Promise.all(
+        rewards.map(async (conf) => rewardsService.toggleReward(conf.reward.id, value)),
+      );
+      rewards.forEach((conf) => {
         const { reward } = conf;
         reward.isEnabled = value;
       });
-    console.log(rewardsConf);
-    onUpdateRewards([...rewardsConf]);
+      onUpdateRewards([...rewardsConf]);
+    } catch (err) {
+      toast.error(err.message, TOAST_CONFIG);
+    }
   };
 
   return (
