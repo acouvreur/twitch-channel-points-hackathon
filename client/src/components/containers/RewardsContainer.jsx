@@ -18,6 +18,11 @@ const useStyles = makeStyles((theme) => ({
   list: {
     padding: '1rem',
   },
+  header: {
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
 }));
 
 const RewardsContainer = ({
@@ -42,25 +47,24 @@ const RewardsContainer = ({
   const onTryOut = (rewardConf) => async () => {
     try {
       await pubSubService.triggerReward(rewardConf);
-      toast.success('Redemption(s) succeeded', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success('Redemption(s) succeeded', TOAST_CONFIG);
     } catch (err) {
-      toast.error(err.message, {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
+      toast.error(err.message, TOAST_CONFIG);
+    }
+  };
+
+  const onDisableAll = async () => {
+    try {
+      await Promise.all(
+        rewards.map(async (conf) => rewardsService.toggleReward(conf.reward.id, false)),
+      );
+      rewards.forEach((conf) => {
+        const { reward } = conf;
+        reward.isEnabled = false;
       });
+      onUpdateRewards([...rewards]);
+    } catch (err) {
+      toast.error(err.message, TOAST_CONFIG);
     }
   };
 
@@ -73,7 +77,14 @@ const RewardsContainer = ({
         confSelected={!!selectedReward}
       />
       <List
-        subheader={<ListSubheader>Rewards</ListSubheader>}
+        subheader={(
+          <ListSubheader className={classes.header}>
+            <span>Rewards</span>
+            <Button variant="contained" onClick={onDisableAll}>
+              Disable All
+            </Button>
+          </ListSubheader>
+        )}
         className={classes.list}
       >
         {rewards.map((rewardConf, index) => (
