@@ -1,22 +1,41 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
-import { makeStyles } from '@material-ui/core/styles';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
 import {
-  List, ListItem, ListItemSecondaryAction, ListItemText, ListSubheader, Switch,
+  Avatar,
+  List, ListItem, ListItemIcon, ListItemSecondaryAction, ListItemText, ListSubheader, Switch,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import rewardsService from '../../services/rewards.service';
 import TOAST_CONFIG from '../../toast.conf';
+import colorService from '../../services/color.service';
 
 const useStyles = makeStyles(() => ({
   container: {
-    width: '50vw',
+    width: '100%',
     padding: '1rem',
   },
 }));
 
 const PresetsContainer = ({ rewardsConf, existingGroups, onUpdateRewards }) => {
+  const theme = useTheme();
   const classes = useStyles();
+  const [groupsColor, setGroupsColor] = useState([]);
+
+  useEffect(() => {
+    setGroupsColor(colorService.getColorMap(rewardsConf
+      ?.map((conf) => conf.isEnabled)
+      .reduce((acc, cur) => {
+        if (cur.groups) {
+          cur.groups.forEach((group) => {
+            if (acc.indexOf(group) < 0) {
+              acc.push(group);
+            }
+          });
+        }
+        return acc;
+      }, []) || []));
+  }, [rewardsConf]);
 
   const onToggleGroup = (group) => async (event, value) => {
     try {
@@ -46,6 +65,16 @@ const PresetsContainer = ({ rewardsConf, existingGroups, onUpdateRewards }) => {
             key={group}
             button
           >
+            <ListItemIcon>
+              <Avatar style={{
+                backgroundColor: groupsColor[group],
+                color: theme.palette.text.primary,
+              }}
+              >
+                {group[0]}
+
+              </Avatar>
+            </ListItemIcon>
             <ListItemText id="switch-list-enabled" primary={group} />
             <ListItemSecondaryAction>
               <Switch

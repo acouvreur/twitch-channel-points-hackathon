@@ -37,7 +37,6 @@ const MainPage = () => {
         .catch((reason) => {
           toast.error(reason.message, TOAST_CONFIG);
         });
-      toast.success('Refresh successful', TOAST_CONFIG);
     } catch (err) {
       toast.error(err.message, TOAST_CONFIG);
     }
@@ -119,7 +118,7 @@ const MainPage = () => {
   };
 
   const onRefreshConfig = () => {
-    loadConfig();
+    loadConfig().then(() => toast.success('Refresh successful', TOAST_CONFIG));
   };
 
   return (
@@ -134,14 +133,14 @@ const MainPage = () => {
       </Drawer>
 
       <Grid container spacing={0} className={classes.container}>
-        <Grid item xs={6} component={Paper}>
+        <Grid item xs={4} component={Paper}>
           <PresetsContainer
             rewardsConf={rewardsConf}
             existingGroups={existingGroups}
             onUpdateRewards={onUpdateRewards}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <RewardsContainer
             selectedReward={getRewardConfByIndex(selectedRewardIndex)}
             onSelectReward={onSelectReward}

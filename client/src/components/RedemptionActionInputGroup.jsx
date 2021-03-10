@@ -11,9 +11,16 @@ const useStyles = makeStyles({
   header: {
     display: 'flex',
     justifyContent: 'space-between',
+    alignItems: 'center',
   },
   addButton: {
     marginLeft: '2rem',
+  },
+  item: {
+    padding: '0.5rem 0',
+  },
+  select: {
+    minWidth: '10rem',
   },
 });
 
@@ -52,6 +59,7 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
             id="redemption-type-select"
             value={redemptionType}
             onChange={onSelectRedemptionType}
+            className={classes.select}
           >
             {REDEMPTION_TYPES.map((type) => (
               <MenuItem key={type} value={type}>{type}</MenuItem>
@@ -60,11 +68,11 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
           <Button className={classes.addButton} color="secondary" variant="contained" onClick={onAddAction}>Add</Button>
         </div>
       </div>
-      <List>
+      <List className={classes.list}>
         {
         redemptionActions.map(((action, index) => (
           // eslint-disable-next-line react/no-array-index-key
-          <ListItem key={index}>
+          <ListItem key={index} className={classes.item}>
             <RedemptionActionConf
               action={action}
               onChange={onActionChange(index)}

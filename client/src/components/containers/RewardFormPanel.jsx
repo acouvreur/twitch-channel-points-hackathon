@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtonContainer: {
     display: 'flex',
-    ifyContent: 'flex-end',
-    '& ;> *': {
+    justifyContent: 'flex-end',
+    '& > *': {
       marginLeft: '1rem',
     },
   },
