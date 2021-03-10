@@ -74,14 +74,18 @@ const MainPage = () => {
 
   const getRewardConfByIndex = (index) => rewardsConf[index];
 
-  const onDeleteClick = () => {
+  const onDeleteClick = async () => {
     if (selectedRewardIndex >= 0) {
-      // eslint-disable-next-line max-len
-      const conf = [...rewardsConf];
-      // TODO:: delete on twitch too
-      conf.splice(selectedRewardIndex, 1);
-      setRewardsConf(conf);
-      rewardsService.updateRewardsConfig(conf);
+      try {
+        await rewardsService.deleteReward(rewardsConf[selectedRewardIndex]);
+        // eslint-disable-next-line max-len
+        const conf = [...rewardsConf];
+        conf.splice(selectedRewardIndex, 1);
+        setRewardsConf(conf);
+        rewardsService.updateRewardsConfig(conf);
+      } catch (err) {
+        toast.error(err.message, TOAST_CONFIG);
+      }
     }
   };
 

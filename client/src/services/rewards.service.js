@@ -13,6 +13,8 @@ class RewardService {
     json: rewardConf.reward,
   }).json()
 
+  deleteReward = async (rewardConf) => ky.delete(`${BASE_URL}/channel-points/custom-rewards/${rewardConf.reward.id}`)
+
   updateReward = async (rewardConf) => ky.put(`${BASE_URL}/channel-points/custom-rewards/${rewardConf.reward.id}`, {
     json: rewardConf.reward,
   })
