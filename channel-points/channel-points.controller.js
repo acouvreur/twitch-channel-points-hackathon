@@ -14,6 +14,17 @@ router.get('/custom-rewards', async (req, res) => {
   res.status(200).json(customRewards.map((r) => r._data));
 });
 
+router.put('/custom-rewards/:customRewardId', async (req, res) => {
+  /** @type {import('twitch').HelixUpdateCustomRewardData} */
+  const customRewardData = req.body;
+  const customReward = await customRewardsService.updateCustomReward(
+    req.params.customRewardId,
+    customRewardData,
+  );
+  // eslint-disable-next-line no-underscore-dangle
+  return res.status(200).json(customReward._data);
+});
+
 router.get('/custom-rewards/:customRewardId/redemptions', async (req, res) => {
   console.log('[HTTP] GET /channel-points/custom-rewards/:customRewardId/redemptions');
 
@@ -23,12 +34,8 @@ router.get('/custom-rewards/:customRewardId/redemptions', async (req, res) => {
   }
 
   const redemptions = await redemptionsService.getRedemptions(req.params.customRewardId, status);
-  res.status(200).send(redemptions);
+  return res.status(200).send(redemptions);
 });
-
-// router.post('/custom-rewards/:customRewardId/redemptions', async (req, res) => {
-// TODO
-// });
 
 router.get('/custom-rewards-configuration', async (req, res) => {
   console.log('[HTTP] GET /channel-points/custom-rewards-configuration');
