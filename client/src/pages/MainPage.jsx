@@ -27,6 +27,22 @@ const MainPage = () => {
 
   const [existingGroups, setExistingGroups] = useState([]);
 
+  const loadConfig = async () => {
+    try {
+      rewardsService
+        .getAll()
+        .then((rewardsArray) => {
+          setRewardsConf(rewardsArray);
+        })
+        .catch((reason) => {
+          toast.error(reason.message, TOAST_CONFIG);
+        });
+      toast.success('Refresh successful', TOAST_CONFIG);
+    } catch (err) {
+      toast.error(err.message, TOAST_CONFIG);
+    }
+  };
+
   useEffect(() => {
     setExistingGroups(rewardsConf
       .map((conf) => conf.isEnabled)
@@ -44,14 +60,7 @@ const MainPage = () => {
   }, [rewardsConf]);
 
   useEffect(() => {
-    rewardsService
-      .getAll()
-      .then((rewardsArray) => {
-        setRewardsConf(rewardsArray);
-      })
-      .catch((reason) => {
-        toast.error(reason.message, TOAST_CONFIG);
-      });
+    loadConfig(setRewardsConf);
   }, []);
 
   const onCreateRewardClick = () => {
@@ -109,6 +118,10 @@ const MainPage = () => {
     onUpdateRewards(newConf);
   };
 
+  const onRefreshConfig = () => {
+    loadConfig();
+  };
+
   return (
     <>
       <Drawer anchor="right" open={showRewardFormPanel} onClose={onClosePanel}>
@@ -136,6 +149,7 @@ const MainPage = () => {
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}
             onUpdateRewards={onUpdateRewards}
+            onRefreshConfig={onRefreshConfig}
             rewards={rewardsConf}
           />
         </Grid>

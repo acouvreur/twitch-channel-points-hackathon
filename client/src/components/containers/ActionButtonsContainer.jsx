@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {boolean} params.confSelected
  */
 const ActionButtonsContainer = ({
-  onCreateRewardClick, onEditClick, onDeleteClick, confSelected = false,
+  onCreateRewardClick, onEditClick, onDeleteClick, onRefreshConfig, confSelected = false,
 }) => {
   const classes = useStyles();
   return (
@@ -55,6 +55,13 @@ const ActionButtonsContainer = ({
           disabled={!confSelected}
         >
           Delete
+        </Button>
+        <Button
+          variant="contained"
+          onClick={onRefreshConfig}
+          className={classes.button}
+        >
+          Refresh
         </Button>
       </div>
 

@@ -27,7 +27,7 @@ const useStyles = makeStyles((theme) => ({
 
 const RewardsContainer = ({
   selectedReward, onSelectReward, onCreateRewardClick, onEditClick, onDeleteClick, rewards,
-  onUpdateRewards,
+  onUpdateRewards, onRefreshConfig,
 
 }) => {
   const classes = useStyles();
@@ -75,6 +75,7 @@ const RewardsContainer = ({
         onEditClick={onEditClick}
         onDeleteClick={onDeleteClick}
         confSelected={!!selectedReward}
+        onRefreshConfig={onRefreshConfig}
       />
       <List
         subheader={(
