@@ -27,7 +27,6 @@ const MainPage = () => {
   const [existingGroups, setExistingGroups] = useState([]);
 
   useEffect(() => {
-    console.log('update groups');
     setExistingGroups(rewardsConf
       .map((conf) => conf.isEnabled)
       .reduce((acc, cur) => {

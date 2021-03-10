@@ -3,6 +3,7 @@ const {
   BadRequestError,
   ForbiddenError,
   NotFoundError,
+  MinecraftError,
 } = require('../errors');
 
 /**
@@ -27,7 +28,7 @@ const getErrorBody = (err) => {
  */
 // eslint-disable-next-line no-unused-vars
 const handleHttpErrorResponse = (err, req, res, next) => {
-  console.error(err);
+  console.error(`[ERR] handleHttpErrorResponse: ${err}`);
   if (err && err instanceof AppError) {
     if (err instanceof BadRequestError) {
       res.status(400);
@@ -35,6 +36,8 @@ const handleHttpErrorResponse = (err, req, res, next) => {
       res.status(403);
     } else if (err instanceof NotFoundError) {
       res.status(404);
+    } else if (err instanceof MinecraftError) {
+      res.status(500);
     }
     res.json(getErrorBody(err));
   } else if (err) {
