@@ -14,6 +14,7 @@ import { ColorPicker } from 'material-ui-color';
 import { toast } from 'react-toastify';
 import RedemptionActionInputGroup from '../RedemptionActionInputGroup';
 import pubSubService from '../../services/pub-sub.service';
+import TOAST_CONFIG from '../../toast.conf';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -35,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtonContainer: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    '& > *': {
+    ifyContent: 'flex-end',
+    '& ;> *': {
       marginLeft: '1rem',
     },
   },
@@ -192,26 +193,10 @@ const RewardFormPanel = ({
   const onTryOut = async () => {
     try {
       await pubSubService.triggerReward(rewardConf);
-      toast.success('Redemption(s) succeeded', {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.success('Redemption(s) succeeded', TOAST_CONFIG);
     } catch (err) {
       console.log(err);
-      toast.error(err.message, {
-        position: 'bottom-left',
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: true,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-      });
+      toast.error(err.message, TOAST_CONFIG);
     }
   };
 

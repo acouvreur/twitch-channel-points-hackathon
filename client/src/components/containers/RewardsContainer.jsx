@@ -11,6 +11,8 @@ import { Button } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import ActionButtonsContainer from './ActionButtonsContainer';
 import pubSubService from '../../services/pub-sub.service';
+import rewardsService from '../../services/rewards.service';
+import TOAST_CONFIG from '../../toast.conf';
 
 const useStyles = makeStyles((theme) => ({
   list: {
@@ -25,10 +27,16 @@ const RewardsContainer = ({
 }) => {
   const classes = useStyles();
 
-  const onToggleReward = (rewardConf) => (event, checked) => {
-    const newConf = rewards.find((conf) => conf.reward.title === rewardConf.reward.title);
-    newConf.reward.isEnabled = checked;
-    onUpdateRewards([...rewards]);
+  const onToggleReward = (rewardConf) => async (event, checked) => {
+    try {
+      await rewardsService.toggleReward(rewardConf.reward.id, checked);
+
+      const newConf = rewards.find((conf) => conf.reward.title === rewardConf.reward.title);
+      newConf.reward.isEnabled = checked;
+      onUpdateRewards([...rewards]);
+    } catch (err) {
+      toast.error(err.message, TOAST_CONFIG);
+    }
   };
 
   const onTryOut = (rewardConf) => async () => {
