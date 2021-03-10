@@ -104,7 +104,6 @@ const MainPage = () => {
 
   const onUpdateRewards = (newConf) => {
     setRewardsConf(newConf);
-    rewardsService.updateRewardsConfig(newConf);
   };
 
   const onCreateReward = async (rewardConf) => {
