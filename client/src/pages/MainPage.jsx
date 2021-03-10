@@ -133,7 +133,7 @@ const MainPage = () => {
       </Drawer>
 
       <Grid container spacing={0} className={classes.container}>
-        <Grid item xs={4} component={Paper}>
+        <Grid item xs={4} component={Paper} elevation={5}>
           <PresetsContainer
             rewardsConf={rewardsConf}
             existingGroups={existingGroups}
