@@ -88,9 +88,10 @@ const getRefreshableAuthProvider = () => {
 };
 
 /**
- * @param {function} callback
+ * @param {Promise} promise
+ * @returns {Promise}
  */
-const waitForAuthentication = async (callback) => {
+const waitForAuthentication = async (promise) => {
   try {
     getRefreshableAuthProvider();
   } catch (error) {
@@ -100,10 +101,9 @@ const waitForAuthentication = async (callback) => {
   if (!cache.refreshableAuthProvider) {
     console.log(`[ERROR] Unable to authenticate! Please navigate to http://localhost:${SERVER_PORT}/auth to generate app credentials.`);
     await sleep(5000);
-    waitForAuthentication();
-  } else {
-    callback();
+    return waitForAuthentication();
   }
+  return promise();
 };
 
 module.exports = {

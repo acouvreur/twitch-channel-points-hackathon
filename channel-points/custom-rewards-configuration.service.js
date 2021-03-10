@@ -138,7 +138,45 @@ const applyGamesConfiguration = async (currentGameName) => {
   return Promise.all(promises);
 };
 
+/**
+ * Gets all custom rewards from Twitch and updates the custom
+ * rewards configuration according to actual list from Twitch.
+ *
+ * This method should be called at server startup
+ */
+const synchronize = async () => {
+  const customRewardsConf = getCustomRewardsConf();
+  const customRewards = await customRewardsService.getCustomRewards();
+
+  /** @type CustomRewardConf[] */
+  const newCustomRewardsConf = [];
+
+  customRewards.forEach((customReward) => {
+    const crConf = customRewardsConf.find((cr) => cr.reward.id === customReward.id);
+    newCustomRewardsConf.push({
+      reward: {
+        id: customReward.id,
+        title: customReward.title,
+        cost: customReward.cost,
+        autoFulfill: customReward.autoApproved,
+        backgroundColor: customReward.backgroundColor,
+        globalCooldown: customReward.globalCooldown,
+        isEnabled: customReward.isEnabled,
+        maxRedemptionsPerStream: customReward.maxRedemptionsPerStream,
+        maxRedemptionsPerUserPerStream: customReward.maxRedemptionsPerUserPerStream,
+        prompt: customReward.prompt,
+        userInputRequired: customReward.userInputRequired,
+      },
+      isEnabled: _.get(crConf, 'isEnabled', { games: [], groups: [] }),
+      onRedemption: _.get(crConf, 'onRedemption', []),
+    });
+  });
+
+  updateCustomRewardsConf(newCustomRewardsConf);
+};
+
 module.exports = {
+  synchronize,
   getCustomRewardsConf,
   updateCustomRewardsConf,
   getGroupsConf,
