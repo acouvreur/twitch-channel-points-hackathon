@@ -20,6 +20,7 @@ router.get('/custom-rewards', async (req, res, next) => {
 });
 
 router.put('/custom-rewards/:customRewardId', async (req, res, next) => {
+  console.log(`[HTTP] PUT /channel-points/custom-rewards/${req.params.customRewardId}`);
   /** @type {import('twitch').HelixUpdateCustomRewardData} */
   const customRewardData = req.body;
   let customReward = null;
