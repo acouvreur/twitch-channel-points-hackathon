@@ -78,6 +78,7 @@ const MainPage = () => {
     if (selectedRewardIndex >= 0) {
       // eslint-disable-next-line max-len
       const conf = [...rewardsConf];
+      // TODO:: delete on twitch too
       conf.splice(selectedRewardIndex, 1);
       setRewardsConf(conf);
       rewardsService.updateRewardsConfig(conf);
@@ -105,7 +106,9 @@ const MainPage = () => {
   const onCreateReward = async (rewardConf) => {
     const newConf = [...rewardsConf];
     try {
-      await rewardsService.createReward(rewardConf);
+      const body = await rewardsService.createReward(rewardConf);
+      // eslint-disable-next-line no-param-reassign
+      rewardConf.reward.id = body.id;
       toast.success('Reward created !', TOAST_CONFIG);
       newConf.push(rewardConf);
       return onUpdateRewards(newConf);
@@ -117,15 +120,14 @@ const MainPage = () => {
   const onEditConf = async (rewardConf) => {
     const newConf = [...rewardsConf];
     try {
+      const index = newConf.findIndex((conf) => conf.reward.id === rewardConf.reward.id);
+      console.log(rewardConf.reward.id && index < 0);
+      if (!rewardConf.reward.id || index < 0) {
+        return toast.error('Configuration not found try to refresh before editing again.', TOAST_CONFIG);
+      }
       await rewardsService.updateReward(rewardConf);
       toast.success('Reward edited !', TOAST_CONFIG);
-      newConf.push(rewardConf);
-      const index = newConf.findIndex((conf) => conf.reward.title === rewardConf.reward.title);
-      if (index === -1) {
-        newConf.push(rewardConf);
-      } else {
-        newConf.splice(index, 1, rewardConf);
-      }
+      newConf.splice(index, 1, rewardConf);
       return onUpdateRewards(newConf);
     } catch (err) {
       return toast.error(err.message, TOAST_CONFIG);

@@ -11,9 +11,9 @@ class RewardService {
 
   createReward = async (rewardConf) => ky.post(`${BASE_URL}/channel-points/custom-rewards`, {
     json: rewardConf.reward,
-  })
+  }).json()
 
-  updateReward = async (rewardConf) => ky.put(`${BASE_URL}/channel-points/custom-rewards`, {
+  updateReward = async (rewardConf) => ky.put(`${BASE_URL}/channel-points/custom-rewards/${rewardConf.reward.id}`, {
     json: rewardConf.reward,
   })
 

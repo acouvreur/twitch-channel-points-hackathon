@@ -65,6 +65,7 @@ const RewardFormPanel = ({
   const classes = useStyles();
 
   const onSubmit = (event) => {
+    // TODO :: check title & cost are set
     onSave(rewardConf);
     onClose();
     event.preventDefault();

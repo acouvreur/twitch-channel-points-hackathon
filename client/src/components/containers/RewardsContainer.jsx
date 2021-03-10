@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Button, Chip, Paper, Typography,
+  Button, Chip, Typography,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import ActionButtonsContainer from './ActionButtonsContainer';
@@ -18,8 +18,16 @@ import TOAST_CONFIG from '../../toast.conf';
 import colorService from '../../services/color.service';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1 1 auto',
+    height: '100vh',
+  },
   list: {
-    padding: '1rem',
+    padding: '0 1rem',
+    position: 'relative',
+    overflow: 'auto',
   },
   item: {
     padding: '0 1rem',
@@ -30,6 +38,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: 'baseline',
     borderBottom: `1px solid ${theme.palette.grey[50]}`,
     marginBottom: '0.5rem',
+    backgroundColor: theme.palette.background.default,
   },
   infoRow: {
     marginBlockEnd: '0.5rem',
@@ -119,7 +128,7 @@ const RewardsContainer = ({
   }, [rewards]);
 
   return (
-    <>
+    <div className={classes.container}>
       <ActionButtonsContainer
         onCreateRewardClick={onCreateRewardClick}
         onEditClick={onEditClick}
@@ -215,7 +224,7 @@ const RewardsContainer = ({
         ))}
       </List>
 
-    </>
+    </div>
   );
 };
 
