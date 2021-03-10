@@ -8,6 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
+import { toast } from 'react-toastify';
 import ActionButtonsContainer from './ActionButtonsContainer';
 import pubSubService from '../../services/pub-sub.service';
 
@@ -30,8 +31,29 @@ const RewardsContainer = ({
     onUpdateRewards([...rewards]);
   };
 
-  const onTruOut = (rewardConf) => () => {
-    pubSubService.triggerReward(rewardConf);
+  const onTryOut = (rewardConf) => async () => {
+    try {
+      await pubSubService.triggerReward(rewardConf);
+      toast.success('Redemption(s) succeeded', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    } catch (err) {
+      toast.error(err.message, {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
+    }
   };
 
   return (
@@ -56,7 +78,7 @@ const RewardsContainer = ({
             <ListItemText id="switch-list-enabled" primary={rewardConf.reward.title} />
             <ListItemSecondaryAction>
               <>
-                <Button onClick={onTruOut(rewardConf)} variant="contained">Try out !</Button>
+                <Button onClick={onTryOut(rewardConf)} variant="contained">Try out !</Button>
                 <Switch
                   edge="end"
                   onChange={onToggleReward(rewardConf)}

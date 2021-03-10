@@ -7,10 +7,14 @@ class PubSubService {
     try {
       return await ky.post(`${BASE_URL}/pub-sub/test/redemption`, {
         json: rewardConf,
-      }).json();
+      }).text();
     } catch (err) {
-      const { message } = JSON.parse(await err.response.text());
-      throw new Error(message);
+      if (err.response) {
+        const { message } = JSON.parse(await err.response.text());
+        throw new Error(message);
+      } else {
+        throw err;
+      }
     }
   }
 }

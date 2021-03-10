@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Chip,
@@ -192,6 +192,15 @@ const RewardFormPanel = ({
   const onTryOut = async () => {
     try {
       await pubSubService.triggerReward(rewardConf);
+      toast.success('Redemption(s) succeeded', {
+        position: 'bottom-left',
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+      });
     } catch (err) {
       console.log(err);
       toast.error(err.message, {
