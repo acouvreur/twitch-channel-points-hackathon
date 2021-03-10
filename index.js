@@ -6,14 +6,21 @@ const app = require('./server');
 const twitchAuthService = require('./authentication/twitch-auth.service');
 const polling = require('./polling');
 const pubSub = require('./pub-sub');
+const customRewardsConfigurationService = require('./channel-points/custom-rewards-configuration.service');
 
 const PORT = parseInt(process.env.SERVER_PORT, 10);
 
 const server = app.listen(PORT, () => {
   console.log(`The app is running on port ${PORT}! If not already, navigate to http://localhost:${PORT}/auth to generate app credentials`);
 
-  twitchAuthService.waitForAuthentication(() => {
+  twitchAuthService.waitForAuthentication(async () => {
+    console.log('[LOG] Synchonizing custom reward configuration...');
+    await customRewardsConfigurationService.synchronize();
+    console.log('[LOG] Custom Rewards Configuration udpated successfully!');
+
+    console.log('[LOG] Started polling');
     polling.start();
+    console.log('[LOG] Subscribed to topics');
     pubSub.subscribe();
   });
 });
