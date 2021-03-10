@@ -50,6 +50,16 @@ router.put('/custom-rewards/:customRewardId', async (req, res, next) => {
   return res.status(200).json(customReward._data);
 });
 
+router.delete('/custom-rewards/:customRewardId', async (req, res, next) => {
+  console.log(`[HTTP] DELETE /channel-points/custom-rewards/${req.params.customRewardId}`);
+  try {
+    await customRewardsService.deleteCustomReward(req.params.customRewardId);
+  } catch (err) {
+    return next(err);
+  }
+  return res.status(204).end();
+});
+
 router.get('/custom-rewards/:customRewardId/redemptions', async (req, res, next) => {
   console.log('[HTTP] GET /channel-points/custom-rewards/:customRewardId/redemptions');
 
