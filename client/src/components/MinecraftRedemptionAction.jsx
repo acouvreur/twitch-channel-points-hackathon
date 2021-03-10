@@ -23,7 +23,7 @@ const MinecraftRedemptionAction = ({ action, onChange }) => {
       >
         {MINECRAFT_POTION_EFFECTS.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
       </Select>
-      <TextField id="maxRedemptionsPerUserPerStream" label="Maximum redemption per stream" variant="outlined" defaultValue="0" onChange={onDurationChange} />
+      <TextField id="value" label="Value" variant="outlined" defaultValue="" onChange={onDurationChange} />
     </>
   );
 };

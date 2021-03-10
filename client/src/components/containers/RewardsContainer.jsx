@@ -52,6 +52,9 @@ const useStyles = makeStyles((theme) => ({
   chip: {
     marginRight: '0.5rem',
   },
+  button: {
+    marginRight: '1rem',
+  },
 }));
 
 const RewardsContainer = ({
@@ -210,7 +213,7 @@ const RewardsContainer = ({
             />
             <ListItemSecondaryAction>
               <>
-                <Button onClick={onTryOut(rewardConf)} style={{ marginRight: '1rem' }} variant="contained">Try out !</Button>
+                <Button onClick={onTryOut(rewardConf)} className={classes.button} variant="contained">Try out !</Button>
                 <Switch
                   edge="end"
                   onChange={onToggleReward(rewardConf)}
