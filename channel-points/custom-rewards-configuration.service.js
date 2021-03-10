@@ -3,6 +3,7 @@ const _ = require('lodash');
 
 const { getApiClient, getTokenInfo } = require('../helpers/utils');
 const customRewardsService = require('./custom-rewards.service');
+const { BadRequestError } = require('../errors');
 
 const CUSTOM_REWARDS_CONF_PATH = 'conf/custom-rewards.json';
 const GROUPS_CONF_PATH = 'conf/groups.json';
@@ -47,6 +48,44 @@ const getCustomRewardsConf = () => JSON.parse(fs.readFileSync(CUSTOM_REWARDS_CON
  */
 const updateCustomRewardsConf = (customRewardsConf) => {
   fs.writeFileSync(CUSTOM_REWARDS_CONF_PATH, JSON.stringify(customRewardsConf, null, 2));
+};
+
+/**
+ * Convert HelixCustomReward to HelixUpdateCustomReward
+ *
+ * @param {HelixCustomReward} helixCustomReward
+ */
+const getHelixUpdateCustomRewardData = (helixCustomReward) => ({
+  id: helixCustomReward.id,
+  title: helixCustomReward.title,
+  cost: helixCustomReward.cost,
+  autoFulfill: helixCustomReward.autoApproved,
+  backgroundColor: helixCustomReward.backgroundColor,
+  globalCooldown: helixCustomReward.globalCooldown,
+  isEnabled: helixCustomReward.isEnabled,
+  maxRedemptionsPerStream: helixCustomReward.maxRedemptionsPerStream,
+  maxRedemptionsPerUserPerStream: helixCustomReward.maxRedemptionsPerUserPerStream,
+  prompt: helixCustomReward.prompt,
+  userInputRequired: helixCustomReward.userInputRequired,
+});
+
+/**
+ * Updates a given reward conf the custom-rewards configuration
+ *
+ * @param {import('twitch').HelixUpdateCustomRewardData} customRewardData
+ */
+const updateCustomRewardConfData = (customRewardData) => {
+  if (!customRewardData || !customRewardData.id || !customRewardData.title) {
+    throw new BadRequestError('Invalid custom reward data');
+  }
+  const customRewardsConf = getCustomRewardsConf();
+  const existingCrConf = customRewardsConf.find(
+    (crConf) => crConf.reward.id === customRewardData.id,
+  );
+
+  existingCrConf.reward = customRewardData;
+
+  updateCustomRewardsConf(customRewardsConf);
 };
 
 /**
@@ -96,9 +135,10 @@ const applyGroupsConfiguration = async () => {
     }
 
     console.log(`[LOG] Updating Custom Reward [${crConf.reward.id}]: isEnabled=${isEnabled}`);
-    await customRewardsService.updateCustomReward(crConf.reward.id, {
+    const customReward = await customRewardsService.updateCustomReward(crConf.reward.id, {
       isEnabled,
     });
+    updateCustomRewardConfData(getHelixUpdateCustomRewardData(customReward));
   });
 
   return Promise.all(promises);
@@ -129,9 +169,10 @@ const applyGamesConfiguration = async (currentGameName) => {
     if (crConf.reward.id && customRewardGames.length) {
       const isEnabled = customRewardGames.includes(gameName);
       console.log(`[LOG] Updating Custom Reward [${crConf.reward.id}]: isEnabled=${isEnabled}`);
-      await customRewardsService.updateCustomReward(crConf.reward.id, {
+      const customReward = await customRewardsService.updateCustomReward(crConf.reward.id, {
         isEnabled,
       });
+      updateCustomRewardConfData(getHelixUpdateCustomRewardData(customReward));
     }
   });
 
@@ -154,19 +195,7 @@ const synchronize = async () => {
   customRewards.forEach((customReward) => {
     const crConf = customRewardsConf.find((cr) => cr.reward.id === customReward.id);
     newCustomRewardsConf.push({
-      reward: {
-        id: customReward.id,
-        title: customReward.title,
-        cost: customReward.cost,
-        autoFulfill: customReward.autoApproved,
-        backgroundColor: customReward.backgroundColor,
-        globalCooldown: customReward.globalCooldown,
-        isEnabled: customReward.isEnabled,
-        maxRedemptionsPerStream: customReward.maxRedemptionsPerStream,
-        maxRedemptionsPerUserPerStream: customReward.maxRedemptionsPerUserPerStream,
-        prompt: customReward.prompt,
-        userInputRequired: customReward.userInputRequired,
-      },
+      reward: getHelixUpdateCustomRewardData(customReward),
       isEnabled: _.get(crConf, 'isEnabled', { games: [], groups: [] }),
       onRedemption: _.get(crConf, 'onRedemption', []),
     });
@@ -177,8 +206,10 @@ const synchronize = async () => {
 
 module.exports = {
   synchronize,
+  getHelixUpdateCustomRewardData,
   getCustomRewardsConf,
   updateCustomRewardsConf,
+  updateCustomRewardConfData,
   getGroupsConf,
   loadCustomRewards,
   applyGroupsConfiguration,

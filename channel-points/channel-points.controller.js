@@ -43,6 +43,9 @@ router.put('/custom-rewards/:customRewardId', async (req, res, next) => {
       req.params.customRewardId,
       customRewardData,
     );
+    customRewardsConfigurationService.updateCustomRewardConfData(
+      customRewardsConfigurationService.getHelixUpdateCustomRewardData(customReward),
+    );
   } catch (err) {
     return next(err);
   }
