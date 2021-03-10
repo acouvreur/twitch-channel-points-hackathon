@@ -17,7 +17,7 @@ const useStyles = makeStyles({
   },
 });
 
-const REDEMPTION_TYPES = ['Midi', 'Minecraft'];
+const REDEMPTION_TYPES = ['midi', 'minecraft'];
 
 const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
   const classes = useStyles();
@@ -34,7 +34,7 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
   };
 
   const onAddAction = () => {
-    onChange([...redemptionActions, { type: redemptionType }]);
+    onChange([...redemptionActions, { plugin: redemptionType }]);
   };
 
   const onDelete = (index) => () => {

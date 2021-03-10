@@ -9,6 +9,7 @@ import RewardsContainer from '../components/containers/RewardsContainer';
 import PresetsContainer from '../components/containers/PresetsContainer';
 
 import rewardsService from '../services/rewards.service';
+import TOAST_CONFIG from '../toast.conf';
 
 const useStyles = makeStyles({
   container: {
@@ -27,7 +28,6 @@ const MainPage = () => {
   const [existingGroups, setExistingGroups] = useState([]);
 
   useEffect(() => {
-    console.log('update groups');
     setExistingGroups(rewardsConf
       .map((conf) => conf.isEnabled)
       .reduce((acc, cur) => {
@@ -50,15 +50,7 @@ const MainPage = () => {
         setRewardsConf(rewardsArray);
       })
       .catch((reason) => {
-        toast.error(reason.message, {
-          position: 'bottom-left',
-          autoClose: 5000,
-          hideProgressBar: false,
-          closeOnClick: true,
-          pauseOnHover: true,
-          draggable: true,
-          progress: undefined,
-        });
+        toast.error(reason.message, TOAST_CONFIG);
       });
   }, []);
 
@@ -80,7 +72,7 @@ const MainPage = () => {
       const conf = [...rewardsConf];
       conf.splice(selectedRewardIndex, 1);
       setRewardsConf(conf);
-      rewardsService.updateRewards(conf);
+      rewardsService.updateRewardsConfig(conf);
     }
   };
 
@@ -99,7 +91,7 @@ const MainPage = () => {
 
   const onUpdateRewards = (newConf) => {
     setRewardsConf(newConf);
-    rewardsService.updateRewards(newConf);
+    rewardsService.updateRewardsConfig(newConf);
   };
 
   const onSaveReward = (rewardConf) => {

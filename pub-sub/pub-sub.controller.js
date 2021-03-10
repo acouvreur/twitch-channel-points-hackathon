@@ -4,7 +4,7 @@ const redemptionEventHandler = require('./redemption-event.handler');
 /**
  * POST body is of type CustomRewardConf
  */
-router.post('/test/redemption', async (req, res) => {
+router.post('/test/redemption', async (req, res, next) => {
   console.log('[HTTP] POST /pub-sub/test/redemption');
 
   const rewardConf = req.body;
@@ -31,8 +31,12 @@ router.post('/test/redemption', async (req, res) => {
     return redemptionEventHandler.handleRedemption(redemptionMessage, rewardConf, onRedemptionConf);
   });
 
-  await Promise.all(promises);
-  res.status(200).send('All Custom Rewards were deleted and created again following custom-rewards.json configuration!');
+  try {
+    await Promise.all(promises);
+    return res.status(200).send('All onRedemption effect were applied!');
+  } catch (err) {
+    return next(err);
+  }
 });
 
 module.exports = router;

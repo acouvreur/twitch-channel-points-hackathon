@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { makeStyles } from '@material-ui/core/styles';
 import {
   Button,
   Chip,
@@ -11,8 +11,10 @@ import {
 } from '@material-ui/core';
 import Autocomplete from '@material-ui/lab/Autocomplete';
 import { ColorPicker } from 'material-ui-color';
+import { toast } from 'react-toastify';
 import RedemptionActionInputGroup from '../RedemptionActionInputGroup';
 import pubSubService from '../../services/pub-sub.service';
+import TOAST_CONFIG from '../../toast.conf';
 
 const useStyles = makeStyles((theme) => ({
   container: {
@@ -34,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtonContainer: {
     display: 'flex',
-    justifyContent: 'flex-end',
-    '& > *': {
+    ifyContent: 'flex-end',
+    '& ;> *': {
       marginLeft: '1rem',
     },
   },
@@ -44,8 +46,6 @@ const useStyles = makeStyles((theme) => ({
 const RewardFormPanel = ({
   onClose, onSave, defaultValue, existingGroups,
 }) => {
-  const theme = useTheme();
-  // const [color, setColor] = useState(theme.palette.text.primary;
   const [availableGames, setAvailableGames] = useState(['Just Chatting', 'Minecraft', 'Music']);
 
   const [rewardConf, setRewardConf] = useState(defaultValue || {
@@ -190,13 +190,23 @@ const RewardFormPanel = ({
     });
   };
 
-  const onTryOut = () => {
-    pubSubService.triggerReward(rewardConf);
+  const onTryOut = async () => {
+    try {
+      await pubSubService.triggerReward(rewardConf);
+      toast.success('Redemption(s) succeeded', TOAST_CONFIG);
+    } catch (err) {
+      console.log(err);
+      toast.error(err.message, TOAST_CONFIG);
+    }
   };
 
   return (
     <form className={classes.container} noValidate autoComplete="off" onSubmit={onSubmit}>
-      <Typography variant="h5">Create a reward</Typography>
+      <Typography variant="h5">
+        {defaultValue ? 'Edit' : 'Create'}
+        {' '}
+        a reward
+      </Typography>
       <TextField
         id="title"
         label="Title"
