@@ -102,19 +102,42 @@ const MainPage = () => {
     rewardsService.updateRewardsConfig(newConf);
   };
 
-  const onSaveReward = (rewardConf) => {
+  const onCreateReward = async (rewardConf) => {
     const newConf = [...rewardsConf];
-    if (editingRewardIndex >= 0) {
+    try {
+      await rewardsService.createReward(rewardConf);
+      toast.success('Reward created !', TOAST_CONFIG);
+      newConf.push(rewardConf);
+      return onUpdateRewards(newConf);
+    } catch (err) {
+      return toast.error(err.message, TOAST_CONFIG);
+    }
+  };
+
+  const onEditConf = async (rewardConf) => {
+    const newConf = [...rewardsConf];
+    try {
+      await rewardsService.updateReward(rewardConf);
+      toast.success('Reward edited !', TOAST_CONFIG);
+      newConf.push(rewardConf);
       const index = newConf.findIndex((conf) => conf.reward.title === rewardConf.reward.title);
       if (index === -1) {
         newConf.push(rewardConf);
       } else {
         newConf.splice(index, 1, rewardConf);
       }
-    } else {
-      newConf.push(rewardConf);
+      return onUpdateRewards(newConf);
+    } catch (err) {
+      return toast.error(err.message, TOAST_CONFIG);
     }
-    onUpdateRewards(newConf);
+  };
+
+  const onSaveReward = (rewardConf) => {
+    if (editingRewardIndex && editingRewardIndex >= 0) {
+      onEditConf(rewardConf);
+    } else {
+      onCreateReward(rewardConf);
+    }
   };
 
   const onRefreshConfig = () => {
