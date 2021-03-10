@@ -27,6 +27,21 @@ const MainPage = () => {
 
   const [existingGroups, setExistingGroups] = useState([]);
 
+  const loadConfig = async () => {
+    try {
+      rewardsService
+        .getAll()
+        .then((rewardsArray) => {
+          setRewardsConf(rewardsArray);
+        })
+        .catch((reason) => {
+          toast.error(reason.message, TOAST_CONFIG);
+        });
+    } catch (err) {
+      toast.error(err.message, TOAST_CONFIG);
+    }
+  };
+
   useEffect(() => {
     setExistingGroups(rewardsConf
       .map((conf) => conf.isEnabled)
@@ -44,14 +59,7 @@ const MainPage = () => {
   }, [rewardsConf]);
 
   useEffect(() => {
-    rewardsService
-      .getAll()
-      .then((rewardsArray) => {
-        setRewardsConf(rewardsArray);
-      })
-      .catch((reason) => {
-        toast.error(reason.message, TOAST_CONFIG);
-      });
+    loadConfig(setRewardsConf);
   }, []);
 
   const onCreateRewardClick = () => {
@@ -66,13 +74,18 @@ const MainPage = () => {
 
   const getRewardConfByIndex = (index) => rewardsConf[index];
 
-  const onDeleteClick = () => {
+  const onDeleteClick = async () => {
     if (selectedRewardIndex >= 0) {
-      // eslint-disable-next-line max-len
-      const conf = [...rewardsConf];
-      conf.splice(selectedRewardIndex, 1);
-      setRewardsConf(conf);
-      rewardsService.updateRewardsConfig(conf);
+      try {
+        await rewardsService.deleteReward(rewardsConf[selectedRewardIndex]);
+        // eslint-disable-next-line max-len
+        const conf = [...rewardsConf];
+        conf.splice(selectedRewardIndex, 1);
+        setRewardsConf(conf);
+        rewardsService.updateRewardsConfig(conf);
+      } catch (err) {
+        toast.error(err.message, TOAST_CONFIG);
+      }
     }
   };
 
@@ -94,19 +107,47 @@ const MainPage = () => {
     rewardsService.updateRewardsConfig(newConf);
   };
 
-  const onSaveReward = (rewardConf) => {
+  const onCreateReward = async (rewardConf) => {
     const newConf = [...rewardsConf];
-    if (editingRewardIndex >= 0) {
-      const index = newConf.findIndex((conf) => conf.reward.title === rewardConf.reward.title);
-      if (index === -1) {
-        newConf.push(rewardConf);
-      } else {
-        newConf.splice(index, 1, rewardConf);
-      }
-    } else {
+    try {
+      const body = await rewardsService.createReward(rewardConf);
+      // eslint-disable-next-line no-param-reassign
+      rewardConf.reward.id = body.id;
+      toast.success('Reward created !', TOAST_CONFIG);
       newConf.push(rewardConf);
+      return onUpdateRewards(newConf);
+    } catch (err) {
+      return toast.error(err.message, TOAST_CONFIG);
     }
-    onUpdateRewards(newConf);
+  };
+
+  const onEditConf = async (rewardConf) => {
+    const newConf = [...rewardsConf];
+    try {
+      const index = newConf.findIndex((conf) => conf.reward.id === rewardConf.reward.id);
+      console.log(rewardConf.reward.id && index < 0);
+      if (!rewardConf.reward.id || index < 0) {
+        return toast.error('Configuration not found try to refresh before editing again.', TOAST_CONFIG);
+      }
+      await rewardsService.updateReward(rewardConf);
+      toast.success('Reward edited !', TOAST_CONFIG);
+      newConf.splice(index, 1, rewardConf);
+      return onUpdateRewards(newConf);
+    } catch (err) {
+      return toast.error(err.message, TOAST_CONFIG);
+    }
+  };
+
+  const onSaveReward = (rewardConf) => {
+    if (editingRewardIndex && editingRewardIndex >= 0) {
+      onEditConf(rewardConf);
+    } else {
+      onCreateReward(rewardConf);
+    }
+  };
+
+  const onRefreshConfig = () => {
+    loadConfig().then(() => toast.success('Refresh successful', TOAST_CONFIG));
   };
 
   return (
@@ -121,14 +162,14 @@ const MainPage = () => {
       </Drawer>
 
       <Grid container spacing={0} className={classes.container}>
-        <Grid item xs={6} component={Paper}>
+        <Grid item xs={4} component={Paper} elevation={5}>
           <PresetsContainer
             rewardsConf={rewardsConf}
             existingGroups={existingGroups}
             onUpdateRewards={onUpdateRewards}
           />
         </Grid>
-        <Grid item xs={6}>
+        <Grid item xs={8}>
           <RewardsContainer
             selectedReward={getRewardConfByIndex(selectedRewardIndex)}
             onSelectReward={onSelectReward}
@@ -136,6 +177,7 @@ const MainPage = () => {
             onEditClick={onEditClick}
             onDeleteClick={onDeleteClick}
             onUpdateRewards={onUpdateRewards}
+            onRefreshConfig={onRefreshConfig}
             rewards={rewardsConf}
           />
         </Grid>

@@ -36,8 +36,8 @@ const useStyles = makeStyles((theme) => ({
   },
   actionButtonContainer: {
     display: 'flex',
-    ifyContent: 'flex-end',
-    '& ;> *': {
+    justifyContent: 'flex-end',
+    '& > *': {
       marginLeft: '1rem',
     },
   },
@@ -65,6 +65,7 @@ const RewardFormPanel = ({
   const classes = useStyles();
 
   const onSubmit = (event) => {
+    // TODO :: check title & cost are set
     onSave(rewardConf);
     onClose();
     event.preventDefault();

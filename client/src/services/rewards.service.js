@@ -9,6 +9,16 @@ class RewardService {
     json: rewardConf,
   })
 
+  createReward = async (rewardConf) => ky.post(`${BASE_URL}/channel-points/custom-rewards`, {
+    json: rewardConf.reward,
+  }).json()
+
+  deleteReward = async (rewardConf) => ky.delete(`${BASE_URL}/channel-points/custom-rewards/${rewardConf.reward.id}`)
+
+  updateReward = async (rewardConf) => ky.put(`${BASE_URL}/channel-points/custom-rewards/${rewardConf.reward.id}`, {
+    json: rewardConf.reward,
+  })
+
   toggleReward = async (id, isEnabled) => ky.put(`${BASE_URL}/channel-points/custom-rewards/${id}`, {
     json:
     {

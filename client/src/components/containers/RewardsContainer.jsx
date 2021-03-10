@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import Switch from '@material-ui/core/Switch';
 import List from '@material-ui/core/List';
@@ -7,30 +7,62 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button } from '@material-ui/core';
+import {
+  Button, Chip, Typography,
+} from '@material-ui/core';
 import { toast } from 'react-toastify';
 import ActionButtonsContainer from './ActionButtonsContainer';
 import pubSubService from '../../services/pub-sub.service';
 import rewardsService from '../../services/rewards.service';
 import TOAST_CONFIG from '../../toast.conf';
+import colorService from '../../services/color.service';
 
 const useStyles = makeStyles((theme) => ({
+  container: {
+    display: 'flex',
+    flexDirection: 'column',
+    flex: '1 1 auto',
+    height: '100vh',
+  },
   list: {
-    padding: '1rem',
+    padding: '0 1rem',
+    position: 'relative',
+    overflow: 'auto',
+  },
+  item: {
+    padding: '0 1rem',
   },
   header: {
     display: 'flex',
     justifyContent: 'space-between',
-    alignItems: 'center',
+    alignItems: 'baseline',
+    borderBottom: `1px solid ${theme.palette.grey[50]}`,
+    marginBottom: '0.5rem',
+    backgroundColor: theme.palette.background.default,
+  },
+  infoRow: {
+    marginBlockEnd: '0.5rem',
+    marginBlockStart: '0.5rem',
+  },
+  infoRowTitle: {
+    fontSize: '0.875rem',
+    color: theme.palette.text.hint,
+    marginRight: '0.5rem',
+  },
+  chip: {
+    marginRight: '0.5rem',
   },
 }));
 
 const RewardsContainer = ({
   selectedReward, onSelectReward, onCreateRewardClick, onEditClick, onDeleteClick, rewards,
-  onUpdateRewards,
+  onUpdateRewards, onRefreshConfig,
 
 }) => {
   const classes = useStyles();
+
+  const [groupsColor, setGroupsColor] = useState([]);
+  const [gamesColor, setGamesColor] = useState([]);
 
   const onToggleReward = (rewardConf) => async (event, checked) => {
     try {
@@ -67,14 +99,42 @@ const RewardsContainer = ({
       toast.error(err.message, TOAST_CONFIG);
     }
   };
+  useEffect(() => {
+    setGroupsColor(colorService.getColorMap(rewards
+      ?.map((conf) => conf.isEnabled)
+      .reduce((acc, cur) => {
+        if (cur.groups) {
+          cur.groups.forEach((group) => {
+            if (acc.indexOf(group) < 0) {
+              acc.push(group);
+            }
+          });
+        }
+        return acc;
+      }, []) || []));
+
+    setGamesColor(colorService.getColorMap(rewards
+      ?.map((conf) => conf.isEnabled)
+      .reduce((acc, cur) => {
+        if (cur.groups) {
+          cur.games.forEach((group) => {
+            if (acc.indexOf(group) < 0) {
+              acc.push(group);
+            }
+          });
+        }
+        return acc;
+      }, []) || []));
+  }, [rewards]);
 
   return (
-    <>
+    <div className={classes.container}>
       <ActionButtonsContainer
         onCreateRewardClick={onCreateRewardClick}
         onEditClick={onEditClick}
         onDeleteClick={onDeleteClick}
         confSelected={!!selectedReward}
+        onRefreshConfig={onRefreshConfig}
       />
       <List
         subheader={(
@@ -93,8 +153,63 @@ const RewardsContainer = ({
             button
             selected={selectedReward && rewardConf.reward.id === selectedReward.reward.id}
             onClick={() => onSelectReward(index)}
+            className={classes.item}
           >
-            <ListItemText id="switch-list-enabled" primary={rewardConf.reward.title} />
+            <ListItemText
+              id="switch-list-enabled"
+              primary={(
+                <>
+                  <Typography
+                    component="span"
+                    variant="body1"
+                    color="textPrimary"
+                  >
+                    {rewardConf.reward.title}
+                  </Typography>
+
+                </>
+              )}
+              secondary={(
+                <>
+                  <p className={classes.infoRow}>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.infoRowTitle}
+                      color="textPrimary"
+                    >
+                      Groups:
+                    </Typography>
+                    {rewardConf?.isEnabled?.groups?.map((group) => (
+                      <Chip
+                        size="small"
+                        label={group}
+                        style={{ backgroundColor: groupsColor[group] }}
+                        className={classes.chip}
+                      />
+                    ))}
+                  </p>
+                  <p>
+                    <Typography
+                      component="span"
+                      variant="body2"
+                      className={classes.infoRowTitle}
+                      color="textPrimary"
+                    >
+                      Games:
+                    </Typography>
+                    {rewardConf?.isEnabled?.games?.map((game) => (
+                      <Chip
+                        size="small"
+                        label={game}
+                        style={{ backgroundColor: gamesColor[game] }}
+                        className={classes.chip}
+                      />
+                    ))}
+                  </p>
+                </>
+            )}
+            />
             <ListItemSecondaryAction>
               <>
                 <Button onClick={onTryOut(rewardConf)} variant="contained">Try out !</Button>
@@ -109,7 +224,7 @@ const RewardsContainer = ({
         ))}
       </List>
 
-    </>
+    </div>
   );
 };
 
