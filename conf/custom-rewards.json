@@ -1,17 +1,40 @@
 [
   {
     "reward": {
+      "id": "3b2c08ee-85aa-4f0c-8b77-404867d74d3f",
+      "title": "Test 2",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#0097B9",
+      "globalCooldown": 5,
+      "isEnabled": false,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
+    },
+    "isEnabled": {
+      "games": [
+        "Unrailed!",
+        "Minecraft"
+      ],
+      "groups": [
+        "Setup 2"
+      ]
+    },
+    "onRedemption": []
+  },
+  {
+    "reward": {
+      "id": "562dce3f-b516-4671-929e-ad218026db85",
       "title": "Help Me",
       "cost": 1,
       "autoFulfill": false,
-      "backgroundColor": "#e71cf5",
+      "backgroundColor": "#E71CF5",
       "globalCooldown": 5,
       "isEnabled": false,
-      "maxRedemptionsPerStream": 0,
-      "maxRedemptionsPerUserPerStream": 0,
-      "prompt": "Bravo guy!",
-      "userInputRequired": false,
-      "id": "562dce3f-b516-4671-929e-ad218026db85"
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
     },
     "isEnabled": {
       "games": [
@@ -30,17 +53,35 @@
   },
   {
     "reward": {
+      "id": "65d37a8a-feb7-4993-882d-d827be98ecad",
+      "title": "Test 3",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#A81E1E",
+      "globalCooldown": 5,
+      "isEnabled": true,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
+    },
+    "isEnabled": {
+      "games": [],
+      "groups": []
+    },
+    "onRedemption": []
+  },
+  {
+    "reward": {
+      "id": "8bc9e085-2094-43cf-bb54-d33f42a8c6af",
       "title": "Test 1",
       "cost": 1,
       "autoFulfill": false,
-      "backgroundColor": "#e71cf5",
+      "backgroundColor": "#E71CF5",
       "globalCooldown": 5,
-      "isEnabled": false,
-      "maxRedemptionsPerStream": 0,
-      "maxRedemptionsPerUserPerStream": 0,
-      "prompt": "Bravo guy!",
-      "userInputRequired": false,
-      "id": "8bc9e085-2094-43cf-bb54-d33f42a8c6af"
+      "isEnabled": true,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
     },
     "isEnabled": {
       "games": [
@@ -91,26 +132,21 @@
   },
   {
     "reward": {
-      "title": "Test 2",
-      "cost": 1,
+      "id": "efa157f6-861d-4aef-82e2-61939b18e21a",
+      "title": "GRRRR",
+      "cost": 11000000,
       "autoFulfill": false,
-      "backgroundColor": "#0097b9",
+      "backgroundColor": "#F80202",
       "globalCooldown": 5,
       "isEnabled": false,
-      "maxRedemptionsPerStream": 0,
-      "maxRedemptionsPerUserPerStream": 0,
-      "prompt": "Bravo guy!",
-      "userInputRequired": false,
-      "id": "3b2c08ee-85aa-4f0c-8b77-404867d74d3f"
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
     },
     "isEnabled": {
-      "games": [
-        "Unrailed!",
-        "Minecraft"
-      ],
-      "groups": [
-        "Setup 2"
-      ]
-    }
+      "games": [],
+      "groups": []
+    },
+    "onRedemption": []
   }
 ]

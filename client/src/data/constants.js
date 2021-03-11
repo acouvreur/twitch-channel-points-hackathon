@@ -135,7 +135,14 @@ const MINECRAFT_POTION_EFFECTS = [
   'HERO_OF_THE_VILLAGE',
 ];
 
+const WEATHER_TYPES = [
+  'clear',
+  'rain',
+  'thunder',
+];
+
 export {
   MIDI_MESSAGE_TYPES,
   MINECRAFT_POTION_EFFECTS,
+  WEATHER_TYPES,
 };

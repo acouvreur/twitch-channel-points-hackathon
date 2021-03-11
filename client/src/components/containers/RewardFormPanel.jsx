@@ -95,7 +95,7 @@ const RewardFormPanel = ({
   };
 
   const onRedemptionActionsChange = (actions) => {
-    console.log(actions);
+    console.log(`actions: ${actions}`);
     setRewardConf({
       ...rewardConf,
       onRedemption: actions,
@@ -204,6 +204,17 @@ const RewardFormPanel = ({
   };
 
   const onTryOut = async () => {
+    const newErrors = {};
+    console.log(rewardConf);
+    if (!rewardConf.reward.title) {
+      newErrors.title = 'Title cannot be empty.';
+    } if (!rewardConf.reward.cost) {
+      newErrors.cost = 'Cost cannot be empty.';
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
     try {
       await pubSubService.triggerReward(rewardConf);
       toast.success('Redemption(s) succeeded', TOAST_CONFIG);
@@ -267,7 +278,7 @@ const RewardFormPanel = ({
       />
       <TextField
         id="maxRedemptionsPerStream"
-        label="Maximum redemption per stream"
+        label="Maximum redemption per stream (0 unlimited)"
         variant="outlined"
         defaultValue={rewardConf.reward.maxRedemptionsPerStream}
         onChange={onMaxRedemptionsPerStreamChange}
@@ -275,7 +286,7 @@ const RewardFormPanel = ({
       />
       <TextField
         id="maxRedemptionsPerUserPerStream"
-        label="Maximum redemption per stream"
+        label="Maximum redemption per user per stream (0 unlimited)"
         variant="outlined"
         defaultValue={rewardConf.reward.maxRedemptionsPerUserPerStream}
         onChange={onMaxRedemptionsPerUserPerStreamChange}
