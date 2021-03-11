@@ -68,7 +68,7 @@ const PresetsContainer = ({ rewardsConf, existingGroups, onUpdateRewards }) => {
             <ListItemIcon>
               <Avatar style={{
                 backgroundColor: groupsColor[group],
-                color: theme.palette.text.primary,
+                color: theme.palette.common.white,
               }}
               >
                 {group[0]}

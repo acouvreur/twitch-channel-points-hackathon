@@ -8,7 +8,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import ListSubheader from '@material-ui/core/ListSubheader';
 import { makeStyles } from '@material-ui/core/styles';
 import {
-  Button, Chip, Typography,
+  Button, Chip, Typography, useTheme,
 } from '@material-ui/core';
 import { toast } from 'react-toastify';
 import ActionButtonsContainer from './ActionButtonsContainer';
@@ -62,6 +62,7 @@ const RewardsContainer = ({
   onUpdateRewards, onRefreshConfig,
 
 }) => {
+  const theme = useTheme();
   const classes = useStyles();
 
   const [groupsColor, setGroupsColor] = useState([]);
@@ -185,7 +186,10 @@ const RewardsContainer = ({
                       <Chip
                         size="small"
                         label={group}
-                        style={{ backgroundColor: groupsColor[group] }}
+                        style={{
+                          backgroundColor: groupsColor[group],
+                          color: theme.palette.common.white,
+                        }}
                         className={classes.chip}
                       />
                     ))}
@@ -203,7 +207,10 @@ const RewardsContainer = ({
                       <Chip
                         size="small"
                         label={game}
-                        style={{ backgroundColor: gamesColor[game] }}
+                        style={{
+                          backgroundColor: gamesColor[game],
+                          color: theme.palette.common.white,
+                        }}
                         className={classes.chip}
                       />
                     ))}
