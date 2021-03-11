@@ -4,6 +4,7 @@ import { MINECRAFT_POTION_EFFECTS, WEATHER_TYPES } from '../data/constants';
 
 const MinecraftWeatherParams = ({ action, onChange }) => {
   const onWeatherChange = (event) => {
+    console.log('select weather type');
     console.log({ ...action, params: { ...action.params, weather: event.target.value } });
     onChange({ ...action, params: { ...action.params, weather: event.target.value } });
   };
@@ -65,6 +66,7 @@ const MinecraftRedemptionActionParams = ({ type, action, onChange }) => {
 
 const MinecraftRedemptionAction = ({ action, onChange }) => {
   const onSelectMinecraftType = (event) => {
+    console.log('select minecraft type');
     console.log({ ...action, params: { ...action.params, type: event.target.value } });
     onChange({ ...action, params: { ...action.params, type: event.target.value } });
   };

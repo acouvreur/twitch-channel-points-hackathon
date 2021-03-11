@@ -4,6 +4,7 @@ const BASE_URL = 'http://localhost:8080';
 
 class PubSubService {
   triggerReward = async (rewardConf) => {
+    console.log(`try out: ${JSON.stringify(rewardConf)}`);
     try {
       return await ky.post(`${BASE_URL}/pub-sub/test/redemption`, {
         json: rewardConf,
