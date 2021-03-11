@@ -7,23 +7,29 @@ const POLLING_INTERVAL = process.env.POLLING_INTERVAL
 
 let isPolling = false;
 
-const doPoll = async () => {
+/**
+ * @param {*} Socket.io server
+ */
+const doPoll = async (io) => {
   await Promise.all([
-    channelInfoPolling.poll(),
+    channelInfoPolling.poll(io),
   ]);
 
   if (isPolling) {
     await sleep(POLLING_INTERVAL);
-    doPoll();
+    doPoll(io);
   }
 };
 
-const start = () => {
+/**
+ * @param {*} io Socket.io server
+ */
+const start = (io) => {
   if (isPolling) {
     return;
   }
   isPolling = true;
-  doPoll();
+  doPoll(io);
 };
 
 const stop = () => {

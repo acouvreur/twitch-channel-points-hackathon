@@ -1,7 +1,9 @@
+/* eslint-disable import/order */
 require('dotenv').config();
 
-const terminate = require('./server/terminate');
 const app = require('./server');
+const http = require('http').Server(app);
+const terminate = require('./server/terminate');
 
 const twitchAuthService = require('./authentication/twitch-auth.service');
 const polling = require('./polling');
@@ -10,7 +12,21 @@ const customRewardsConfigurationService = require('./channel-points/custom-rewar
 
 const PORT = parseInt(process.env.SERVER_PORT, 10);
 
-const server = app.listen(PORT, () => {
+const io = require('socket.io')(http, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST'],
+  },
+});
+
+io.on('connection', (socket) => {
+  console.log('[SOCKET] connection');
+  socket.on('disconnect', () => {
+    console.log('[SOCKET] disconnect');
+  });
+});
+
+const server = http.listen(PORT, () => {
   console.log(`The app is running on port ${PORT}! If not already, navigate to http://localhost:${PORT}/auth to generate app credentials`);
 
   twitchAuthService.waitForAuthentication(async () => {
@@ -19,7 +35,7 @@ const server = app.listen(PORT, () => {
     console.log('[LOG] Custom Rewards Configuration udpated successfully!');
 
     console.log('[LOG] Started polling');
-    polling.start();
+    polling.start(io);
     console.log('[LOG] Subscribed to topics');
     pubSub.subscribe();
   });

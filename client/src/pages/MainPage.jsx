@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import socketIOClient from 'socket.io-client';
 import {
   Paper, Drawer, Grid, makeStyles,
 } from '@material-ui/core';
@@ -10,6 +11,8 @@ import PresetsContainer from '../components/containers/PresetsContainer';
 
 import rewardsService from '../services/rewards.service';
 import TOAST_CONFIG from '../toast.conf';
+
+const BASE_URL = 'http://127.0.0.1:8080';
 
 const useStyles = makeStyles({
   container: {
@@ -41,6 +44,13 @@ const MainPage = () => {
       toast.error(err.message, TOAST_CONFIG);
     }
   };
+
+  useEffect(() => {
+    const socket = socketIOClient(BASE_URL);
+    socket.on('GAME_CHANGED', (data) => {
+      loadConfig().then(() => toast.success(`Refresh successful: Game changed from ${data.previous} to ${data.current}`, TOAST_CONFIG));
+    });
+  }, []);
 
   useEffect(() => {
     setExistingGroups(rewardsConf
