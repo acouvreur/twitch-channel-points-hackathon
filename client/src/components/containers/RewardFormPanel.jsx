@@ -267,7 +267,7 @@ const RewardFormPanel = ({
       />
       <TextField
         id="maxRedemptionsPerStream"
-        label="Maximum redemption per stream"
+        label="Maximum redemption per stream (0 unlimited)"
         variant="outlined"
         defaultValue={rewardConf.reward.maxRedemptionsPerStream}
         onChange={onMaxRedemptionsPerStreamChange}
@@ -275,7 +275,7 @@ const RewardFormPanel = ({
       />
       <TextField
         id="maxRedemptionsPerUserPerStream"
-        label="Maximum redemption per stream"
+        label="Maximum redemption per user per stream (0 unlimited)"
         variant="outlined"
         defaultValue={rewardConf.reward.maxRedemptionsPerUserPerStream}
         onChange={onMaxRedemptionsPerUserPerStreamChange}
