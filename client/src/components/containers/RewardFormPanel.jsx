@@ -47,6 +47,7 @@ const RewardFormPanel = ({
   onClose, onSave, defaultValue, existingGroups,
 }) => {
   const [availableGames, setAvailableGames] = useState(['Just Chatting', 'Minecraft', 'Music']);
+  const [errors, setErrors] = useState({});
 
   const [rewardConf, setRewardConf] = useState(defaultValue || {
     onRedemption: [],
@@ -65,11 +66,22 @@ const RewardFormPanel = ({
   const classes = useStyles();
 
   const onSubmit = (event) => {
-    // TODO :: check title & cost are set
-    onSave(rewardConf);
-    onClose();
     event.preventDefault();
     event.stopPropagation();
+    const newErrors = {};
+    console.log(rewardConf);
+    if (!rewardConf.reward.title) {
+      newErrors.title = 'Title cannot be empty.';
+    } if (!rewardConf.reward.cost) {
+      newErrors.cost = 'Cost cannot be empty.';
+    }
+    setErrors(newErrors);
+    if (Object.keys(newErrors).length > 0) {
+      return;
+    }
+
+    onSave(rewardConf);
+    onClose();
   };
 
   const onUserInputRequiredChange = (event, checked) => {
@@ -214,6 +226,8 @@ const RewardFormPanel = ({
         variant="outlined"
         onChange={onTitleChange}
         value={rewardConf.reward.title}
+        error={!!errors.title}
+        helperText={errors.title}
       />
       <TextField
         id="cost"
@@ -221,6 +235,8 @@ const RewardFormPanel = ({
         variant="outlined"
         onChange={onCostChange}
         value={rewardConf.reward.cost}
+        error={!!errors.cost}
+        helperText={errors.cost}
       />
       <TextField
         id="backgroundColor"
