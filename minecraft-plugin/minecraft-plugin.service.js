@@ -13,7 +13,11 @@ const applyEffect = async (redemptionMessage, params) => {
   console.log('[Minecraft Plugin] Applying Minecraft potion effect');
   try {
     await got.post(`${minecraftPluginServerUrl}/potions`, {
-      json: params,
+      json: {
+        redeemedBy: redemptionMessage.userDisplayName,
+        rewardCost: redemptionMessage.rewardCost,
+        ...params,
+      },
       responseType: 'json',
     });
   } catch (err) {
