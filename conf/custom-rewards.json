@@ -7,7 +7,7 @@
       "autoFulfill": false,
       "backgroundColor": "#0097B9",
       "globalCooldown": 5,
-      "isEnabled": false,
+      "isEnabled": true,
       "maxRedemptionsPerStream": null,
       "maxRedemptionsPerUserPerStream": null,
       "userInputRequired": false
@@ -25,13 +25,32 @@
   },
   {
     "reward": {
+      "id": "3eb308ca-a65f-4108-b126-56ecd792b040",
+      "title": "Tout neuf",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#FF6666",
+      "globalCooldown": 5,
+      "isEnabled": true,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
+    },
+    "isEnabled": {
+      "games": [],
+      "groups": []
+    },
+    "onRedemption": []
+  },
+  {
+    "reward": {
       "id": "562dce3f-b516-4671-929e-ad218026db85",
       "title": "Help Me",
       "cost": 1,
       "autoFulfill": false,
       "backgroundColor": "#E71CF5",
       "globalCooldown": 5,
-      "isEnabled": false,
+      "isEnabled": true,
       "maxRedemptionsPerStream": null,
       "maxRedemptionsPerUserPerStream": null,
       "userInputRequired": false
@@ -59,6 +78,44 @@
       "autoFulfill": false,
       "backgroundColor": "#A81E1E",
       "globalCooldown": 5,
+      "isEnabled": false,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
+    },
+    "isEnabled": {
+      "games": [],
+      "groups": []
+    },
+    "onRedemption": []
+  },
+  {
+    "reward": {
+      "id": "8a172db1-7b01-4f61-88c5-bf8a5f3bf1fd",
+      "title": "HEEAALLLL",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#BD07E6",
+      "globalCooldown": 5,
+      "isEnabled": true,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
+    },
+    "isEnabled": {
+      "games": [],
+      "groups": []
+    },
+    "onRedemption": []
+  },
+  {
+    "reward": {
+      "id": "8a5a4fda-f531-429b-ae82-75a4ad2db186",
+      "title": "DIE !!!",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#600707",
+      "globalCooldown": 5,
       "isEnabled": true,
       "maxRedemptionsPerStream": null,
       "maxRedemptionsPerUserPerStream": null,
@@ -78,7 +135,7 @@
       "autoFulfill": false,
       "backgroundColor": "#E71CF5",
       "globalCooldown": 5,
-      "isEnabled": true,
+      "isEnabled": false,
       "maxRedemptionsPerStream": null,
       "maxRedemptionsPerUserPerStream": null,
       "userInputRequired": false
@@ -129,6 +186,25 @@
         }
       }
     ]
+  },
+  {
+    "reward": {
+      "id": "db2abe1b-65af-49d0-90c8-44c35a6892e1",
+      "title": "Il a disparu",
+      "cost": 1,
+      "autoFulfill": false,
+      "backgroundColor": "#8205B3",
+      "globalCooldown": 5,
+      "isEnabled": true,
+      "maxRedemptionsPerStream": null,
+      "maxRedemptionsPerUserPerStream": null,
+      "userInputRequired": false
+    },
+    "isEnabled": {
+      "games": [],
+      "groups": []
+    },
+    "onRedemption": []
   },
   {
     "reward": {
