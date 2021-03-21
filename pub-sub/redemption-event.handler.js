@@ -19,7 +19,11 @@ const cache = {
  */
 const handleRedemption = async (redemptionMessage, rewardConf, onRedemptionConf) => {
   if (onRedemptionConf.plugin === 'midi') {
-    await generateMidi(redemptionMessage, onRedemptionConf.params);
+    try {
+      await generateMidi(redemptionMessage, onRedemptionConf.params);
+    } catch (error) {
+      console.error(`[ERROR] [MIDI Plugin] ${error}`);
+    }
   } else if (onRedemptionConf.plugin === 'minecraft') {
     await applyEffect(redemptionMessage, onRedemptionConf.params);
   } else {
