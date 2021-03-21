@@ -32,6 +32,11 @@ const MinecraftPotionParams = ({ action, onChange }) => {
     onChange({ ...action, params: { ...action.params, duration: event.target.value } });
   };
 
+  const onAmplifierChange = (event) => {
+    console.log({ ...action, params: { ...action.params, amplifier: event.target.value } });
+    onChange({ ...action, params: { ...action.params, amplifier: event.target.value } });
+  };
+
   return (
     <>
       <Select
@@ -42,7 +47,8 @@ const MinecraftPotionParams = ({ action, onChange }) => {
       >
         {MINECRAFT_POTION_EFFECTS.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
       </Select>
-      <TextField id="duration" label="Duration" variant="outlined" defaultValue="" onChange={onDurationChange} />
+      <TextField type="number" id="duration" label="Duration" variant="outlined" defaultValue="" onChange={onDurationChange} />
+      <TextField type="number" id="amplifier" label="Amplifier" variant="outlined" defaultValue="" onChange={onAmplifierChange} />
     </>
   );
 };
