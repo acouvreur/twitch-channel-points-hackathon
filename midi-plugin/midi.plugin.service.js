@@ -50,7 +50,7 @@ const getMidiOutput = () => {
 /**
  * @param {Note} value
  */
-const sendMidiNoteon = async (value) => {
+const sendMidiNoteon = (value) => {
   const midiOutput = getMidiOutput();
   midiOutput.send('noteon', value);
 };
@@ -58,7 +58,7 @@ const sendMidiNoteon = async (value) => {
 /**
  * @param {ControlChange} value
  */
-const sendMidiCC = async (value) => {
+const sendMidiCC = (value) => {
   const midiOutput = getMidiOutput();
   midiOutput.send('cc', value);
 };
