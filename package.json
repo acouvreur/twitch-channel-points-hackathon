@@ -1,40 +1,48 @@
 {
   "name": "twitch-channel-points-hackathon",
   "version": "1.0.0",
-  "description": "Twitch Channel Points Hackathon",
-  "main": "index.js",
+  "description": "",
+  "main": "main.js",
   "scripts": {
-    "start": "node index.js",
-    "build:client": "cd client && npm run build",
-    "build": "npm run build:client"
+    "preinstall": "npm install --prefix frontend && npm install --prefix backend",
+    "postinstall": "./node_modules/.bin/electron-rebuild",
+    "build": "cross-env REACT_APP_VERSION=$npm_package_version npm run build --prefix frontend",
+    "start": "electron .",
+    "start:dev": "cross-env NODE_ENV=development electron .",
+    "predist": "npm run build",
+    "dist": "electron-builder",
+    "release": "electron-builder --publish always"
   },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/acouvreur/twitch-channel-points-hackathon.git"
-  },
-  "author": "Alexis COUVREUR, Alexandre HILTCHER, Florian MAUNIER, Thomas MOREAU",
-  "license": "SEE LICENSE IN LICENCE",
-  "bugs": {
-    "url": "https://github.com/acouvreur/twitch-channel-points-hackathon/issues"
-  },
-  "homepage": "https://github.com/acouvreur/twitch-channel-points-hackathon#readme",
-  "dependencies": {
-    "body-parser": "^1.19.0",
-    "cors": "^2.8.5",
-    "dotenv": "^8.2.0",
-    "easymidi": "^2.0.1",
-    "express": "^4.17.1",
-    "form-data": "^4.0.0",
-    "got": "^11.8.2",
-    "lodash": "^4.17.21",
-    "socket.io": "^4.0.0",
-    "twitch": "^4.4.12",
-    "twitch-auth": "^4.4.12",
-    "twitch-pubsub-client": "^4.4.12"
-  },
+  "keywords": [],
+  "author": "Alexis COUVREUR",
+  "license": "ISC",
   "devDependencies": {
-    "eslint": "^7.20.0",
-    "eslint-config-airbnb-base": "^14.2.1",
-    "eslint-plugin-import": "^2.22.1"
+    "@semantic-release/changelog": "^5.0.1",
+    "@semantic-release/git": "^9.0.0",
+    "cross-env": "^7.0.3",
+    "electron": "^12.0.1",
+    "electron-builder": "^22.10.5",
+    "electron-rebuild": "^2.3.5",
+    "semantic-release": "^17.4.2"
+  },
+  "dependencies": {
+    "backend": "file:backend",
+    "electron-debug": "^3.2.0",
+    "electron-log": "^4.3.2",
+    "electron-unhandled": "^3.0.2",
+    "electron-updater": "^4.3.8",
+    "electron-util": "^0.14.2",
+    "electron-window-state": "^5.0.3",
+    "twitch-electron-auth-provider": "^4.5.1"
+  },
+  "build": {
+    "files": [
+      "**/*",
+      "!frontend/{node_modules,src,public}",
+      "!backend"
+    ],
+    "publish": [
+      "github"
+    ]
   }
 }

@@ -88,10 +88,9 @@ const getRefreshableAuthProvider = () => {
 };
 
 /**
- * @param {Promise} promise
  * @returns {Promise}
  */
-const waitForAuthentication = async (promise) => {
+const waitForAuthentication = async () => {
   try {
     getRefreshableAuthProvider();
   } catch (error) {

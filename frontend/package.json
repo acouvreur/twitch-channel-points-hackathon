@@ -1,7 +1,12 @@
 {
-  "name": "client",
-  "version": "0.1.0",
+  "name": "frontend",
+  "version": "1.0.0",
   "private": true,
+  "homepage": "./",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/acouvreur/twitch-channel-points-hackathon"
+  },
   "dependencies": {
     "@material-ui/core": "^4.11.3",
     "@material-ui/icons": "^4.11.2",
