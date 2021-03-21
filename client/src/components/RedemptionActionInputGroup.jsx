@@ -35,7 +35,6 @@ const RedemptionActionInputGroup = ({ onChange, redemptionActions }) => {
   };
 
   const onActionChange = (index) => (action) => {
-    console.log(action);
     redemptionActions.splice(index, 1, action);
     onChange([...redemptionActions]);
   };

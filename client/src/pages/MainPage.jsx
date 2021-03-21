@@ -92,7 +92,7 @@ const MainPage = () => {
         const conf = [...rewardsConf];
         conf.splice(selectedRewardIndex, 1);
         setRewardsConf(conf);
-        rewardsService.updateRewardsConfig(conf);
+        await rewardsService.updateRewardsConfig(conf);
       } catch (err) {
         toast.error(err.message, TOAST_CONFIG);
       }
@@ -112,7 +112,8 @@ const MainPage = () => {
     }
   };
 
-  const onUpdateRewards = (newConf) => {
+  const onUpdateRewards = async (newConf) => {
+    await rewardsService.updateRewardsConfig(newConf);
     setRewardsConf(newConf);
   };
 
@@ -134,7 +135,6 @@ const MainPage = () => {
     const newConf = [...rewardsConf];
     try {
       const index = newConf.findIndex((conf) => conf.reward.id === rewardConf.reward.id);
-      console.log(rewardConf.reward.id && index < 0);
       if (!rewardConf.reward.id || index < 0) {
         return toast.error('Configuration not found try to refresh before editing again.', TOAST_CONFIG);
       }
@@ -148,7 +148,6 @@ const MainPage = () => {
   };
 
   const onSaveReward = (rewardConf) => {
-    console.log(editingRewardIndex);
     if (editingRewardIndex !== null && editingRewardIndex >= 0) {
       onEditConf(rewardConf);
     } else {

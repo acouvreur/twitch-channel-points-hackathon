@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { MenuItem, Select, TextField } from '@material-ui/core';
 import { MINECRAFT_POTION_EFFECTS, WEATHER_TYPES } from '../data/constants';
 
@@ -23,17 +23,14 @@ const MinecraftWeatherParams = ({ action, onChange }) => {
 
 const MinecraftPotionParams = ({ action, onChange }) => {
   const onSelectEffectType = (event) => {
-    console.log({ ...action, params: { ...action.params, effect: event.target.value } });
     onChange({ ...action, params: { ...action.params, effect: event.target.value } });
   };
 
   const onDurationChange = (event) => {
-    console.log({ ...action, params: { ...action.params, duration: event.target.value } });
     onChange({ ...action, params: { ...action.params, duration: event.target.value } });
   };
 
   const onAmplifierChange = (event) => {
-    console.log({ ...action, params: { ...action.params, amplifier: event.target.value } });
     onChange({ ...action, params: { ...action.params, amplifier: event.target.value } });
   };
 
@@ -71,9 +68,14 @@ const MinecraftRedemptionActionParams = ({ type, action, onChange }) => {
 };
 
 const MinecraftRedemptionAction = ({ action, onChange }) => {
+  useEffect(() => {
+    if (!action.params) {
+      onChange({ ...action, params: { type: 'weather', weather: 'clear' } });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   const onSelectMinecraftType = (event) => {
-    console.log('select minecraft type');
-    console.log({ ...action, params: { ...action.params, type: event.target.value } });
     onChange({ ...action, params: { ...action.params, type: event.target.value } });
   };
 
