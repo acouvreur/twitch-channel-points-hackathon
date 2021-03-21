@@ -148,7 +148,8 @@ const MainPage = () => {
   };
 
   const onSaveReward = (rewardConf) => {
-    if (editingRewardIndex && editingRewardIndex >= 0) {
+    console.log(editingRewardIndex);
+    if (editingRewardIndex !== null && editingRewardIndex >= 0) {
       onEditConf(rewardConf);
     } else {
       onCreateReward(rewardConf);
