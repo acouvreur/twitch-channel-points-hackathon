@@ -5,8 +5,9 @@ const { getApiClient, getTokenInfo } = require('../helpers/utils');
 const customRewardsService = require('./custom-rewards.service');
 const { BadRequestError } = require('../errors');
 
-const CUSTOM_REWARDS_CONF_PATH = 'conf/custom-rewards.json';
-const GROUPS_CONF_PATH = 'conf/groups.json';
+const path = require('path');
+const CUSTOM_REWARDS_CONF_PATH = path.join(__dirname, '../conf/custom-rewards.json');
+const GROUPS_CONF_PATH = path.join(__dirname, '../conf/groups.json');
 
 /**
  * @typedef IsEnabledConf

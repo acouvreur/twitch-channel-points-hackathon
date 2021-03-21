@@ -1,13 +1,10 @@
-const { ApiClient } = require('twitch');
-const twitchAuthService = require('../authentication/twitch-auth.service');
-
 const cache = {
   apiClient: undefined,
   tokenInfo: undefined,
 };
 
 /**
- * @returns {ApiClient}
+ * @returns {import('twitch').ApiClient}
  */
 const getApiClient = () => {
   if (!cache.apiClient) {
@@ -19,6 +16,7 @@ const getApiClient = () => {
 };
 
 /**
+ * @param {import('twitch').ApiClient} apiClient
  * @returns {Promise<import('twitch-auth').TokenInfo>}
  */
 const getTokenInfo = async () => {
@@ -29,6 +27,7 @@ const getTokenInfo = async () => {
 };
 
 module.exports = {
+  cache,
   getApiClient,
   getTokenInfo,
 };

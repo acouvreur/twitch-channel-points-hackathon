@@ -1,7 +1,7 @@
 import React from 'react';
 
 import CssBaseline from '@material-ui/core/CssBaseline';
-import ThemeProvider from '@material-ui/core/styles/MuiThemeProvider';
+import { ThemeProvider } from '@material-ui/core/styles';
 import createMuiTheme from '@material-ui/core/styles/createMuiTheme';
 import teal from '@material-ui/core/colors/teal';
 import indigo from '@material-ui/core/colors/indigo';
