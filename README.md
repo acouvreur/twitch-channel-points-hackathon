@@ -1,11 +1,19 @@
-# twitch-channel-points-hackathon
+![Twitch Channel Points Hackathon](./channel_points_hackathon.png)
 
-Electron with create-react-app and embedded server.
+# Awesome Channel Points Manager
 
-## Frontend
+__Awesome Channel Points Manager__ allows you to quickly setup amazing integrations with your games and broadcaster tools.
 
-Create react app
+Automatically update your __Channel Rewards__ through game detection to allow your viewers to interact with your game !
 
-## Backend
+Create custom __Rewards__ interaction with our __plugins__ !
 
-Embedded server running in a hidden window.
+Let your viewer change the weather in __Minecraft__ or change your voice though __Ableton__ !
+## Plugins
+
+- [Minecraft](./docs/plugins/Minecraft.md)
+- [Ableton](./docs/plugins/Ableton.md)
+
+## License
+
+See [License](LICENSE)
