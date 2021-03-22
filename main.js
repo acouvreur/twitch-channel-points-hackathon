@@ -48,6 +48,13 @@ function createWindow() {
     win.loadFile('frontend/build/index.html')
   }
 
+  win.webContents.on('did-finish-load', () => {
+    const name = require('./package.json').name
+    const version = require('./package.json').version
+
+    win.setTitle(`${name} v${version}`)
+  })
+
   win.on('closed', () => {
     app.quit()
   })
