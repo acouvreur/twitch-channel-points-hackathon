@@ -13,9 +13,17 @@
     "dist": "electron-builder",
     "release": "electron-builder --publish always"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/acouvreur/twitch-channel-points-hackathon.git"
+  },
   "keywords": [],
-  "author": "Alexis COUVREUR",
-  "license": "ISC",
+  "author": "Alexis COUVREUR, Alexandre HILTCHER, Florian MAUNIER, Thomas MOREAU",
+  "license": "SEE LICENSE IN LICENCE",
+  "bugs": {
+    "url": "https://github.com/acouvreur/twitch-channel-points-hackathon/issues"
+  },
+  "homepage": "https://github.com/acouvreur/twitch-channel-points-hackathon#readme",
   "devDependencies": {
     "@semantic-release/changelog": "^5.0.1",
     "@semantic-release/git": "^9.0.0",
