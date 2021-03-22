@@ -10,6 +10,32 @@ const CUSTOM_REWARDS_CONF_PATH = path.join(__dirname, '../conf/custom-rewards.js
 const GROUPS_CONF_PATH = path.join(__dirname, '../conf/groups.json');
 
 /**
+ * Default store that handles get('rewards') and get('groups')
+ */
+const dynamicConf = {
+  store: {
+    get: (conf) => {
+      if (conf === "rewards") {
+        return JSON.parse(fs.readFileSync(CUSTOM_REWARDS_CONF_PATH));
+      }
+      if (conf === "groups") {
+        return JSON.parse(fs.readFileSync(GROUPS_CONF_PATH));
+      }
+      throw new Error("Unuspported conf " + conf);
+    },
+    set: (conf, value) => {
+      if (conf === "rewards") {
+        fs.writeFileSync(CUSTOM_REWARDS_CONF_PATH, JSON.stringify(value, null, 2));
+      }
+      if (conf === "groups") {
+        fs.writeFileSync(GROUPS_CONF_PATH, JSON.stringify(value, null, 2));
+      }
+      throw new Error("Unuspported conf " + conf);
+    }
+  }
+}
+
+/**
  * @typedef IsEnabledConf
  * @property {string[]} games
  * @property {string[]} groups
@@ -40,16 +66,14 @@ const GROUPS_CONF_PATH = path.join(__dirname, '../conf/groups.json');
  *
  * @returns {CustomRewardConf[]}
  */
-const getCustomRewardsConf = () => JSON.parse(fs.readFileSync(CUSTOM_REWARDS_CONF_PATH));
+const getCustomRewardsConf = () => dynamicConf.store.get('rewards');
 
 /**
  * Updates the custom-rewards configuration
  *
  * @param {CustomRewardConf[]} customRewardsConf
  */
-const updateCustomRewardsConf = (customRewardsConf) => {
-  fs.writeFileSync(CUSTOM_REWARDS_CONF_PATH, JSON.stringify(customRewardsConf, null, 2));
-};
+const updateCustomRewardsConf = (customRewardsConf) => dynamicConf.store.set('rewards', customRewardsConf);
 
 /**
  * Convert HelixCustomReward to HelixUpdateCustomReward
@@ -92,7 +116,7 @@ const updateCustomRewardConfData = (customRewardData) => {
 /**
  * @returns {GroupConf[]}
  */
-const getGroupsConf = () => JSON.parse(fs.readFileSync(GROUPS_CONF_PATH));
+const getGroupsConf = () => dynamicConf.store.get('groups');
 
 /**
  * Deletes all Custom Rewards on a channel and creates all Custom Rewards based on JSON configuration.
@@ -215,4 +239,5 @@ module.exports = {
   loadCustomRewards,
   applyGroupsConfiguration,
   applyGamesConfiguration,
+  dynamicConf
 };
