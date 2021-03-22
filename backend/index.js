@@ -4,11 +4,14 @@ const { ApiClient } = require('twitch');
 const utils = require('./src/helpers/utils.js');
 
 
-function createServer(authProvider) {
+function createServer({ customAuthProvider, customStorageProvider }) {
 
-  if (authProvider) {
+  if (customAuthProvider) {
+    console.log('[LOG] Setting up custom auth provider ' + JSON.stringify(customAuthProvider));
+    // Take advantage of cache mechanism to inject Custom API Client
+    // The cache never invalidates itself
     utils.cache.apiClient = new ApiClient({
-      authProvider
+      authProvider: customAuthProvider
     });
   }
 
@@ -20,6 +23,11 @@ function createServer(authProvider) {
   const polling = require('./src/polling');
   const pubSub = require('./src/pub-sub');
   const customRewardsConfigurationService = require('./src/channel-points/custom-rewards-configuration.service');
+
+  if (customStorageProvider) {
+    console.log('[LOG] Setting up custom storage provider ', JSON.stringify(customStorageProvider));
+    customRewardsConfigurationService.dynamicConf.store = customStorageProvider;
+  }
 
   const PORT = parseInt(process.env.SERVER_PORT, 10);
 
@@ -38,9 +46,9 @@ function createServer(authProvider) {
   });
 
   const server = http.listen(PORT, async () => {
-    console.log(`The app is running on port ${PORT}! If not already, navigate to http://localhost:${PORT}/auth to generate app credentials`);
+    console.log(`The app is running on port ${PORT}!`);
 
-    if (authProvider) {
+    if (customAuthProvider) {
       console.log('[LOG] Synchronizing custom reward configuration...');
       await customRewardsConfigurationService.synchronize();
       console.log('[LOG] Custom Rewards Configuration udpated successfully!');
@@ -69,8 +77,8 @@ function createServer(authProvider) {
     timeout: 500,
   });
 
-  process.on('uncaughtException', exitHandler(1, 'Unexpected Error'));
-  process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'));
+  // process.on('uncaughtException', exitHandler(1, 'Unexpected Error'));
+  // process.on('unhandledRejection', exitHandler(1, 'Unhandled Promise'));
   process.on('SIGTERM', exitHandler(0, 'SIGTERM'));
   process.on('SIGINT', exitHandler(0, 'SIGINT'));
 

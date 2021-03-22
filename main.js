@@ -54,23 +54,24 @@ function createWindow() {
 }
 
 function createServer() {
-  // const serverWindow = new BrowserWindow({
-  //   // show: false,
-  //   webPreferences: { nodeIntegration: true, contextIsolation: false, preload:  }
-  // });
-
-  // serverWindow.loadFile('./server.html')
   const REDIRECT_URI = `http://localhost:8080/auth/callback`;
   const CLIENT_ID = "fy0m2ro22ium9id4jfz7gbe3wrbfys"
-  const createServer = require('backend');
-  createServer(new ElectronAuthProvider({
+  const electronProvider = new ElectronAuthProvider({
     clientId: CLIENT_ID,
     redirectUri: REDIRECT_URI
-  }))
-}
+  });
 
-function waitForServerToBeUpAndRunning() {
+  const Store = require('electron-store');
+  const electronStore = new Store();
+  if (electronStore.get("rewards") === undefined) {
+    electronStore.set("rewards", []);
+  }
 
+  const createServer = require('backend');
+  createServer({
+    customAuthProvider: electronProvider,
+    customStorageProvider: electronStore
+  })
 }
 
 autoUpdater.on('checking-for-update', () => {
@@ -102,10 +103,8 @@ app.whenReady().then(() => {
 
   autoUpdater.checkForUpdatesAndNotify();
 
-  if (process.env.NODE_ENV !== 'development') {
-    createServer()
-    waitForServerToBeUpAndRunning()
-  }
+  createServer()
+
   createWindow()
 })
 

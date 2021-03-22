@@ -1,12 +1,1 @@
-[
-  {
-    "group": "Setup 1",
-    "description": "This first setup",
-    "isEnabled": true
-  },
-  {
-    "group": "Setup 2",
-    "description": "This second setup",
-    "isEnabled": true
-  }
-]
+[]
