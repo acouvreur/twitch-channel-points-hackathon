@@ -1,3 +1,10 @@
+## [1.2.5](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.4...v1.2.5) (2021-03-23)
+
+
+### Bug Fixes
+
+* remove electron-rebuild path ([93c4c16](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/93c4c1662555fd6fd55cb7696ef6277b3068a30f))
+
 ## [1.2.4](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.3...v1.2.4) (2021-03-23)
 
 
