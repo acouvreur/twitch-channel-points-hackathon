@@ -1,3 +1,15 @@
+## [1.2.4](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.3...v1.2.4) (2021-03-23)
+
+
+### Bug Fixes
+
+* use --cwd option with --prefix to avoid issue on windows ([61c4b0a](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/61c4b0a130718f00a95243f24b110412299884ab))
+
+
+### Reverts
+
+* Revert "fix: remove preinstall to avoid windows issue with --prefix option" ([c8538f8](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/c8538f81d22568762850d235011c3adb8359fd5d))
+
 ## [1.2.3](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.2...v1.2.3) (2021-03-23)
 
 
