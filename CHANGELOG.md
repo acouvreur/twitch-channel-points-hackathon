@@ -1,3 +1,10 @@
+# [1.2.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.1.0...v1.2.0) (2021-03-23)
+
+
+### Features
+
+* relase using PAT to trigger electron release ([a469a1c](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/a469a1c1a45e4d44f4e0e860a1adc0ebfc83894a))
+
 # [1.1.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.0.0...v1.1.0) (2021-03-23)
 
 
