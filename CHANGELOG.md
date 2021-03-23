@@ -1,3 +1,10 @@
+## [1.2.3](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.2...v1.2.3) (2021-03-23)
+
+
+### Bug Fixes
+
+* remove preinstall to avoid windows issue with --prefix option ([388964b](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/388964b78872f5f85931cf0d6e8bd48b68a3ebdf))
+
 ## [1.2.2](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.1...v1.2.2) (2021-03-23)
 
 
