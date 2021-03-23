@@ -22,8 +22,6 @@ jobs:
       - name: Install dependencies
         run: |
           sudo apt install libasound2-dev
-          npm ci --prefix frontend
-          npm ci --prefix backend
           npm ci
 
       - name: Release

@@ -27,10 +27,7 @@ jobs:
         run: sudo apt install libasound2-dev
 
       - name: Install dependencies
-        run: |
-          cd frontend && npm ci --prefix frontend && cd ..
-          cd backend && npm ci --prefix backend && cd ..
-          npm ci
+        run: npm ci
 
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
