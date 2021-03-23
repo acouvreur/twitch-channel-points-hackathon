@@ -1,3 +1,10 @@
+# [1.1.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.0.0...v1.1.0) (2021-03-23)
+
+
+### Features
+
+* trigger electron release on tag ([f6ba538](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/f6ba5381452f638f1d2726c86e94c6b3cd4aca20))
+
 # 1.0.0 (2021-03-23)
 
 
