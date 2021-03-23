@@ -46,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 const RewardFormPanel = ({
   onClose, onSave, defaultValue, existingGroups,
 }) => {
-  const [availableGames, setAvailableGames] = useState(['Just Chatting', 'Minecraft', 'Music']);
+  const [availableGames] = useState(['Just Chatting', 'Minecraft', 'Music']);
   const [errors, setErrors] = useState({});
 
   const [rewardConf, setRewardConf] = useState(defaultValue || {
