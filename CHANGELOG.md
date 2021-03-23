@@ -1,3 +1,10 @@
+## [1.2.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.0...v1.2.1) (2021-03-23)
+
+
+### Bug Fixes
+
+* correct startsWith expression ([beb61fd](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/beb61fd9f4a48d2237b01ce1ca2e50d7bb22e4c7))
+
 # [1.2.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.1.0...v1.2.0) (2021-03-23)
 
 
