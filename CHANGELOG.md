@@ -1,3 +1,10 @@
+## [1.2.2](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.1...v1.2.2) (2021-03-23)
+
+
+### Bug Fixes
+
+* remove unused variable ([8268386](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/8268386371b7377b38bbfb97ac4614a8e66a808e))
+
 ## [1.2.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.0...v1.2.1) (2021-03-23)
 
 
