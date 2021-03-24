@@ -1,3 +1,10 @@
+## [1.2.7](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.6...v1.2.7) (2021-03-24)
+
+
+### Bug Fixes
+
+* set CI=false because windows CRLF ([09b93dd](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/09b93dd8be4a8e2acbf88d0fd185d8ab6b69f47e))
+
 ## [1.2.6](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.5...v1.2.6) (2021-03-24)
 
 
