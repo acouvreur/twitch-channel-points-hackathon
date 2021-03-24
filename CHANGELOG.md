@@ -1,3 +1,10 @@
+## [1.2.9](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.8...v1.2.9) (2021-03-24)
+
+
+### Bug Fixes
+
+* add git config eol lf because WINDOWS ([e8105d8](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/e8105d899ba63517c2436926782765a51988a9c0))
+
 ## [1.2.8](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.7...v1.2.8) (2021-03-24)
 
 
