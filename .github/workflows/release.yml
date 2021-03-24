@@ -24,6 +24,9 @@ jobs:
           sudo apt install libasound2-dev
           npm ci
 
+      - name: Build
+        run: npm run build
+
       - name: Release
         env:
           GITHUB_TOKEN: ${{ secrets.GH_PERSONAL_TOKEN }}
