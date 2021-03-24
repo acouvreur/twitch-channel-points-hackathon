@@ -26,9 +26,6 @@ jobs:
         if: startsWith(matrix.os, 'ubuntu')
         run: sudo apt install libasound2-dev
 
-      - name: Install dependencies
-        run: npm ci
-
       - name: Build/release Electron app
         uses: samuelmeuli/action-electron-builder@v1
         with:
