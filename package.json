@@ -4,7 +4,7 @@
   "description": "",
   "main": "main.js",
   "scripts": {
-    "preinstall": "npm install --prefix frontend --cwd frontend && npm install --prefix backend --cwd backend",
+    "preinstall": "cd ./frontend && npm install && cd ../backend && npm install",
     "postinstall": "electron-rebuild",
     "build": "cross-env REACT_APP_VERSION=$npm_package_version npm run build --prefix frontend",
     "start": "electron .",
