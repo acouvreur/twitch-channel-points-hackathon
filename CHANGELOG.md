@@ -1,3 +1,10 @@
+## [1.2.6](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.5...v1.2.6) (2021-03-24)
+
+
+### Bug Fixes
+
+* use cd to install in frontend and backend ([16c7afd](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/16c7afd3e08d8af57b7873778aef118ee65796a4))
+
 ## [1.2.5](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.4...v1.2.5) (2021-03-23)
 
 
