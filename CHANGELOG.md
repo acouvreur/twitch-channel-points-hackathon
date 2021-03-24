@@ -1,3 +1,10 @@
+## [1.2.8](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.7...v1.2.8) (2021-03-24)
+
+
+### Bug Fixes
+
+* add cross-env because WINDOWS ([c29fcb1](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/c29fcb1cd54905c4616c2e2d18ac714966feec88))
+
 ## [1.2.7](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.6...v1.2.7) (2021-03-24)
 
 
