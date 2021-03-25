@@ -107,6 +107,10 @@ autoUpdater.on('update-downloaded', (info) => {
 // Some APIs can only be used after this event occurs.
 app.whenReady().then(() => {
 
+  const name = require('./package.json').name
+  const version = require('./package.json').version
+  console.log(`[LOG] ${name} - version ${version}`)
+
   autoUpdater.checkForUpdatesAndNotify();
 
   createServer()
