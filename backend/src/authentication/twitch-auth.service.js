@@ -5,12 +5,14 @@ const sleep = require('util').promisify(setTimeout);
 
 const { RefreshableAuthProvider, StaticAuthProvider } = require('twitch-auth');
 
+const config = require('../../config');
+
 const {
   SERVER_PORT,
   CLIENT_ID,
   CLIENT_SECRET,
   SCOPES,
-} = process.env;
+} = config;
 
 const REDIRECT_URI = `http://localhost:${SERVER_PORT}/auth/callback`;
 // eslint-disable-next-line max-len
