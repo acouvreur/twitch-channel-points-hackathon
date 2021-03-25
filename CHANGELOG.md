@@ -1,3 +1,15 @@
+# [1.3.0-develop.3](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.2...v1.3.0-develop.3) (2021-03-25)
+
+
+### Bug Fixes
+
+* correct minor typo ([b7fb7f2](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/b7fb7f29ce4964f967487ddecf8fb40e6d59759b))
+
+
+### Features
+
+* add logging to show config used ([35ba704](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/35ba70413f7b1174cb1b53b5495b302dc1bf7c58))
+
 # [1.3.0-develop.2](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.1...v1.3.0-develop.2) (2021-03-25)
 
 
