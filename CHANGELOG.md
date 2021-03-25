@@ -1,3 +1,10 @@
+# [1.3.0-develop.2](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.1...v1.3.0-develop.2) (2021-03-25)
+
+
+### Bug Fixes
+
+* set port to 8080 ([3c9df35](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/3c9df357945e98acec378fd5e0425cd46fbc0ee2))
+
 # [1.3.0-develop.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.8...v1.3.0-develop.1) (2021-03-25)
 
 
