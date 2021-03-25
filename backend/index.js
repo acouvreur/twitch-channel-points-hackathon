@@ -1,8 +1,7 @@
 /* eslint-disable import/order */
-require('dotenv').config();
+const config = require('./config');
 const { ApiClient } = require('twitch');
 const utils = require('./src/helpers/utils.js');
-const config = require('./config');
 
 
 function createServer({ customAuthProvider, customStorageProvider }) {
