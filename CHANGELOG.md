@@ -1,3 +1,10 @@
+# [1.3.0-develop.4](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.3...v1.3.0-develop.4) (2021-03-25)
+
+
+### Features
+
+* add version in start log ([5ec711a](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/5ec711a8e38db6bc81f447e7afb7b440ffdf0096))
+
 # [1.3.0-develop.3](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.2...v1.3.0-develop.3) (2021-03-25)
 
 
