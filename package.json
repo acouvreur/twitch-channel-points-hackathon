@@ -1,7 +1,7 @@
 {
   "name": "twitch-channel-points-hackathon",
   "version": "1.2.8",
-  "description": "",
+  "description": "Awesome Channel Points Manager allows you to quickly setup amazing integrations with your games and broadcaster tools for Twitch.",
   "main": "main.js",
   "scripts": {
     "preinstall": "cd ./frontend && npm install && cd ../backend && npm install",
@@ -17,7 +17,7 @@
     "type": "git",
     "url": "git+https://github.com/acouvreur/twitch-channel-points-hackathon.git"
   },
-  "keywords": [],
+  "keywords": ["twitch", "hackathon", "channel points"],
   "author": "Alexis COUVREUR, Alexandre HILTCHER, Florian MAUNIER, Thomas MOREAU",
   "license": "SEE LICENSE IN LICENCE",
   "bugs": {
@@ -44,6 +44,10 @@
     "twitch-electron-auth-provider": "^4.5.1"
   },
   "build": {
+    "productName": "Awesome Channel Points Manager",
+    "directories": {
+      "buildResources": "resources"
+    },
     "files": [
       "**/*",
       "!frontend/{node_modules,src,public}",
