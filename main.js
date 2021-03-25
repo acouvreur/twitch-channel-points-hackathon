@@ -61,11 +61,10 @@ function createWindow() {
 }
 
 function createServer() {
-  const REDIRECT_URI = `http://localhost:8080/auth/callback`;
-  const CLIENT_ID = "fy0m2ro22ium9id4jfz7gbe3wrbfys"
+  const { createServer, config} = require('backend');
   const electronProvider = new ElectronAuthProvider({
-    clientId: CLIENT_ID,
-    redirectUri: REDIRECT_URI
+    clientId: config.CLIENT_ID,
+    redirectUri: config.REDIRECT_URI
   });
 
   const Store = require('electron-store');
@@ -74,7 +73,7 @@ function createServer() {
     electronStore.set("rewards", []);
   }
 
-  const createServer = require('backend');
+  
   createServer({
     customAuthProvider: electronProvider,
     customStorageProvider: electronStore

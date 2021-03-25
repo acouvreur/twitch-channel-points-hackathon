@@ -2,6 +2,7 @@
 require('dotenv').config();
 const { ApiClient } = require('twitch');
 const utils = require('./src/helpers/utils.js');
+const config = require('./config');
 
 
 function createServer({ customAuthProvider, customStorageProvider }) {
@@ -29,7 +30,7 @@ function createServer({ customAuthProvider, customStorageProvider }) {
     customRewardsConfigurationService.dynamicConf.store = customStorageProvider;
   }
 
-  const PORT = parseInt(process.env.SERVER_PORT, 10);
+  const PORT = parseInt(config.SERVER_PORT, 10);
 
   const io = require('socket.io')(http, {
     cors: {
@@ -84,4 +85,7 @@ function createServer({ customAuthProvider, customStorageProvider }) {
 
 }
 
-module.exports = createServer;
+module.exports = {
+  createServer,
+  config
+};

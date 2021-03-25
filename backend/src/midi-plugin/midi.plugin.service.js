@@ -1,6 +1,8 @@
 const easymidi = require('easymidi');
 
-const midiOutputName = process.env.PLUGIN_MIDI_OUTPUT;
+const config = require('../../config');
+
+const midiOutputName = config.PLUGIN_MIDI_OUTPUT;
 
 const cache = {
   midiOutput: undefined,

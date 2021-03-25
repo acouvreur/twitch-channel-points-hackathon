@@ -1,7 +1,8 @@
 const got = require('got');
 const { MinecraftError } = require('../errors');
+const config = require('../../config');
 
-const minecraftPluginServerUrl = process.env.PLUGIN_MINECRAFT_SERVER_URL;
+const minecraftPluginServerUrl = config.PLUGIN_MINECRAFT_SERVER_URL;
 
 const applyPotionEffect = async (redemptionMessage, params) => {
   console.log(`[Minecraft Plugin] Applying effects for redemption [${redemptionMessage.rewardName}] (${redemptionMessage.rewardCost} channel points) redeemed by [${redemptionMessage.userDisplayName}]`);
