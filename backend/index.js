@@ -51,7 +51,7 @@ function createServer({ customAuthProvider, customStorageProvider }) {
     if (customAuthProvider) {
       console.log('[LOG] Synchronizing custom reward configuration...');
       await customRewardsConfigurationService.synchronize();
-      console.log('[LOG] Custom Rewards Configuration udpated successfully!');
+      console.log('[LOG] Custom Rewards Configuration updated successfully!');
 
       console.log('[LOG] Started polling');
       polling.start(io);
