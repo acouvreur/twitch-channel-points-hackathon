@@ -12,4 +12,6 @@ const config = {
   PLUGIN_MIDI_OUTPUT: 'twitch'
 }
 
+console.log(`[LOG] Using config ${JSON.stringify(config)}`);
+
 module.exports = config;

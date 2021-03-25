@@ -29,6 +29,7 @@ function createServer({ customAuthProvider, customStorageProvider }) {
     customRewardsConfigurationService.dynamicConf.store = customStorageProvider;
   }
 
+  console.log(`[DEBUG] Port retrieved from config: ${config.SERVER_PORT}`)
   const PORT = parseInt(config.SERVER_PORT, 10);
 
   const io = require('socket.io')(http, {
