@@ -10,6 +10,8 @@ Create custom **Rewards** interaction with our **plugins** !
 
 Let your viewer change the weather in **Minecraft** or change your voice though **Ableton** !
 
+Read the [Project Story here](./STORY.md)
+
 ## Plugins
 
 - [Minecraft](./docs/plugins/Minecraft.md)
