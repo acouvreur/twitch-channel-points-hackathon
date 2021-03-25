@@ -2,13 +2,14 @@
 
 # Awesome Channel Points Manager
 
-__Awesome Channel Points Manager__ allows you to quickly setup amazing integrations with your games and broadcaster tools.
+**Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools.
 
-Automatically update your __Channel Rewards__ through game detection to allow your viewers to interact with your game !
+Automatically update your **Channel Rewards** through game detection to allow your viewers to interact with your game !
 
-Create custom __Rewards__ interaction with our __plugins__ !
+Create custom **Rewards** interaction with our **plugins** !
 
-Let your viewer change the weather in __Minecraft__ or change your voice though __Ableton__ !
+Let your viewer change the weather in **Minecraft** or change your voice though **Ableton** !
+
 ## Plugins
 
 - [Minecraft](./docs/plugins/Minecraft.md)
@@ -17,3 +18,7 @@ Let your viewer change the weather in __Minecraft__ or change your voice though 
 ## License
 
 See [License](LICENSE)
+
+## Credits
+
+Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [Flaticon](www.flaticon.com)
