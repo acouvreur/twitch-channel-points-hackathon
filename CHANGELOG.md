@@ -5,6 +5,12 @@
 
 * add git config eol lf because WINDOWS ([e8105d8](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/e8105d899ba63517c2436926782765a51988a9c0))
 
+
+### Features
+
+* add app icon, name and description ([8205d10](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/8205d101eba68a3aeb208171ffd5b4175022c9b8))
+* use config with default values ([2e245ef](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/2e245ef3398724ef12e1fc62ce31f172794a3d76))
+
 ## [1.2.8](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.7...v1.2.8) (2021-03-24)
 
 
