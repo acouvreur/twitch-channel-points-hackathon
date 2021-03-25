@@ -1,10 +1,9 @@
 ## [1.2.9](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.8...v1.2.9) (2021-03-24)
 
-
 ### Bug Fixes
 
+* set port to 8080 ([3c9df35](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/3c9df357945e98acec378fd5e0425cd46fbc0ee2))
 * add git config eol lf because WINDOWS ([e8105d8](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/e8105d899ba63517c2436926782765a51988a9c0))
-
 
 ### Features
 
