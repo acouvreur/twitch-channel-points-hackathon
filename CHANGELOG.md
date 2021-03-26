@@ -1,3 +1,12 @@
+# [1.3.0-develop.5](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.4...v1.3.0-develop.5) (2021-03-26)
+
+
+### Bug Fixes
+
+* add small description on potion amplifier ([190d361](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/190d361939534f1758b4fabca1778b6bb14b462c))
+* correct text field input as number ([8003938](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/8003938b730c819ce719140e15e1f5e662ce06c9))
+* set default value for potions settings ([259dfc3](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/259dfc386b4ccd0fe570a98e7ff245b79c5e7340))
+
 # [1.3.0-develop.4](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.3...v1.3.0-develop.4) (2021-03-25)
 
 
