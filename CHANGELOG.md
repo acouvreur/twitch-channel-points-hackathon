@@ -1,3 +1,10 @@
+# [1.3.0-develop.6](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.5...v1.3.0-develop.6) (2021-03-26)
+
+
+### Features
+
+* use a select for potions amplifier ([7b79dae](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/7b79dae013eeab08b21bd5266d56a62ab206dcab))
+
 # [1.3.0-develop.5](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.4...v1.3.0-develop.5) (2021-03-26)
 
 
