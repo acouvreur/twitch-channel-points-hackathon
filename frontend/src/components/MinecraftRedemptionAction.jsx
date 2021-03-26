@@ -45,7 +45,7 @@ const MinecraftPotionParams = ({ action, onChange }) => {
         {MINECRAFT_POTION_EFFECTS.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
       </Select>
       <TextField type="number" id="duration" label="Duration in seconds" variant="outlined" defaultValue={action?.params?.duration} onChange={onDurationChange} />
-      <TextField type="number" id="amplifier" label="Amplifier" variant="outlined" defaultValue={action?.params?.amplifier} onChange={onAmplifierChange} />
+      <TextField type="number" id="amplifier" label="Amplifier (1-4)" variant="outlined" defaultValue={action?.params?.amplifier} onChange={onAmplifierChange} />
     </>
   );
 };
