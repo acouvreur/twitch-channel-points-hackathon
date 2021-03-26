@@ -7,10 +7,9 @@ const { BadRequestError } = require('../errors');
 
 const path = require('path');
 const CUSTOM_REWARDS_CONF_PATH = path.join(__dirname, '../conf/custom-rewards.json');
-const GROUPS_CONF_PATH = path.join(__dirname, '../conf/groups.json');
 
 /**
- * Default store that handles get('rewards') and get('groups')
+ * Default store that handles get('rewards')
  */
 const dynamicConf = {
   store: {
@@ -18,17 +17,11 @@ const dynamicConf = {
       if (conf === "rewards") {
         return JSON.parse(fs.readFileSync(CUSTOM_REWARDS_CONF_PATH));
       }
-      if (conf === "groups") {
-        return JSON.parse(fs.readFileSync(GROUPS_CONF_PATH));
-      }
       throw new Error("Unuspported conf " + conf);
     },
     set: (conf, value) => {
       if (conf === "rewards") {
         fs.writeFileSync(CUSTOM_REWARDS_CONF_PATH, JSON.stringify(value, null, 2));
-      }
-      if (conf === "groups") {
-        fs.writeFileSync(GROUPS_CONF_PATH, JSON.stringify(value, null, 2));
       }
       throw new Error("Unuspported conf " + conf);
     }
@@ -78,7 +71,7 @@ const updateCustomRewardsConf = (customRewardsConf) => dynamicConf.store.set('re
 /**
  * Convert HelixCustomReward to HelixUpdateCustomReward
  *
- * @param {HelixCustomReward} helixCustomReward
+ * @param {import('twitch').HelixCustomReward} helixCustomReward
  */
 const getHelixUpdateCustomRewardData = (helixCustomReward) => ({
   id: helixCustomReward.id,
@@ -114,11 +107,6 @@ const updateCustomRewardConfData = (customRewardData) => {
 };
 
 /**
- * @returns {GroupConf[]}
- */
-const getGroupsConf = () => dynamicConf.store.get('groups');
-
-/**
  * Deletes all Custom Rewards on a channel and creates all Custom Rewards based on JSON configuration.
  */
 const loadCustomRewards = async () => {
@@ -136,37 +124,6 @@ const loadCustomRewards = async () => {
   await Promise.all(promises);
   console.log(`[LOG] Saving configuration with updated ids into ${CUSTOM_REWARDS_CONF_PATH}`);
   updateCustomRewardsConf(customRewardsConf);
-};
-
-/**
- * Enables or Disables rewards based on isEnabled.groups
- */
-const applyGroupsConfiguration = async () => {
-  const customRewardsConf = getCustomRewardsConf();
-  const groupsConfMap = _.groupBy(getGroupsConf(), 'group');
-
-  const promises = customRewardsConf.map(async (crConf) => {
-    let isEnabled = false;
-
-    /** @type {string[]} */
-    const customRewardGroups = _.get(crConf, 'isEnabled.groups', []);
-
-    // eslint-disable-next-line no-restricted-syntax
-    for (const crGroup of customRewardGroups) {
-      if (groupsConfMap[crGroup].isEnabled) {
-        isEnabled = true;
-        break;
-      }
-    }
-
-    console.log(`[LOG] Updating Custom Reward [${crConf.reward.id}]: isEnabled=${isEnabled}`);
-    const customReward = await customRewardsService.updateCustomReward(crConf.reward.id, {
-      isEnabled,
-    });
-    updateCustomRewardConfData(getHelixUpdateCustomRewardData(customReward));
-  });
-
-  return Promise.all(promises);
 };
 
 /**
@@ -235,9 +192,7 @@ module.exports = {
   getCustomRewardsConf,
   updateCustomRewardsConf,
   updateCustomRewardConfData,
-  getGroupsConf,
   loadCustomRewards,
-  applyGroupsConfiguration,
   applyGamesConfiguration,
   dynamicConf
 };
