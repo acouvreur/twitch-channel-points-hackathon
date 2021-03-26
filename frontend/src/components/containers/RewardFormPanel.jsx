@@ -248,6 +248,8 @@ const RewardFormPanel = ({
         value={rewardConf.reward.cost}
         error={!!errors.cost}
         helperText={errors.cost}
+        type="number"
+        InputProps={{ inputProps: { min: 0 } }}
       />
       <TextField
         id="backgroundColor"
@@ -275,6 +277,8 @@ const RewardFormPanel = ({
         defaultValue={rewardConf.reward.globalCooldown}
         onChange={onGlobalCooldownChange}
         value={rewardConf.reward.globalCooldown}
+        type="number"
+        InputProps={{ inputProps: { min: 0 } }}
       />
       <TextField
         id="maxRedemptionsPerStream"
@@ -283,6 +287,8 @@ const RewardFormPanel = ({
         defaultValue={rewardConf.reward.maxRedemptionsPerStream}
         onChange={onMaxRedemptionsPerStreamChange}
         value={rewardConf.reward.maxRedemptionsPerStream}
+        type="number"
+        InputProps={{ inputProps: { min: 0 } }}
       />
       <TextField
         id="maxRedemptionsPerUserPerStream"
@@ -291,6 +297,8 @@ const RewardFormPanel = ({
         defaultValue={rewardConf.reward.maxRedemptionsPerUserPerStream}
         onChange={onMaxRedemptionsPerUserPerStreamChange}
         value={rewardConf.reward.maxRedemptionsPerUserPerStream}
+        type="number"
+        InputProps={{ inputProps: { min: 0 } }}
       />
       <TextField
         id="prompt"
