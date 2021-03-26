@@ -242,7 +242,7 @@ const RewardFormPanel = ({
       />
       <TextField
         id="cost"
-        label="Cost"
+        label="Cost in channel points"
         variant="outlined"
         onChange={onCostChange}
         value={rewardConf.reward.cost}
@@ -272,7 +272,7 @@ const RewardFormPanel = ({
 
       <TextField
         id="globalCooldown"
-        label="Global cooldown"
+        label="Global cooldown in seconds"
         variant="outlined"
         defaultValue={rewardConf.reward.globalCooldown}
         onChange={onGlobalCooldownChange}
@@ -307,19 +307,6 @@ const RewardFormPanel = ({
         defaultValue={rewardConf.reward.prompt}
         onChange={onPromptChange}
         value={rewardConf.reward.prompt}
-      />
-      <FormControlLabel
-        control={(
-          <Switch
-            checked={rewardConf.reward.userInputRequired}
-            onChange={onUserInputRequiredChange}
-            name="userInputRequired"
-            inputProps={{ 'aria-label': 'secondary checkbox' }}
-          />
-        )}
-        label="User input required"
-        labelPlacement="start"
-        className={classes.switchLabel}
       />
       <Autocomplete
         multiple
