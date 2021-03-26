@@ -34,6 +34,25 @@ const MinecraftPotionParams = ({ action, onChange }) => {
     onChange({ ...action, params: { ...action.params, amplifier: event.target.value } });
   };
 
+  const amplifiers = [
+    {
+      value: '1',
+      label: 'I',
+    },
+    {
+      value: '2',
+      label: 'II',
+    },
+    {
+      value: '3',
+      label: 'III',
+    },
+    {
+      value: '4',
+      label: 'IV',
+    },
+  ];
+
   return (
     <>
       <Select
@@ -45,7 +64,11 @@ const MinecraftPotionParams = ({ action, onChange }) => {
         {MINECRAFT_POTION_EFFECTS.map((type) => <MenuItem value={type}>{type}</MenuItem>)}
       </Select>
       <TextField type="number" id="duration" label="Duration in seconds" variant="outlined" defaultValue={action?.params?.duration} onChange={onDurationChange} />
-      <TextField type="number" id="amplifier" label="Amplifier (1-4)" variant="outlined" defaultValue={action?.params?.amplifier} onChange={onAmplifierChange} />
+      <TextField type="number" id="amplifier" select label="Amplifier" variant="outlined" defaultValue={action?.params?.amplifier} onChange={onAmplifierChange}>
+        {amplifiers.map((option) => (
+          <MenuItem key={option.value} value={option.value}>{option.label}</MenuItem>
+        ))}
+      </TextField>
     </>
   );
 };
@@ -72,7 +95,7 @@ const MinecraftRedemptionAction = ({ action, onChange }) => {
     if (!action.params) {
       onChange({ ...action, params: { type: 'weather', weather: 'clear' } });
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const onSelectMinecraftType = (event) => {
