@@ -110,16 +110,6 @@ router.post('/custom-rewards-configuration/load', async (req, res, next) => {
   return res.status(200).send('All Custom Rewards were deleted and created again following custom-rewards.json configuration!');
 });
 
-router.post('/custom-rewards-configuration/apply-groups', async (req, res, next) => {
-  console.log('[HTTP] POST /channel-points/custom-rewards-configuration/apply-groups');
-  try {
-    await customRewardsConfigurationService.applyGroupsConfiguration();
-  } catch (err) {
-    return next(err);
-  }
-  return res.status(200).send('Custom Rewards updated!');
-});
-
 router.post('/custom-rewards-configuration/apply-games', async (req, res, next) => {
   console.log('[HTTP] POST /channel-points/custom-rewards-configuration/apply-games');
   try {
