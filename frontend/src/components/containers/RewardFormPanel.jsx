@@ -334,7 +334,7 @@ const RewardFormPanel = ({
         ))}
         renderInput={(params) => (
           // eslint-disable-next-line react/jsx-props-no-spreading
-          <TextField {...params} id="games" variant="outlined" label="Enable/disable this reward based on channel gameName" />
+          <TextField {...params} id="games" variant="outlined" label="This reward will only be avaible when playing the following games" />
         )}
       />
       <Autocomplete
