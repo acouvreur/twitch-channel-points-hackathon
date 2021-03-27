@@ -1,3 +1,25 @@
+# [1.3.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.9...v1.3.0) (2021-03-27)
+
+
+### Bug Fixes
+
+* add small description on potion amplifier ([846d204](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/846d2040e23aa9ccc0f633e49786756f0cb881c8))
+* change game reward filtering description ([c7bcaba](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/c7bcaba40d98ea287ca9ba8d983ba84a31778062))
+* correct minor typo ([2ce45f6](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/2ce45f662abf1a1da0b012c2634ad79b937e4223))
+* correct text field input as number ([1aa17a0](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/1aa17a08cbcabc7437f8193ff277e871ea332209))
+* remove user input required option as we do not handle user input for now ([a75c9cb](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/a75c9cb870aa41a11477928c1fa17b49bf22d5d2))
+* set default value for potions settings ([ce2798a](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/ce2798a0c808ed091192735c1c489eb3c2f209f0))
+* set port to 8080 ([1a1cf7a](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/1a1cf7a3779da86f3327808500665889ed0f143f))
+
+
+### Features
+
+* add app icon, name and description ([5741123](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/5741123a61e9af68dfe0d1c2defba6bfaee56391))
+* add logging to show config used ([bec239d](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/bec239d2302d061bd294637a303b2c9e0569595d))
+* add version in start log ([b2c6745](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/b2c67453d7727bdfe64f3f46a45b5f13fc263703))
+* use a select for potions amplifier ([8f2cfea](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/8f2cfeae86a7bb10dc45b12266318d61bd02bc1b))
+* use config with default values ([a0be1ab](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/a0be1abac19388720b2c3fcb3fabd06a3d8b3196))
+
 # [1.3.0-develop.6](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0-develop.5...v1.3.0-develop.6) (2021-03-26)
 
 
