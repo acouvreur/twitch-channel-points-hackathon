@@ -12,7 +12,7 @@ const applyPotionEffect = async (redemptionMessage, params) => {
     await got.post(`${minecraftPluginServerUrl}/potions`, {
       json: {
         redeemedBy: redemptionMessage.userDisplayName,
-        rewardCost: redemptionMessage.rewardCost,
+        rewardCost: `${redemptionMessage.rewardCost}`,
         ...params,
       },
       responseType: 'json',
