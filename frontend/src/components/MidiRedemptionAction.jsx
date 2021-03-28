@@ -22,6 +22,14 @@ const MidiRedemptionAction = ({ action, onChange }) => {
     onChange({ ...action, params: { ...action.params, outputs: newOutputs } });
   };
 
+  const onChangeMessageValue = (order) => (event) => {
+    const newOutputs = [...action.params.outputs];
+    newOutputs[newOutputs.findIndex((output) => output.order === order)]
+      .value[event.target.name] = event.target.value;
+
+    onChange({ ...action, params: { ...action.params, outputs: newOutputs } });
+  };
+
   const addMessageAt = (order) => () => {
     const index = action.params.outputs.findIndex((output) => output.order === order) + 1;
 
@@ -82,7 +90,9 @@ const MidiRedemptionAction = ({ action, onChange }) => {
                     key={param}
                     label={param.charAt(0).toUpperCase() + param.slice(1)}
                     variant="outlined"
+                    name={param}
                     value={output.value[param]}
+                    onChange={onChangeMessageValue(output.order)}
                     margin="normal"
                     fullWidth
                   />
