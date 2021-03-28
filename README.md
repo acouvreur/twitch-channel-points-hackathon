@@ -23,4 +23,4 @@ See [License](LICENSE)
 
 ## Credits
 
-Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [Flaticon](www.flaticon.com)
+Icons made by [Smashicons](https://www.flaticon.com/authors/smashicons) from [Flaticon](http://www.flaticon.com)
