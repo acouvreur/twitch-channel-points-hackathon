@@ -4,7 +4,7 @@ const { ApiClient } = require('twitch');
 const utils = require('./src/helpers/utils.js');
 
 
-function createServer({ customAuthProvider, customStorageProvider }) {
+function createServer({ customAuthProvider, customStorageProvider } = {}) {
 
   if (customAuthProvider) {
     console.log('[LOG] Setting up custom auth provider ' + JSON.stringify(customAuthProvider));
