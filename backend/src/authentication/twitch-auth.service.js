@@ -16,7 +16,7 @@ const {
 
 const REDIRECT_URI = `http://localhost:${SERVER_PORT}/auth/callback`;
 // eslint-disable-next-line max-len
-const TWITCH_AUTHORIZE_URL = `https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPES}`;
+const TWITCH_AUTHORIZE_URL = `https://id.twitch.tv/oauth2/authorize?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=code&scope=${SCOPES};`;
 
 const cache = {
   refreshableAuthProvider: undefined,

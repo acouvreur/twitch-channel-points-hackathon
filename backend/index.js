@@ -15,6 +15,8 @@ function createServer({ customAuthProvider, customStorageProvider }) {
     });
   }
 
+  utils.getApiClient().requestScopes(config.SCOPES.split(' '));
+
   const app = require('./src/server');
   const http = require('http').Server(app);
   const terminate = require('./src/server/terminate');
