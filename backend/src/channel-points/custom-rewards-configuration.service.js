@@ -17,13 +17,13 @@ const dynamicConf = {
       if (conf === "rewards") {
         return JSON.parse(fs.readFileSync(CUSTOM_REWARDS_CONF_PATH));
       }
-      throw new Error("Unuspported conf " + conf);
+      throw new Error("Unsupported conf " + conf);
     },
     set: (conf, value) => {
       if (conf === "rewards") {
-        fs.writeFileSync(CUSTOM_REWARDS_CONF_PATH, JSON.stringify(value, null, 2));
+        return fs.writeFileSync(CUSTOM_REWARDS_CONF_PATH, JSON.stringify(value, null, 2));
       }
-      throw new Error("Unuspported conf " + conf);
+      throw new Error("Unsupported conf " + conf);
     }
   }
 }

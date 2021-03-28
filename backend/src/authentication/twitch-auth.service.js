@@ -89,9 +89,6 @@ const getRefreshableAuthProvider = () => {
   return cache.refreshableAuthProvider;
 };
 
-/**
- * @returns {Promise}
- */
 const waitForAuthentication = async () => {
   try {
     getRefreshableAuthProvider();
@@ -104,7 +101,7 @@ const waitForAuthentication = async () => {
     await sleep(5000);
     return waitForAuthentication();
   }
-  return promise();
+  return;
 };
 
 module.exports = {

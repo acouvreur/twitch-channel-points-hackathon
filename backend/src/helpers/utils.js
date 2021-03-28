@@ -1,3 +1,6 @@
+const { ApiClient } = require('twitch');
+const twitchAuthService = require('../authentication/twitch-auth.service');
+
 const cache = {
   apiClient: undefined,
   tokenInfo: undefined,
