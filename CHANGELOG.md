@@ -1,3 +1,10 @@
+# [1.4.0-develop.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.1-develop.2...v1.4.0-develop.1) (2021-03-28)
+
+
+### Features
+
+* require all needed scope on startup ([25648a5](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/25648a59ea08a2bcc54de23fa70f783ac99bc7fe))
+
 ## [1.3.1-develop.2](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.1-develop.1...v1.3.1-develop.2) (2021-03-28)
 
 
