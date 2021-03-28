@@ -17,6 +17,18 @@ Read the [Project Story here](./STORY.md)
 - [Minecraft](./docs/plugins/Minecraft.md)
 - [MIDI](./docs/plugins/MIDI.md)
 
+
+## Installation
+
+Download the latest release from [here](https://github.com/acouvreur/twitch-channel-points-hackathon/releases).
+
+- Choose the appropriate setup for your operating system:
+  - Windows: `.exe` file
+  - Linux: `.snap` file
+  - Mac OSX: `.dmg` file
+- Install it!
+  - This software is currently not signed/verified, so some operating system (e.g. Windows) may display an alert telling you that this software could be dangerous for your system. You need to accept the risks and allow the installatino.
+
 ## License
 
 See [License](LICENSE)
