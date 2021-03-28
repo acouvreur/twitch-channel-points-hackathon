@@ -14,9 +14,10 @@ Read the [Project Story here](./STORY.md)
 
 ## Plugins
 
+Plugins we developed and how to interact with them :
+
 - [Minecraft](./docs/plugins/Minecraft.md)
 - [MIDI](./docs/plugins/MIDI.md)
-
 
 ## Installation
 
@@ -28,6 +29,20 @@ Download the latest release from [here](https://github.com/acouvreur/twitch-chan
   - Mac OSX: `.dmg` file
 - Install it!
   - This software is currently not signed/verified, so some operating system (e.g. Windows) may display an alert telling you that this software could be dangerous for your system. You need to accept the risks and allow the installation.
+
+## Development
+
+To develop with the frontend in hotreload
+
+- `npm install`
+- Start the frontend in hot reload `cd frontend && npm start`
+- Start the app in dev mode `npm run start:dev` (this packages the App with Electron)
+
+To package the entire app
+
+- `npm install`
+- `npm run build`
+- `npm run start`
 
 ## License
 
