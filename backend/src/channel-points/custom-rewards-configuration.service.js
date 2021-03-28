@@ -144,7 +144,8 @@ const applyGamesConfiguration = async (currentGameName) => {
   const customRewardsConf = getCustomRewardsConf();
 
   console.log(`[LOG] Configuring Custom Rewards for game [${gameName}]`);
-  const promises = customRewardsConf.map(async (crConf) => {
+
+  const genCustomRewardPromise = async (crConf) => {
     /** @type {string[]} */
     const customRewardGames = _.get(crConf, 'isEnabled.games', []);
 
@@ -156,7 +157,10 @@ const applyGamesConfiguration = async (currentGameName) => {
       });
       updateCustomRewardConfData(getHelixUpdateCustomRewardData(customReward));
     }
-  });
+  };
+
+  if (customRewardsConf.length) await genCustomRewardPromise(customRewardsConf.pop());
+  const promises = customRewardsConf.map(genCustomRewardPromise);
 
   return Promise.all(promises);
 };
