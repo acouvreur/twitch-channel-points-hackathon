@@ -27,7 +27,7 @@ Download the latest release from [here](https://github.com/acouvreur/twitch-chan
   - Linux: `.snap` file
   - Mac OSX: `.dmg` file
 - Install it!
-  - This software is currently not signed/verified, so some operating system (e.g. Windows) may display an alert telling you that this software could be dangerous for your system. You need to accept the risks and allow the installatino.
+  - This software is currently not signed/verified, so some operating system (e.g. Windows) may display an alert telling you that this software could be dangerous for your system. You need to accept the risks and allow the installation.
 
 ## License
 
