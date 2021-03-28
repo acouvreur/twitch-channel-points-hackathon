@@ -4,18 +4,18 @@
 
 **Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools.
 
-Automatically update your **Channel Rewards** through game detection to allow your viewers to interact with your game !
+Automatically update your **Channel Rewards** when you change your game activity to allow your viewers interact with you specifically for the game you play!
 
-Create custom **Rewards** interaction with our **plugins** !
+Create custom **rewards** interactions with our **plugins** !
 
-Let your viewer change the weather in **Minecraft** or change your voice though **Ableton** !
+Let your viewer change the weather or apply effects on the player in **Minecraft** thanks to our Minecraft plugin, or apply any sound effect like changing your voice pitch, or playing melodies with our **MIDI plugin** and any music software understanding MIDI signals, like **Ableton**!
 
 Read the [Project Story here](./STORY.md)
 
 ## Plugins
 
 - [Minecraft](./docs/plugins/Minecraft.md)
-- [Ableton](./docs/plugins/Ableton.md)
+- [MIDI](./docs/plugins/MIDI.md)
 
 ## License
 
