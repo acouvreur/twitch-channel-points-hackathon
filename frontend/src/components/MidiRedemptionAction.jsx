@@ -25,7 +25,7 @@ const MidiRedemptionAction = ({ action, onChange }) => {
   const onChangeMessageValue = (order) => (event) => {
     const newOutputs = [...action.params.outputs];
     newOutputs[newOutputs.findIndex((output) => output.order === order)]
-      .value[event.target.name] = event.target.value;
+      .value[event.target.name] = parseInt(event.target.value, 10);
 
     onChange({ ...action, params: { ...action.params, outputs: newOutputs } });
   };
@@ -92,6 +92,7 @@ const MidiRedemptionAction = ({ action, onChange }) => {
                     variant="outlined"
                     name={param}
                     value={output.value[param]}
+                    type="number"
                     onChange={onChangeMessageValue(output.order)}
                     margin="normal"
                     fullWidth

@@ -1,3 +1,10 @@
+## [1.3.1-develop.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0...v1.3.1-develop.1) (2021-03-28)
+
+
+### Bug Fixes
+
+* fix backend errors ([bea9d4f](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/bea9d4f52c1c6bd816d03f9c8306294c07695249))
+
 # [1.3.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.2.9...v1.3.0) (2021-03-27)
 
 
