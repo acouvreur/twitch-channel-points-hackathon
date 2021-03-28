@@ -1,3 +1,10 @@
+## [1.3.1-develop.2](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.1-develop.1...v1.3.1-develop.2) (2021-03-28)
+
+
+### Bug Fixes
+
+* add promise parameter to waitForAuthentication ([d820ad7](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/d820ad7318164802ef8cd21277cc0dffaf2b9932))
+
 ## [1.3.1-develop.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0...v1.3.1-develop.1) (2021-03-28)
 
 
