@@ -26,8 +26,8 @@ log.info('App starting...')
 function createWindow() {
 
   let mainWindowState = windowStateKeeper({
-    defaultWidth: 1000,
-    defaultHeight: 800
+    defaultWidth: 1280,
+    defaultHeight: 720
   });
 
   // Create the browser window.
