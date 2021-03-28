@@ -32,15 +32,10 @@ const applyWeatherEffect = async (redemptionMessage, params) => {
 
   console.log('[Minecraft Plugin] Applying Minecraft weather effect');
   try {
-    console.log({
-      redeemedBy: redemptionMessage.userDisplayName,
-      rewardCost: redemptionMessage.rewardCost,
-      ...params,
-    });
     await got.post(`${minecraftPluginServerUrl}/weather`, {
       json: {
         redeemedBy: redemptionMessage.userDisplayName,
-        rewardCost: redemptionMessage.rewardCost,
+        rewardCost: `${redemptionMessage.rewardCost}`,
         ...params,
       },
       responseType: 'json',
