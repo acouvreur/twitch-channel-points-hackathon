@@ -49,10 +49,9 @@ function createWindow() {
   }
 
   win.webContents.on('did-finish-load', () => {
-    const name = require('./package.json').name
     const version = require('./package.json').version
 
-    win.setTitle(`${name} v${version}`)
+    win.setTitle(`Awesome Channel Points Manager - v${version}`)
   })
 
   win.on('closed', () => {
