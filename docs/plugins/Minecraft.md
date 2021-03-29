@@ -13,6 +13,6 @@ You can find the documentation for the Minecraft plugin [here](https://github.co
 
 1. Install Minecraft
 2. Install Minecraft Forge for Client
-3. Download the Minecraft mod ([twitvhhttpmod-1.0.jar](<(https://github.com/Thyvador/minecraft-http-mod/releases/download/1.0.0/twitvhhttpmod-1.0.jar)>)) we developed for the project and put it in .minecraft/mods folder.
+3. Download the Minecraft mod ([twitchhttpmod-1.0.jar](<(https://github.com/Thyvador/minecraft-http-mod/releases/download/1.0.0/twitchhttpmod-1.0.jar)>)) we developed for the project and put it in .minecraft/mods folder.
 4. Start Minecraft using the Forge client
 5. Create a Minecraft reward and use "Try out!"
