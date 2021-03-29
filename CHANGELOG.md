@@ -1,3 +1,10 @@
+## [1.4.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.4.0...v1.4.1) (2021-03-29)
+
+
+### Bug Fixes
+
+* remove extra midi message types ([d8eaab3](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/d8eaab323a90ab98fc413930a20871b2e63b1d05))
+
 # [1.4.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0...v1.4.0) (2021-03-29)
 
 
