@@ -1,6 +1,6 @@
 # Project Story
 
-![](./docs/slide.png)
+![](docs/slide.png)
 
 ## Inspiration
 
@@ -19,22 +19,20 @@ Awesome Channel Points Manager is a tool allowing to configure and control rewar
 
 The first thing you need to do is to sign in and to authorize Awesome Channel Points Manager to access your twitch account.
 
-![](./docs/login-screenshot.png)
+![](docs/login-screenshot.png)
 
 ### Create custom rewards
 
 The application retrieves custom rewards from your twitch channel and allows to configure them, enable and disable them, or also disable all of them if needed.
 
-![](./docs/screenshot.png)
-
 Then you can configure new rewards, define their cost and other options.
 You can define groups to have presets and enable or disable rewards at ease.
 
-![](./docs/create_reward.png)
+![](docs/create_reward.png)
 
 We monitor the channel activity to enable/disable custom rewards based on the game filter you used. You can add multiple games filter to a custom rewards or none.
 
-![](./docs/manage_rewards.png)
+![](docs/manage_rewards.png)
 
 Awesome Channel Points Manager integrates a plugin system. In this first release we created 2 plugins:
 
@@ -43,7 +41,7 @@ Awesome Channel Points Manager integrates a plugin system. In this first release
 
 For the demo we created a Custom Rewards "Walk of shame" that applies "Nausea", "Slowness" and set the weather to Raining in Minecraft. But it also change the broadcaster voice pitch through MIDI signals.
 
-![](./docs/demo.png)
+![](docs/demo.png)
 
 ## How we built it
 
@@ -57,6 +55,7 @@ The server can also send MIDI signals.
 ## Challenges we ran into
 
 - Work together remotely and organize team work
+- Making a short but punchy presentation video
 - Technical challenges
   - How to interact with Twitch API
   - Writing a Minecraft plugin
