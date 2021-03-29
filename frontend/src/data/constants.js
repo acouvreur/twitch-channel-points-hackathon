@@ -10,92 +10,12 @@ const MIDI_MESSAGE_TYPES = {
       'channel',
     ],
   },
-  noteoff: {
-    displayName: 'Note Off',
-    params: [
-      'note',
-      'velocity',
-      'channel',
-    ],
-  },
-  'poly aftertouch': {
-    displayName: 'Polyphonic Key Pressure (Aftertouch)',
-    params: [
-      'note',
-      'velocity',
-      'channel',
-    ],
-  },
   cc: {
     displayName: 'Control Change',
     params: [
       'controller',
       'value',
       'channel',
-    ],
-  },
-  program: {
-    displayName: 'Program Change',
-    params: [
-      'number',
-      'channel',
-    ],
-  },
-  'channel aftertouch': {
-    displayName: 'Channel Pressure (Aftertouch)',
-    params: [
-      'pressure',
-      'channel',
-    ],
-  },
-  pitch: {
-    displayName: 'Pitch Bend Change',
-    params: [
-      'value',
-      'channel',
-    ],
-  },
-  position: {
-    displayName: 'Song Position Pointer',
-    params: [
-      'value',
-    ],
-  },
-  mtc: {
-    displayName: 'MIDI Time Code Quarter Frame',
-    params: [
-      'type',
-      'value',
-    ],
-  },
-  select: {
-    displayName: 'Song Select',
-    params: [
-      'song',
-    ],
-  },
-  clock: {
-    displayName: 'Timing Clock',
-  },
-  start: {
-    displayName: 'Start',
-  },
-  continue: {
-    displayName: 'Continue',
-  },
-  stop: {
-    displayName: 'Stop',
-  },
-  activesense: {
-    displayName: 'Active Sensing',
-  },
-  reset: {
-    displayName: 'Reset',
-  },
-  sysex: {
-    displayName: 'System Exclusive',
-    params: [
-      'byteArray',
     ],
   },
 };
