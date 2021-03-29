@@ -1,10 +1,10 @@
-![Twitch Channel Points Hackathon](./channel_points_hackathon.png)
-
 # Awesome Channel Points Manager
 
-**Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools through **Custom Rewards**.
+![](./docs/slide.png)
 
-![](./docs/screenshot.png)
+_Read the [Project Story here](./STORY.md)_
+
+**Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools through **Custom Rewards**.
 
 Automatically update your **Channel Rewards** when you change your game activity to allow your viewers interact with you specifically for the game you play!
 
@@ -15,8 +15,6 @@ Create **Custom Rewards** interactions with our **plugins**, each custom reward 
 Let your viewer change the weather and/or apply effects on the player in **Minecraft** thanks to our Minecraft plugin, or apply any sound effect like changing your voice pitch, or playing melodies with our **MIDI plugin** and any music software understanding MIDI signals, like **Ableton**!
 
 ![](./docs/demo.png)
-
-**Read the [Project Story here](./STORY.md)**
 
 ## Plugins
 
