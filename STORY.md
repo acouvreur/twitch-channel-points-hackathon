@@ -4,14 +4,12 @@
 
 ## Inspiration
 
-We all have heard at least one streamer saying that channel points were useless until the bets came...
-But we have already seen streamers who have great integration with some connected lights or customs scenes that change in OBS and that showed us that bets are not the only way to create interaction between viewers and the streamer using channel points.
+Most of the time the Channel points are clearly underappreciated. Today many streamers use it only to bet on their performance or situation outcome.
+But we have already seen some streamers who have really great integrations with some connected lights or customs scenes that change in OBS.
 
-Imagine you are a viewer and you could have a direct impact on the way the streamer is playing a game or the song he is composing for example if he/she is a musician.
-Wouldn't that be great? Well, that's why we built Awesome Channel Points Manager!
+Imagine a streamer could easily propose many integration with the games he plays or connected objects or tools he uses. Imagine you are a viewer and you could have a direct impact on the way the streamer is playing a game or the song he is composing for example if he/she is a musician. Wouldn't that be great? Well, that's why we built Awesome Channel Points Manager!
 
-We wanted to increase interaction between the streamer and his community by allowing viewers to interact directly with games like Minecraft
-or by sending MIDI signals to trigger effects or play sounds of music software tools like Ableton Live.
+We wanted to increase interaction between the streamer and his community by allowing viewers to interact directly with games like Minecraft or by sending MIDI signals to trigger effects or play sounds of music software tools like Ableton Live.
 
 ## What it does
 
