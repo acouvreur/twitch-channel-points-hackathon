@@ -2,15 +2,21 @@
 
 # Awesome Channel Points Manager
 
-**Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools.
+**Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools through **Custom Rewards**.
+
+![](./docs/screenshot.png)
 
 Automatically update your **Channel Rewards** when you change your game activity to allow your viewers interact with you specifically for the game you play!
 
-Create custom **rewards** interactions with our **plugins** !
+![](./docs/manage_rewards.png)
 
-Let your viewer change the weather or apply effects on the player in **Minecraft** thanks to our Minecraft plugin, or apply any sound effect like changing your voice pitch, or playing melodies with our **MIDI plugin** and any music software understanding MIDI signals, like **Ableton**!
+Create **Custom Rewards** interactions with our **plugins**, each custom reward can trigger multiple event, !
 
-Read the [Project Story here](./STORY.md)
+Let your viewer change the weather and/or apply effects on the player in **Minecraft** thanks to our Minecraft plugin, or apply any sound effect like changing your voice pitch, or playing melodies with our **MIDI plugin** and any music software understanding MIDI signals, like **Ableton**!
+
+![](./docs/demo.png)
+
+**Read the [Project Story here](./STORY.md)**
 
 ## Plugins
 
@@ -32,7 +38,7 @@ Download the latest release from [here](https://github.com/acouvreur/twitch-chan
 
 ## Development
 
-To develop with the frontend in hotreload
+To develop with the frontend in hot reloading mode
 
 - `npm install`
 - Start the frontend in hot reload `cd frontend && npm start`
