@@ -10,7 +10,7 @@ Automatically update your **Channel Rewards** when you change your game activity
 
 ![](./docs/manage_rewards.png)
 
-Create **Custom Rewards** interactions with our **plugins**, each custom reward can trigger multiple event, !
+Create **Custom Rewards** interactions with our **plugins**, each custom reward can trigger multiple effects!
 
 Let your viewer change the weather and/or apply effects on the player in **Minecraft** thanks to our Minecraft plugin, or apply any sound effect like changing your voice pitch, or playing melodies with our **MIDI plugin** and any music software understanding MIDI signals, like **Ableton**!
 
