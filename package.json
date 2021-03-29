@@ -1,6 +1,6 @@
 {
   "name": "twitch-channel-points-hackathon",
-  "version": "1.4.0-develop.1",
+  "version": "1.4.0",
   "description": "Awesome Channel Points Manager allows you to quickly setup amazing integrations with your games and broadcaster tools for Twitch.",
   "main": "main.js",
   "scripts": {

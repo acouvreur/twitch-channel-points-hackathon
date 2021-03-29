@@ -1,3 +1,16 @@
+# [1.4.0](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.0...v1.4.0) (2021-03-29)
+
+
+### Bug Fixes
+
+* add promise parameter to waitForAuthentication ([d820ad7](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/d820ad7318164802ef8cd21277cc0dffaf2b9932))
+* fix backend errors ([bea9d4f](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/bea9d4f52c1c6bd816d03f9c8306294c07695249))
+
+
+### Features
+
+* require all needed scope on startup ([25648a5](https://github.com/acouvreur/twitch-channel-points-hackathon/commit/25648a59ea08a2bcc54de23fa70f783ac99bc7fe))
+
 # [1.4.0-develop.1](https://github.com/acouvreur/twitch-channel-points-hackathon/compare/v1.3.1-develop.2...v1.4.0-develop.1) (2021-03-28)
 
 
