@@ -63,6 +63,8 @@ The server can also send MIDI signals.
   - How to interact with Twitch API
   - Writing a Minecraft plugin
   - How to integrate our application with music software tools like Ableton Live
+- The need of an affiliate account
+  - Channel Points API are restricted to affiliate accounts
 
 ## Accomplishments that we're proud of
 
@@ -72,6 +74,7 @@ The server can also send MIDI signals.
   - by applying sound effects on our voice: changing pitch, reverb, exorcist voice, ...
   - by applying tons of effects to the player in Minecraft
 - Technical solution for the demo has a dark theme!
+- Authentication system for development that allowed to share a token.json file so we could all work on fmauNeko's Twitch channel.
 
 ## What we learned
 
