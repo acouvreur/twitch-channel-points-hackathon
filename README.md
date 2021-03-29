@@ -4,6 +4,8 @@
 
 _Read the [Project Story here](./STORY.md)_
 
+_Checkout the [presentation video](https://www.youtube.com/watch?v=58TgcJvld-k)_
+
 **Awesome Channel Points Manager** allows you to quickly setup amazing integrations with your games and broadcaster tools through **Custom Rewards**.
 
 Automatically update your **Channel Rewards** when you change your game activity to allow your viewers interact with you specifically for the game you play!
